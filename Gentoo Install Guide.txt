@@ -1,0 +1,5 @@
+You don't need a seperate guide. The wiki is the most detailed guide there is. lol
+
+https://www.gentoo.org/get-started/
+
+Also you can use whatever distro live cd you want because it's downloading all it's init packages from Tarball archives on their website. (Recommended Live ISO: Linux Mint) 
