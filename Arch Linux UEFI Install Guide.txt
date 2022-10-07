@@ -68,13 +68,13 @@ pacstrap -i /mnt base base-devel linux linux-headers linux-firmware linux-firmwa
 11. arch-chroot /mnt
 
 12. Localisation and Timezone.
-a. nano /etc/locale.gen (uncomment en_AU.UTF-8 UTF-8)
+a. nano /etc/locale.gen (uncomment en_US.UTF-8 UTF-8)
 b. locale-gen
-c. echo "LANG=en_AU.UTF-8" >> /etc/locale.conf
-d. export LANG=en_AU.UTF-8
+c. echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+d. export LANG=en_US.UTF-8
 e. echo "KEYMAP=us" >> /etc/vconsole.conf (Defaults to en anyways so only do this if you have a different keyboard layout.)
 f. ln /usr/share/zoneinfo (This is to list the unix timezones)
-g. ln -sf /usr/share/zoneinfo/Australia/Melbourne /etc/localtime
+g. ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timesone Here] /etc/localtime
 h. hwclock --systohc --utc
 
 13. Configure Package Manager.
@@ -86,7 +86,7 @@ c. In Misc Options, remove the "#" from "ParallelDownloads = 5", "Color" and add
 d. pacman -Sy
 
 14. Installing more packages.
-pacman -S git networkmanager reflector pacman-contrib bluez bluez-utils bash-completion amd-ucode or intel-ucode
+pacman -S git networkmanager reflector pacman-contrib bluez bluez-utils bash-completion [Your CPU]-ucode
 
 15. Enable System Services.
 systemctl enable bluetooth.service
@@ -140,7 +140,7 @@ initrd /intel-ucode.img or /amd-ucode.img
 f. echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf
 
 21. Graphics Drivers. (Plus some packages for Vulkan and OpenCl.)
-a. AMD = pacman -S xf86-video-amdgpu libva-mesa-driver mesa opencl-mesa vulkan-radeon lib32-libva-mesa-driver lib32-mesa lib32-opencl-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
+a.   AMD = pacman -S xf86-video-amdgpu libva-mesa-driver mesa opencl-mesa vulkan-radeon lib32-libva-mesa-driver lib32-mesa lib32-opencl-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
      INTEL = pacman -S xf86-video-intel mesa intel-compute-runtime intel-media-driver vulkan-intel lib32-mesa lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader (Only if absolutely nessacary.)
      NVIDIA (Proprietary) = pacman -S nvidia-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
      NVIDIA (Open GPU Kernel Modules) = pacman -S nvidia-open-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
@@ -149,15 +149,15 @@ Note: Nouveau drivers are kind of scuffed, so not recommended anyways and the Op
 
 22a. Configure Driver KMS/Enabling wayland support. (NVIDIA ONLY!)
 a. nano /etc/mkinitcpio.conf
-     NVIDIA = Add "nvidia nvidia_modeset nvidia_uvm nvidia_drm" to the "MODULES()" line.
+     Add "nvidia nvidia_modeset nvidia_uvm nvidia_drm" to the "MODULES()" line.
 Note: If you fuck up this line, you're in trouble. So make sure it's in this order perfectly.
 b. mkinitcpio -P
 c. DRM kernel mode setting.
      Grub = nano /etc/default/grub
-                = Add "nvidia-drm.modeset=1" to GRUB_CMDLINE_LINUX_DEFAULT=""
-                = grub-mkconfig -o /boot/grub/grub.conf
+          = Add "nvidia-drm.modeset=1" to GRUB_CMDLINE_LINUX_DEFAULT=""
+          = grub-mkconfig -o /boot/grub/grub.conf
      Systemd-Boot = nano /boot/loader/entries/arch.conf
-	              = Add "nvidia-drm.modeset=1" to the end of the options line.
+	          = Add "nvidia-drm.modeset=1" to the end of the options line.
 d. mkdir /etc/pacman.d/hooks
 e. Make a Pacman hook so your not on the old drivers. (Only do the one related to your drivers.)
 
@@ -178,7 +178,7 @@ Exec=/usr/bin/mkinitcpio -P
 
 22b. Configuring Driver KMS/Enabling wayland support. (AMDGPU ONLY!)
 a. nano /etc/mkinitcpio.conf
-     AMD = Add "amdgpu" to the "MODLUES()" line.
+     Add "amdgpu" to the "MODLUES()" line.
 Note: If you fuck up this line, you're in trouble.
 b. mkinitcpio -P
 
@@ -189,10 +189,10 @@ c. reboot
 
 24. General checking.
 a. systemctl --failed (This is to make sure that nothing fucked up when starting up.)
-b. sudo reflector --country Australia --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+b. sudo reflector --country [Your Country Here] --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 c. sudo nano /etc/xdg/reflector/reflector.conf
 Edit the settings to your liking. An example is provided below
---country Australia
+--country [Your Country Here]
 --age 12
 --protocol https
 --sort rate
@@ -213,14 +213,14 @@ Wayland Note: The egl-wayland package may be needed if you have proprietary nvid
 b. Selecting your Desktop Environment and or Window Manager.
      AwesomeWM = sudo pacman -S awesome alacritty pcmanfm-qt lightdm lightdm-webkit2-greeter
      Cinnamon = sudo pacman -S cinnamon blueman gnome-keyring gnome-terminal metacity lightdm lightdm-slick-greeter
-     I3 = sudo pacman -S i3 alacritty pcmanfm-qt dmenu lightdm lightdm-webkit2-greeter
+     i3 = sudo pacman -S i3 alacritty pcmanfm-qt dmenu lightdm lightdm-webkit2-greeter
      Gnome = sudo pacman -S gnome gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk (Wayland supported/enabled by default.)
-                     = sudo pacman -S --needed gnome-menus gettext xdg-utils (Only needed if your using ArcMenu extension)
+           = sudo pacman -S --needed gnome-menus gettext xdg-utils (Only needed if your using ArcMenu extension)
      KDE Plasma (X11) = sudo pacman -S plasma sddm kde-applications
      KDE Plasma (Wayland) = sudo pacman -S plasma sddm kde-applications plasma-wayland-session qt6-wayland xdg-desktop-portal xdg-desktop-portal-kde
      LXQt = sudo pacman -S lxqt breeze-icons sddm network-manager-applet leafpad
      Sway (AMDGPU/WAYLAND ONLY!) = sudo pacman -S sway swaylock swayidle swaybg waybar light grim slurp foot xdg-desktop-portal xdg-desktop-portal-wlr
-			           = paru -S tofi
+			         = paru -S tofi
      Xfce = sudo pacman -S xfce xfce-goodies network-manager-applet lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
      X Window Manager (Very basic and not recommended) = sudo pacman -S xorg-twm xorg-xclock xTerm
 c. Enabling the Display Manager.
@@ -237,7 +237,7 @@ sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewi
 sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi
 
 28. Bash to Zsh replacment. (Optional)
-a. sudo pacman -S zsh zsh-completions grml-zsh-config
+a. sudo pacman -S zsh zsh-completions
 b. Run the command zsh and complete the initial setup configuration.
 Note: DO NOT USE A ZSH PLUGIN MANAGER AS THEY'RE JUST BLOAT!
 
@@ -303,13 +303,13 @@ Arch Linux Wallpapers (Seriously, what were you expecting.) = sudo pacman -S arc
 Olive Video Editor = paru -S olive-git
 VS Codium (Compiled binaries of vs code from source without telemetry.)  = paru -S vscodium-bin
 Visual Studio Code (Microsoft Official Binaries. 'Has Telemetry') = paru -S visual-studios-code-bin
-	                  = sudo pacman -S dotnet-runtime dotnet-sdk mono-msbuild mono-msbuild-sdkresolver mono
+	                  	                                  = sudo pacman -S dotnet-runtime dotnet-sdk mono-msbuild mono-msbuild-sdkresolver mono
 Note: the dotnet and mono packages are so that Unity3D doesn't break when using vscode for it.
 
 Discord Stable = sudo pacman -S discord
-	         = echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json
+	       = echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json
 
-Discord Canary/Nightly  = sudo pacman -S discord-canary
+Discord Canary/Nightly = sudo pacman -S discord-canary
 		       = echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json
 Note: To fix discord breaking from updates, add to the settings.json file "SKIP_HOST_UPDATE": true
 
@@ -317,27 +317,27 @@ OBS Studio (Official support via Flatpak) = flatpak install obs-studios
 			                  = sudo pacman -S v4l2loopback-dkms
 
 OBS Studio Tytan652 (Native version with some qol patches) = paru -s obs-studio-tytan652
-					                 = sudo pacman -S v4l2loopback-dkms
+					                   = sudo pacman -S v4l2loopback-dkms
 Note: the Tytan652 version does not allow for twitch/youtube/restream account integration as this version is built from source and not an official binary.
 
 OpenRGB = paru -S openrgb-git
-                     = sudo pacman -S i2c-tools
+        = sudo pacman -S i2c-tools
 
 Flatpak = sudo pacman -S flatpak
-                = reboot
+        = reboot
 
 Microsoft Windows 11 Fonts (Has to be built manually) = git clone https://aur.archlinux.org/ttf-ms-win11-auto.git
-					      = cd ttf-ms-win11-auto
-					      = makepkg -csi
+					              = cd ttf-ms-win11-auto
+					              = makepkg -csi
 
 Wine (Literally a dependency nightmare.) = sudo pacman -S wine-staging
-				 = sudo pacman -S winetricks
-				 = sudo pacman -S --needed giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader cups samba dosbox
+				 	 = sudo pacman -S winetricks
+				 	 = sudo pacman -S --needed giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader cups samba dosbox
 
 WineASIO (Good for Ableton or FL Studio running in Wine) = paru -S wineasio
-					              = sudo usermod -aG realtime $(whoami)
-					              For 32bit, run: regsvr32 /usr/lib32/wine/i386-windows/wineasio.dll
-					              For 64bit, run: wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio.dll
+					                 = sudo usermod -aG realtime $(whoami)
+					                 For 32bit, run: regsvr32 /usr/lib32/wine/i386-windows/wineasio.dll
+					                 For 64bit, run: wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio.dll
 
 (Even though there are Clone Hero Packages in the AUR, I wouldn't recommend using those packages as they are not maintained by mdsitton, srylain or anyone else on the StrikeLine Team. Same thing with Moonscraper.)
 
