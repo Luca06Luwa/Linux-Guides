@@ -3,13 +3,13 @@ QEMU/KVM Setup Guide for Arch-Based Distrobutions. (This requires two GPU's for 
 1. Enable your CPU IOMMU Driver.
 Note: If you have an AMD processor, then you can just skip this step due to AMD iommu systems being enabled by default if enabled in BIOS.
 Systemd-boot = sudo nano /boot/loader/entries/arch.conf
-	         = Add "intel_iommu=on" to the end of the options line.
-	         = reboot
+	     = Add "intel_iommu=on" to the end of the options line.
+	     = reboot
 
 Grub Bootloader = sudo nano /etc/default/grub
-	              = Add "intel_iommu=on" to GRUB_CMDLINE_LINUX_DEFAULT="".
-	              = grub-mkconfig -o /boot/grub/grub.cfg
-	              = reboot
+	        = Add "intel_iommu=on" to GRUB_CMDLINE_LINUX_DEFAULT="".
+	        = grub-mkconfig -o /boot/grub/grub.cfg
+	        = reboot
 
 2. Check to make sure IOMMU has been enabled. = sudo dmesg | grep -i -e DMAR -e IOMMU
 
@@ -63,3 +63,5 @@ e. sudo virsh net-autostart default
 a. Download the Windows 11 ISO and save it somewhere.
 b. Open VirtManager and select create new.
 c. Enter basic values and select I want to edit this VM 
+
+(The rest is incomplete, but you can just google a video on how to setup virt-manager with qemu.)
