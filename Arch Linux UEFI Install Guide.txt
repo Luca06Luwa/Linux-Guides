@@ -106,7 +106,7 @@ b. sudo pacman -S tlp (For lenovo thinkpad support.)
 Note: If you're running an LTS kernel, you will need the acpi_call-lts.
 Note 2: If you're running a custom kernel, you will need acpi_call-dkms.
 c. Enable the services.
-systemct enable acpid.service
+systemctl enable acpid.service
 systemctl tlp.service (Only if downloaded the package.)
 
 18. passwd (root account)
@@ -120,7 +120,7 @@ Uncomment "%wheel ALL=(ALL) ALL"
 Add "Defaults rootpw" to the bottom of the file.
 
 Bootloader. (You choose which one to install.)
-20a. Grub Bootloader. (Multi-boot/Easy Mode)
+20a. Grub Bootloader. (Multi-boot/Easy Mode) [DO NOT USE GRUB IF YOU DON"T WANT A BROKEN INSTALL!!!!]
 a. pacman -S grub efibootmgr os-prober
 c. grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 d. nano etc/default/grub
@@ -207,7 +207,7 @@ d. paru -Syyu
 
 26. Graphical Environment. (I'm not going to be putting Window Managers in here because their too complex.) [Fuck you past me. I added Window Managers lol]
 a. Install Xorg.
-    sudo pacman -S xorg xorg-xinit 
+     sudo pacman -S xorg xorg-xinit 
 Note: If you want to use Wayland instead of Xorg. You have already enabled support for it, all you need to do is install a compatible Desktop Environment.
 Wayland Note: The egl-wayland package may be needed if you have proprietary nvidia drivers.
 b. Selecting your Desktop Environment and or Window Manager.
@@ -330,9 +330,9 @@ Microsoft Windows 11 Fonts (Has to be built manually) = git clone https://aur.ar
 					              = cd ttf-ms-win11-auto
 					              = makepkg -csi
 
-Wine (Literally a dependency nightmare.) = sudo pacman -S wine-staging
-				 	 = sudo pacman -S winetricks
-				 	 = sudo pacman -S --needed giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader cups samba dosbox
+Wine (Literally just a dependency nightmare.) = sudo pacman -S wine-staging
+					      = sudo pacman -S winetricks
+				 	      = sudo pacman -S --needed giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader cups samba dosbox
 
 WineASIO (Good for Ableton or FL Studio running in Wine) = paru -S wineasio
 					                 = sudo usermod -aG realtime $(whoami)
