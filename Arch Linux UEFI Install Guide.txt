@@ -267,6 +267,7 @@ pcsx2 = paru -S pcsx2-git
 rpcs3 (Does not include ps3 firmware. Obviously) [Updated Upstream] = paru -S rpcs3-git
 itch.io launcher = paru -S itch-setup-bin
 osu! lazer = Download on Github
+DDLC = Download on itch.io and to make the .sh file executable run the command 'chmod +x DDLC.sh'.
 Steamtinkerlaunch = paru -S steamtinkerlaunch
 Protonup-QT = paru -S protonup-qt
 Athenaeum = flatpak install athenaeum
@@ -349,4 +350,4 @@ To extract tar.xz files use tar -xvJf [Your compressed file].tar.xz
 
 To extract tar.bzip2 files use tar -xvjf [Your compressed file].tar.bzip2
 
-To runn AppImages, you must have AppImageLauncher installed to have it fully intergrade into system and to be able to update the packages.
+To run AppImages, you must have AppImageLauncher installed to have it fully intergrade into system and to be able to update the packages.
