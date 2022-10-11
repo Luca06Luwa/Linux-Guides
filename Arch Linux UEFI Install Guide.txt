@@ -82,11 +82,11 @@ a. nano /etc/pacman.conf
 b. Uncomment the line that you see below.
 [multilib]
 Include = /etc/pacman.d/mirrorlist
-c. In Misc Options, remove the "#" from "ParallelDownloads = 5", "Color" and add "ILoveCandy" 
+c. In Misc Options, remove the "#" from "ParallelDownloads = 5", "Color" and add to a new line "ILoveCandy" 
 d. pacman -Sy
 
 14. Installing more packages.
-pacman -S git networkmanager reflector pacman-contrib bluez bluez-utils bash-completion [Your CPU]-ucode
+pacman -S git networkmanager reflector pacman-contrib bluez bluez-utils neovim bash-completion [Your CPU]-ucode
 
 15. Enable System Services.
 systemctl enable bluetooth.service
@@ -213,6 +213,7 @@ Wayland Note: The egl-wayland package may be needed if you have proprietary nvid
 b. Selecting your Desktop Environment and or Window Manager.
      AwesomeWM = sudo pacman -S awesome alacritty pcmanfm-qt lightdm lightdm-webkit2-greeter
      Cinnamon = sudo pacman -S cinnamon blueman gnome-keyring gnome-terminal metacity lightdm lightdm-slick-greeter
+     Cosmic Desktop = The POP!_os team have yet to release a build where it can be ported to arch. [Not Complete]
      i3 = sudo pacman -S i3 alacritty pcmanfm-qt dmenu lightdm lightdm-webkit2-greeter
      Gnome = sudo pacman -S gnome gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk (Wayland supported/enabled by default.)
            = sudo pacman -S --needed gnome-menus gettext xdg-utils (Only needed if your using ArcMenu extension)
