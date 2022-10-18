@@ -49,7 +49,7 @@ Mount Bootloader Partitions.
 a. mkdir /mnt/boot
 b. mount /dev/efi_system_partition /mnt/boot
 
-7b. Grub Bootloader. (Easy Mode)
+7b. Grub Bootloader. (Easy Mode) [DO NOT USE GRUB IF YOU DON"T WANT A BROKEN INSTALL!!!!]
 h. mkdir /mnt/boot/efi
 i. mount /dev/efi_system_partition /mnt/boot/efi
 
@@ -139,7 +139,7 @@ initrd /initramfs-linux.img
 initrd /intel-ucode.img or /amd-ucode.img
 f. echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf
 
-21. Graphics Drivers. (Plus some packages for Vulkan and OpenCl.)
+21. Graphics Drivers. (Plus some packages for Vulkan and OpenCL.)
 a.   AMD = pacman -S xf86-video-amdgpu libva-mesa-driver mesa opencl-mesa vulkan-radeon lib32-libva-mesa-driver lib32-mesa lib32-opencl-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
      INTEL = pacman -S xf86-video-intel mesa intel-compute-runtime intel-media-driver vulkan-intel lib32-mesa lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader (Only if absolutely nessacary.)
      NVIDIA (Proprietary) = pacman -S nvidia-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
@@ -296,7 +296,7 @@ Wireshark = sudo pacman -S wireshark-qt
 Htop = sudo pacman -S htop
 Downgrade = paru -S downgrade
 Flatseal = flatpak install flatseal
-Activate Linux = paru -S activate-linux-git
+Activate Linux (This one is purely a joke.) = paru -S activate-linux-git
 MPV = sudo pacman -S mpv
 7-Zip = paru -S 7-zip-full
 Neofetch = sudo pacman -S neofetch
