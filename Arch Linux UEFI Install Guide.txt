@@ -211,23 +211,31 @@ a. Install Xorg.
 Note: If you want to use Wayland instead of Xorg. You have already enabled support for it, all you need to do is install a compatible Desktop Environment.
 Wayland Note: The egl-wayland package may be needed if you have proprietary nvidia drivers.
 b. Selecting your Desktop Environment and or Window Manager.
-     AwesomeWM = sudo pacman -S awesome alacritty pcmanfm-qt lightdm lightdm-webkit2-greeter
-     Cinnamon = sudo pacman -S cinnamon blueman gnome-keyring gnome-terminal metacity lightdm lightdm-slick-greeter
+     AwesomeWM = sudo pacman -S awesome alacritty pcmanfm-qt
+     Cinnamon = sudo pacman -S cinnamon blueman gnome-keyring gnome-terminal metacity
      Cosmic Desktop = The POP!_os team have yet to release a build where it can be ported to arch. [Not Complete]
-     i3 = sudo pacman -S i3 alacritty pcmanfm-qt dmenu lightdm lightdm-webkit2-greeter
+     i3 = sudo pacman -S i3 alacritty pcmanfm-qt dmenu
      Gnome = sudo pacman -S gnome gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk (Wayland supported/enabled by default.)
            = sudo pacman -S --needed gnome-menus gettext xdg-utils (Only needed if your using ArcMenu extension)
-     KDE Plasma (X11) = sudo pacman -S plasma sddm kde-applications
-     KDE Plasma (Wayland) = sudo pacman -S plasma sddm kde-applications plasma-wayland-session qt6-wayland xdg-desktop-portal xdg-desktop-portal-kde
-     LXQt = sudo pacman -S lxqt breeze-icons sddm network-manager-applet leafpad
+     KDE Plasma (X11) = sudo pacman -S plasma kde-applications
+     KDE Plasma (Wayland) = sudo pacman -S plasma kde-applications plasma-wayland-session qt6-wayland xdg-desktop-portal xdg-desktop-portal-kde
+     LXQt = sudo pacman -S lxqt breeze-icons network-manager-applet leafpad
      Sway (AMDGPU/WAYLAND ONLY!) = sudo pacman -S sway swaylock swayidle swaybg waybar light grim slurp foot xdg-desktop-portal xdg-desktop-portal-wlr
 			         = paru -S tofi
-     Xfce = sudo pacman -S xfce xfce-goodies network-manager-applet lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+     Xfce = sudo pacman -S xfce xfce-goodies network-manager-applet 
      X Window Manager (Very basic and not recommended) = sudo pacman -S xorg-twm xorg-xclock xTerm
-c. Enabling the Display Manager.
-     GDM = sudo systemctl enable gdm.service
-     SDDM = sudo systemctl enable sddm.service
-     LightDM = sudo systemctl enable lightdm.service
+c. Installing and enabling a display manager.
+     GDM = Included with gnome so don't worry about downloading.
+         = sudo systemctl enable gdm.service
+     SDDM = sudo pacman -S sddm
+          = sudo systemctl enable sddm.service
+     LightDM = sudo pacman -S lightdm
+             = Choose the greeter you want to use for LightDM.
+	     lightdm-gtk-greeter lightdm-gtk-greeter-settings
+	     lightdm-webkit2-greeter
+	     lightdm-slick-greeter
+             = sudo systemctl enable lightdm.service
+     StartX on startup = Too complex for this guide so I will simply link to the arch wiki. https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login 
 (Honestly, you can use whatever display manager you want. Just make sure it's compatible with whatever DE your using.)
 d. reboot
 
