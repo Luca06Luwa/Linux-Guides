@@ -303,6 +303,7 @@ Neofetch = sudo pacman -S neofetch
 cMatrix = sudo pacman -S cmatrix
 Arch Linux Wallpapers (Seriously, what were you expecting.) = sudo pacman -S archlinux-wallpaper
 Olive Video Editor = paru -S olive-git
+Audacity = sudo pacman -S audacity
 VS Codium (Compiled binaries of vs code from source without telemetry.)  = paru -S vscodium-bin
 Visual Studio Code (Microsoft Official Binaries. 'Has Telemetry') = paru -S visual-studios-code-bin
 	                  	                                  = sudo pacman -S dotnet-runtime dotnet-sdk mono-msbuild mono-msbuild-sdkresolver mono
