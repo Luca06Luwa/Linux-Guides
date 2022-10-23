@@ -1,4 +1,4 @@
-QEMU/KVM Setup Guide for Arch-Based Distrobutions. (This requires two GPU's for a really good gaming Virtual Machine.)
+QEMU/KVM Setup Guide for Arch-Based Distrobutions. (This requires two GPU's for a really good gaming Virtual Machine).
 
 1. Enable your CPU IOMMU Driver.
 Note: If you have an AMD processor, then you can just skip this step due to AMD iommu systems being enabled by default if enabled in BIOS.
@@ -24,12 +24,12 @@ for g in $(find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V); do
 done;
 
 b. Save your GPU iommu groups because you're going to need it for later.
-Example: (This was pulled from the Arch wiki. Use your GPU's IOMMU groups)
+Example: (This was pulled from the Arch wiki. Use your GPU's IOMMU groups).
 IOMMU Group 13:
 	 06:00.0 VGA compatible controller: NVIDIA Corporation GM204 [GeForce GTX 970] [10de:13c2] (rev a1)
 	 06:00.1 Audio device: NVIDIA Corporation GM204 High Definition Audio Controller [10de:0fbb] (rev a1)
 
-(Note: If your GPU is assigned in a group with another device, you're going to need to ACS Patch your kernel and that's way too complex, or install the zen kernel for virtualization.)
+(Note: If your GPU is assigned in a group with another device, you're going to need to ACS Patch your kernel and that's way too complex, or install the zen kernel for virtualization).
 
 4a. Isolating your GPU. (Grub Bootloader)
 a. sudo nano /etc/default/grub
@@ -59,9 +59,9 @@ c. sudo systemctl enable virtlogd.socket --now
 d. sudo virsh net-start default
 e. sudo virsh net-autostart default
 
-6. Actually setting up your Virtual Machine. (The steps before were command line stuff that you won't need to touch again.)
+6. Actually setting up your Virtual Machine. (The steps before were command line stuff that you won't need to touch again).
 a. Download the Windows 11 ISO and save it somewhere.
 b. Open VirtManager and select create new.
 c. Enter basic values and select I want to edit this VM 
 
-(The rest is incomplete, but you can just google a video on how to setup virt-manager with qemu.)
+(The rest is incomplete, but you can just google a video on how to setup virt-manager with qemu).
