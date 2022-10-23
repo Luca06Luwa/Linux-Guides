@@ -55,7 +55,7 @@ i. mount /dev/efi_system_partition /mnt/boot/efi
 
 8. Configure mirrorlist.
 a. cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-b. nano /etc/pacman.d/mirrorlist (Check if all the servers are uncommented.)
+b. nano /etc/pacman.d/mirrorlist (Check if all the servers are uncommented).
 c. pacman -Sy
 d. pacman -S pacman-contrib
 e. rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
@@ -72,7 +72,7 @@ a. nano /etc/locale.gen (uncomment en_US.UTF-8 UTF-8)
 b. locale-gen
 c. echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 d. export LANG=en_US.UTF-8
-e. echo "KEYMAP=us" >> /etc/vconsole.conf (Defaults to en anyways so only do this if you have a different keyboard layout.)
+e. echo "KEYMAP=us" >> /etc/vconsole.conf (Defaults to en anyways so only do this if you have a different keyboard layout).
 f. ln /usr/share/zoneinfo (This is to list the unix timezones)
 g. ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timesone Here] /etc/localtime
 h. hwclock --systohc --utc
