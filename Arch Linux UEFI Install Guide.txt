@@ -1,36 +1,36 @@
-Arch Linux UEFI Install Guide. (More Info and some notes at the bottom.)
+Arch Linux UEFI Install Guide. (More Info and some notes at the bottom).
 
-1. ls /sys/firmware/efi/efivars (If this command fails then your in legacy bios boot.)
+1. ls /sys/firmware/efi/efivars (If this command fails then your in legacy bios boot).
 
 2. loadkeys us (done by default)
 
 3. timedatectl set-ntp true
 
-4. Networking. (If you have ehternet you can skip this step because systemd-networkd would have already configured it.)
-a. ip link (This is to check if you're getting an ip through ethernet or Wi-Fi.)
-b. iwctl (This bit is for Wi-Fi. If you have ethernet then you can skip the iwd stuff.)
+4. Networking. (If you have ehternet you can skip this step because systemd-networkd would have already configured it).
+a. ip link (This is to check if you're getting an ip through ethernet or Wi-Fi).
+b. iwctl (This bit is for Wi-Fi. If you have ethernet then you can skip the iwd stuff).
 c. device list
 d. station [Your wifi card] scan
 e. starion [Your wifi card] get-networks
 f. station [your wifi card] connect "[your network]"
 g. press ctrl + d to exit iwd
-h. ip link (To verify that you're getting an ip to Wi-Fi.)
+h. ip link (To verify that you're getting an ip to Wi-Fi).
 
-ping archlinux.org (This is just to check that you're connected.)
+ping archlinux.org (This is just to check that you're connected).
 
 5. Creating the Partition Tables.
 a. lsblk (To see what hard drives you have installed)
-b. hdparm -i  /dev/the_disk_to_be_partitioned (This is to double check that you've selected the right drive.)
-c. gdisk /dev/the_disk_to_be_partitioned (Only if you have another os on the drive and want to nuke it. If it's a blank drive then just skip this and move to cgdisk.)
+b. hdparm -i  /dev/the_disk_to_be_partitioned (This is to double check that you've selected the right drive).
+c. gdisk /dev/the_disk_to_be_partitioned (Only if you have another os on the drive and want to nuke it. If it's a blank drive then just skip this and move to cgdisk).
     x (for expert mode)
-    z (To delete the entire content of the drive.)
+    z (To delete the entire content of the drive).
 d. cgdisk /dev/the_disk_to_be_partitioned
 e. Format the drive like this. 
 Boot Partition = Default - 1024MiB - EF00 - boot
 Swap Partition = Default - 16GiB - 8200 - swap
 Root Partition = Default - 32GiB - root
 Home Partition = Default - [the remainder of the drive] - home
-Note: EF00 = uefi bootable partition, 8200 = swap and 8300 = linux filesystem. (Just incase you don't know what they mean.)
+Note: EF00 = uefi bootable partition, 8200 = swap and 8300 = linux filesystem. (Just incase you don't know what they mean).
 f. write changes to disk
 
 6. Format and Mount file systems.
@@ -102,12 +102,12 @@ d. echo "127.0.1.1        [Add same hostname as before. lol]" >> /etc/hosts
 
 17. Laptop Battery Saver. (Optional)
 a. sudo pacman -S acpi acpid
-b. sudo pacman -S tlp (For lenovo thinkpad support.)
+b. sudo pacman -S tlp (For lenovo thinkpad support).
 Note: If you're running an LTS kernel, you will need the acpi_call-lts.
 Note 2: If you're running a custom kernel, you will need acpi_call-dkms.
 c. Enable the services.
 systemctl enable acpid.service
-systemctl tlp.service (Only if downloaded the package.)
+systemctl tlp.service (Only if downloaded the package).
 
 18. passwd (root account)
 
@@ -119,7 +119,7 @@ d. Change the following configuration.
 Uncomment "%wheel ALL=(ALL) ALL"
 Add "Defaults rootpw" to the bottom of the file.
 
-Bootloader. (You choose which one to install.)
+Bootloader. (You choose which one to install).
 20a. Grub Bootloader. (Multi-boot/Easy Mode) [DO NOT USE GRUB IF YOU DON"T WANT A BROKEN INSTALL!!!!]
 a. pacman -S grub efibootmgr os-prober
 c. grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
@@ -127,14 +127,14 @@ d. nano etc/default/grub
 e. Make any changes to the grub config.
 f. grub-mkconfig -o /boot/grub/grub.cfg
 
-20b. Systemd-boot. (Requires manual entries/Hard Mode.)
+20b. Systemd-boot. (Requires manual entries/Hard Mode).
 a. mount -t efivarfs efivarfs /sys/firmware/efi/efivars
 b. bootctl install
 c. systemctl enable systemd-boot-update.service
 d. nano /boot/loader/entries/arch.conf
 e. Add the following content to the file
 title Abyssal Linux
-linux /vmlinuz-linux (change this depending on what kernel you have.)
+linux /vmlinuz-linux (change this depending on what kernel you have).
 initrd /initramfs-linux.img
 initrd /intel-ucode.img or /amd-ucode.img
 f. echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf
@@ -159,7 +159,7 @@ c. DRM kernel mode setting.
      Systemd-Boot = nano /boot/loader/entries/arch.conf
 	          = Add "nvidia-drm.modeset=1" to the end of the options line.
 d. mkdir /etc/pacman.d/hooks
-e. Make a Pacman hook so your not on the old drivers. (Only do the one related to your drivers.)
+e. Make a Pacman hook so your not on the old drivers. (Only do the one related to your drivers).
 
 NVIDIA = nano /etc/pacman.d/hooks/nvidia.hook
 Add this content to the file.
@@ -188,7 +188,7 @@ b. umount -a
 c. reboot
 
 24. General checking.
-a. systemctl --failed (This is to make sure that nothing fucked up when starting up.)
+a. systemctl --failed (This is to make sure that nothing fucked up when starting up).
 b. sudo reflector --country [Your Country Here] --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 c. sudo nano /etc/xdg/reflector/reflector.conf
 Edit the settings to your liking. An example is provided below
@@ -205,7 +205,7 @@ b. cd paru
 c. makepkg -csi
 d. paru -Syyu
 
-26. Graphical Environment. (I'm not going to be putting Window Managers in here because their too complex.) [Fuck you past me. I added Window Managers lol]
+26. Graphical Environment. (I'm not going to be putting Window Managers in here because their too complex). [Fuck you past me. I added Window Managers lol]
 a. Install Xorg.
      sudo pacman -S xorg xorg-xinit 
 Note: If you want to use Wayland instead of Xorg. You have already enabled support for it, all you need to do is install a compatible Desktop Environment.
@@ -225,24 +225,23 @@ b. Selecting your Desktop Environment and or Window Manager.
      Xfce = sudo pacman -S xfce xfce-goodies network-manager-applet 
      X Window Manager (Very basic and not recommended) = sudo pacman -S xorg-twm xorg-xclock xTerm
 c. Installing and enabling a display manager.
-     GDM = Included with gnome so don't worry about downloading.
-         = sudo systemctl enable gdm.service
-     SDDM = sudo pacman -S sddm
-          = sudo systemctl enable sddm.service
-     LightDM = sudo pacman -S lightdm
-             = Choose the greeter you want to use for LightDM.
-	     lightdm-gtk-greeter lightdm-gtk-greeter-settings
-	     lightdm-webkit2-greeter
-	     lightdm-slick-greeter
-             = sudo systemctl enable lightdm.service
+     GDM (Recommended for Gnome) = Included with gnome so don't worry about downloading.
+         			 = sudo systemctl enable gdm.service
+     SDDM (Recommended for KDE or LXQt) = sudo pacman -S sddm
+          				= sudo systemctl enable sddm.service
+     LightDM (Can be used with most Desktops Enviornments or Window Managers) = sudo pacman -S lightdm
+									      = Choose the greeter you want to use for LightDM.
+									      lightdm-gtk-greeter lightdm-gtk-greeter-settings
+									      lightdm-webkit2-greeter
+									      lightdm-slick-greeter
+									      = sudo systemctl enable lightdm.service
      StartX on startup = Too complex for this guide so I will simply link to the arch wiki. https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login 
-(Honestly, you can use whatever display manager you want. Just make sure it's compatible with whatever DE your using.)
 d. reboot
 
-27. Audio Drivers. (Pipewire is needed for wayland since by itself doesn't allow screen recording and alsa-ucm-conf is for basic non configurable GoXLR support.)
+27. Audio Drivers. (Pipewire is needed for wayland since by itself doesn't allow screen recording and alsa-ucm-conf is for basic non configurable GoXLR support).
 sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber
 
-28. Gstreamer Full Support. (This only applies to the normal Desktop Environments not the Window Managers)
+28. Gstreamer Full Support. (This only applies to the normal Desktop Environments. Window Managers can be used without it).
 sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi
 
 28. Bash to Zsh replacment. (Optional)
@@ -260,10 +259,10 @@ Thunderbird = sudo pacman -S thunderbird
 qbittorrent = sudo pacman -S qbittorrent
 Spotify = paru -S spotify
 GameMode = sudo pacman -S gamemode lib32-gamemode
-lf file manager = paru -S lf (This replaces ranger if you want.) [it's L not I just so you know.]
-Minecraft (Official support via AUR) = paru -S minecraft-launcher (Requires at least java 17 lts or java 8 lts)
+lf file manager = paru -S lf (This replaces ranger if you want). [it's L not I just so you know].
+Minecraft (Official support via AUR) = paru -S minecraft-launcher (Requires at least java 17 lts or java 8 lts).
 Steam = sudo pacman -S steam
-Ani-Cli (Not DMCA proof. User's own risk.) = paru -S ani-cli-git
+Ani-Cli (Not DMCA proof. User's own risk) = paru -S ani-cli-git
 Lutris (Requires you to have already installed Wine.) = sudo pacman -S lutris
 Reaper DAW = sudo pacman -S reaper
 Polyphone = sudo pacman -S polyphone
@@ -290,7 +289,7 @@ ScoreSpy = Download from website.
 Moonscraper Chart Editor= Download on Github.
 Blender 2.79b (Only use if it's needed) = Download through website.
 Blender Latest = sudo pacman -S blender
-Unreal Engine = Need to build from Github private repo. (Difficult to compile.)
+Unreal Engine = Need to build from Github private repo. (Difficult to compile).
 Python = sudo pacman -S python python-pip
 NodeJS = sudo pacman -S nodejs-lts-gallium npm
 Adoptium Java11 (AUR) = paru -S jdk11-temurin
@@ -304,15 +303,15 @@ Wireshark = sudo pacman -S wireshark-qt
 Htop = sudo pacman -S htop
 Downgrade = paru -S downgrade
 Flatseal = flatpak install flatseal
-Activate Linux (This one is purely a joke.) = paru -S activate-linux-git
+Activate Linux (This one is purely a joke). = paru -S activate-linux-git
 MPV = sudo pacman -S mpv
 7-Zip = paru -S 7-zip-full
 Neofetch = sudo pacman -S neofetch
 cMatrix = sudo pacman -S cmatrix
-Arch Linux Wallpapers (Seriously, what were you expecting.) = sudo pacman -S archlinux-wallpaper
+Arch Linux Wallpapers (Seriously, what were you expecting) = sudo pacman -S archlinux-wallpaper
 Olive Video Editor = paru -S olive-git
 Audacity = sudo pacman -S audacity
-VS Codium (Compiled binaries of vs code from source without telemetry.)  = paru -S vscodium-bin
+VS Codium (Compiled binaries of vs code from source without telemetry) = paru -S vscodium-bin
 Visual Studio Code (Microsoft Official Binaries. 'Has Telemetry') = paru -S visual-studios-code-bin
 	                  	                                  = sudo pacman -S dotnet-runtime dotnet-sdk mono-msbuild mono-msbuild-sdkresolver mono
 Note: the dotnet and mono packages are so that Unity3D doesn't break when using vscode for it.
@@ -341,18 +340,16 @@ Microsoft Windows 11 Fonts (Has to be built manually) = git clone https://aur.ar
 					              = cd ttf-ms-win11-auto
 					              = makepkg -csi
 
-Wine (Literally just a dependency nightmare.) = sudo pacman -S wine-staging
-					      = sudo pacman -S winetricks
-				 	      = sudo pacman -S --needed giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader cups samba dosbox
+Wine (Literally just a dependency nightmare) = sudo pacman -S wine-staging
+					     = sudo pacman -S winetricks
+				 	     = sudo pacman -S --needed giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader cups samba dosbox
 
 WineASIO (Good for Ableton or FL Studio running in Wine) = paru -S wineasio
 					                 = sudo usermod -aG realtime $(whoami)
 					                 For 32bit, run: regsvr32 /usr/lib32/wine/i386-windows/wineasio.dll
 					                 For 64bit, run: wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio.dll
 
-(Even though there are Clone Hero Packages in the AUR, I wouldn't recommend using those packages as they are not maintained by mdsitton, srylain or anyone else on the StrikeLine Team. Same thing with Moonscraper.)
-
-Recommend getting paru for AUR and pamac for a graphical version. (Not including snap packages due to how bad they are.)
+(Even though there are Clone Hero Packages in the AUR, I wouldn't recommend using those packages as they are not maintained by mdsitton, srylain or anyone else on the StrikeLine Team. Same thing with Moonscraper).
 
 To extract tar.gz files use tar -xvzf [Your compressed file].tar.gz
 
