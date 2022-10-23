@@ -215,13 +215,14 @@ b. Selecting your Desktop Environment and or Window Manager.
      Cinnamon = sudo pacman -S cinnamon blueman gnome-keyring gnome-terminal metacity
      Cosmic Desktop = The POP!_os team have yet to release a build where it can be ported to arch. [Not Complete]
      i3 = sudo pacman -S i3 alacritty pcmanfm-qt dmenu
-     Gnome = sudo pacman -S gnome gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk (Wayland supported/enabled by default.)
-           = sudo pacman -S --needed gnome-menus gettext xdg-utils (Only needed if your using ArcMenu extension)
+     Gnome = sudo pacman -S gnome gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk (Wayland supported/enabled by default).
+           = sudo pacman -S --needed gnome-menus gettext xdg-utils (Only needed if your using ArcMenu extension).
+     Hyprland = In VERY early stages of development and currently not recommended for daily use. [Not recommended]
      KDE Plasma (X11) = sudo pacman -S plasma kde-applications
      KDE Plasma (Wayland) = sudo pacman -S plasma kde-applications plasma-wayland-session qt6-wayland xdg-desktop-portal xdg-desktop-portal-kde
      LXQt = sudo pacman -S lxqt breeze-icons network-manager-applet leafpad
-     Sway (AMDGPU/WAYLAND ONLY!) = sudo pacman -S sway swaylock swayidle swaybg waybar light grim slurp foot xdg-desktop-portal xdg-desktop-portal-wlr
-			         = paru -S tofi
+     Sway (AMDGPU & WAYLAND ONLY!) = sudo pacman -S sway swaylock swayidle swaybg waybar light grim slurp foot xdg-desktop-portal xdg-desktop-portal-wlr
+				   = paru -S tofi
      Xfce = sudo pacman -S xfce xfce-goodies network-manager-applet 
      X Window Manager (Very basic and not recommended) = sudo pacman -S xorg-twm xorg-xclock xTerm
 c. Installing and enabling a display manager.
