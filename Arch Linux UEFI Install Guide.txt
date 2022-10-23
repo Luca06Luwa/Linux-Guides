@@ -251,7 +251,7 @@ b. Run the command zsh and complete the initial setup configuration.
 Note: DO NOT USE A ZSH PLUGIN MANAGER AS THEY'RE JUST BLOAT!
 
 29. Applications. (Just a list of basic applications/games. lol) This list is only if your using the terminal for packages.
-Note: Before you install a program, always update your system with sudo pacman -Syu. This is to make sure the repos are up to date so there is no incompatibility.
+Note: Before you install a program, always run a sudo pacman -Sy or sudopacman -Syu to make sure the repos are up to date so there is no incompatibility.
 Firefox = sudo pacman -S firefox
 Chromium = sudo pacman -S chromium
 Brave = paru -S brave-bin
@@ -270,6 +270,7 @@ Polyphone = sudo pacman -S polyphone
 Proton-GE = Download on Github.
 Wine-GE = Download on Github.
 Dolphin Emulator = paru -S dolphin-emu-git
+Retroarch = sudo pacman -S retroarch
 Ryujinx = flatpak install ryujinx
 Yuzu = flatpak install yuzu
 pcsx2 = paru -S pcsx2-git
@@ -350,7 +351,9 @@ WineASIO (Good for Ableton or FL Studio running in Wine) = paru -S wineasio
 					                 For 32bit, run: regsvr32 /usr/lib32/wine/i386-windows/wineasio.dll
 					                 For 64bit, run: wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio.dll
 
-(Even though there are Clone Hero Packages in the AUR, I wouldn't recommend using those packages as they are not maintained by mdsitton, srylain or anyone else on the StrikeLine Team. Same thing with Moonscraper).
+Note1: Only the official binary version of vs code will work with C/C++ C# etc. (Basically any code language developed by Microsoft is only compatible on the Microsoft version of vs code).
+
+Note2: Even though there are Clone Hero Packages in the AUR, I wouldn't recommend using those packages as they are not maintained by mdsitton, srylain or anyone else on the StrikeLine Team. Same thing with Moonscraper.
 
 To extract tar.gz files use tar -xvzf [Your compressed file].tar.gz
 
