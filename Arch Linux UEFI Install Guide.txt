@@ -226,17 +226,18 @@ b. Selecting your Desktop Environment and or Window Manager.
      Xfce = sudo pacman -S xfce xfce-goodies network-manager-applet 
      X Window Manager (Very basic and not recommended) = sudo pacman -S xorg-twm xorg-xclock xTerm
 c. Installing and enabling a display manager.
-     GDM (Recommended for Gnome) = Included with gnome so don't worry about downloading.
-         			 = sudo systemctl enable gdm.service
-     SDDM (Recommended for KDE or LXQt) = sudo pacman -S sddm
-          				= sudo systemctl enable sddm.service
-     LightDM (Can be used with most Desktops Enviornments or Window Managers) = sudo pacman -S lightdm
-									      = Choose the greeter you want to use for LightDM.
-									      lightdm-gtk-greeter lightdm-gtk-greeter-settings
-									      lightdm-webkit2-greeter
-									      lightdm-slick-greeter
-									      = sudo systemctl enable lightdm.service
-     StartX on startup = Too complex for this guide so I will simply link to the arch wiki. https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login 
+     GDM (Required for Gnome only.) = Included with gnome so don't worry about downloading.
+         			    = sudo systemctl enable gdm.service
+     SDDM (Recommended for KDE or LXQt. Can launch wayland envionment) = sudo pacman -S sddm
+          							       = sudo systemctl enable sddm.service
+     LightDM (Cross-platform with Desktops or Window Managers. Can launch Wayand environment) = sudo pacman -S lightdm
+											      = Choose the greeter you want to use for LightDM.
+									      		      lightdm-gtk-greeter lightdm-gtk-greeter-settings
+									      		      lightdm-webkit2-greeter
+									      		      lightdm-slick-greeter
+									      		      = sudo systemctl enable lightdm.service
+     StartX on startup = Too complex for this guide so I will simply link to the arch wiki. https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login
+Note: Sway doesn't allow to be launched with a Display Manager so I will simply link to the arch wiki. https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login
 d. reboot
 
 27. Audio Drivers. (Pipewire is needed for wayland since by itself doesn't allow screen recording and alsa-ucm-conf is for basic non configurable GoXLR support).
@@ -249,6 +250,7 @@ sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-b
 a. sudo pacman -S zsh zsh-completions
 b. Run the command zsh and complete the initial setup configuration.
 Note: DO NOT USE A ZSH PLUGIN MANAGER AS THEY'RE JUST BLOAT!
+c. sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions
 
 29. Applications. (Just a list of basic applications/games. lol) This list is only if your using the terminal for packages.
 Note: Before you install a program, always run a sudo pacman -Sy or sudopacman -Syu to make sure the repos are up to date so there is no incompatibility.
