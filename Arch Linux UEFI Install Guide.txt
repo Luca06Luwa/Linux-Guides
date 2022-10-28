@@ -1,12 +1,11 @@
 Arch Linux UEFI Install Guide. (More Info and some notes at the bottom).
 
-1. ls /sys/firmware/efi/efivars (If this command fails then your in legacy bios boot).
+1. Basic initial setup.
+a. ls /sys/firmware/efi/efivars (If this command fails then your in legacy bios boot).
+b. loadkeys us (done by default)
+c. timedatectl set-ntp true
 
-2. loadkeys us (done by default)
-
-3. timedatectl set-ntp true
-
-4. Networking. (If you have ehternet you can skip this step because systemd-networkd would have already configured it).
+2. Networking. (If you have ehternet you can skip this step because systemd-networkd would have already configured it).
 a. ip link (This is to check if you're getting an ip through ethernet or Wi-Fi).
 b. iwctl (This bit is for Wi-Fi. If you have ethernet then you can skip the iwd stuff).
 c. device list
@@ -16,9 +15,9 @@ f. station [your wifi card] connect "[your network]"
 g. press ctrl + d to exit iwd
 h. ip link (To verify that you're getting an ip to Wi-Fi).
 
-ping archlinux.org (This is just to check that you're connected).
+3. ping archlinux.org (This is just to check that you're connected).
 
-5. Creating the Partition Tables.
+4. Creating the Partition Tables.
 a. lsblk (To see what hard drives you have installed)
 b. hdparm -i  /dev/the_disk_to_be_partitioned (This is to double check that you've selected the right drive).
 c. gdisk /dev/the_disk_to_be_partitioned (Only if you have another os on the drive and want to nuke it. If it's a blank drive then just skip this and move to cgdisk).
@@ -33,7 +32,7 @@ Home Partition = Default - [the remainder of the drive] - home
 Note: EF00 = uefi bootable partition, 8200 = swap and 8300 = linux filesystem. (Just incase you don't know what they mean).
 f. write changes to disk
 
-6. Format and Mount file systems.
+5. Format and Mount file systems.
 a. lsblk (Just to see what your doing)
 b. mkfs.ext4 /dev/root_partition
 c. mkswap /dev/swap_partition
@@ -45,29 +44,29 @@ h. mkdir /mnt/home
 i. mount /dev/home_partition /mnt/home
 
 Mount Bootloader Partitions.
-7a. Systemd-Boot. (Hard Mode)
+6a. Systemd-Boot. (Hard Mode)
 a. mkdir /mnt/boot
 b. mount /dev/efi_system_partition /mnt/boot
 
-7b. Grub Bootloader. (Easy Mode) [DO NOT USE GRUB IF YOU DON"T WANT A BROKEN INSTALL!!!!]
+6b. Grub Bootloader. (Easy Mode) [DO NOT USE GRUB IF YOU DON"T WANT A BROKEN INSTALL!!!!]
 h. mkdir /mnt/boot/efi
 i. mount /dev/efi_system_partition /mnt/boot/efi
 
-8. Configure mirrorlist.
+7. Configure mirrorlist.
 a. cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 b. nano /etc/pacman.d/mirrorlist (Check if all the servers are uncommented).
 c. pacman -Sy
 d. pacman -S pacman-contrib
 e. rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
-9. Downloading Essential Packages.
+8. Downloading Essential Packages.
 pacstrap -i /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence nano
 
-10. genfstab -U /mnt >> /mnt/etc/fstab
+9. Generating the fstab and chrooting into the instal
+a. genfstab -U /mnt >> /mnt/etc/fstab
+b. arch-chroot /mnt
 
-11. arch-chroot /mnt
-
-12. Localisation and Timezone.
+10. Localisation and Timezone.
 a. nano /etc/locale.gen (uncomment en_US.UTF-8 UTF-8)
 b. locale-gen
 c. echo "LANG=en_US.UTF-8" >> /etc/locale.conf
@@ -77,7 +76,7 @@ f. ln /usr/share/zoneinfo (This is to list the unix timezones)
 g. ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timesone Here] /etc/localtime
 h. hwclock --systohc --utc
 
-13. Configure Package Manager.
+11. Configure Package Manager.
 a. nano /etc/pacman.conf
 b. Uncomment the line that you see below.
 [multilib]
@@ -85,22 +84,22 @@ Include = /etc/pacman.d/mirrorlist
 c. In Misc Options, remove the "#" from "ParallelDownloads = 5", "Color" and add to a new line "ILoveCandy" 
 d. pacman -Sy
 
-14. Installing more packages.
+12. Installing more packages.
 pacman -S git networkmanager reflector pacman-contrib bluez bluez-utils neovim bash-completion [Your CPU]-ucode
 
-15. Enable System Services.
+13. Enable System Services.
 systemctl enable bluetooth.service
 systemctl enable NetworkManager.service
 systemctl enable fstrim.timer
 systemctl enable reflector.timer
 
-16. Hostname Configuration.
+14. Hostname Configuration.
 a. echo "[Insert Computer Name Here]" >> /etc/hostname
 b. echo "127.0.0.1        localhost" >> /etc/hosts
 c. echo "::1              localhost" >> /etc/hosts
 d. echo "127.0.1.1        [Add same hostname as before. lol]" >> /etc/hosts
 
-17. Laptop Battery Saver. (Optional)
+15. Laptop Battery Saver. (Optional)
 a. sudo pacman -S acpi acpid
 b. sudo pacman -S tlp (For lenovo thinkpad support).
 Note: If you're running an LTS kernel, you will need the acpi_call-lts.
@@ -109,9 +108,9 @@ c. Enable the services.
 systemctl enable acpid.service
 systemctl tlp.service (Only if downloaded the package).
 
-18. passwd (root account)
+16. passwd (root account)
 
-19. Add users.
+17. Add users.
 a. useradd -m -G wheel,storage,power -s /bin/bash [Insert Username Here]
 b. passwd [Insert Username Here]
 c. EDITOR=nano visudo
@@ -120,14 +119,14 @@ Uncomment "%wheel ALL=(ALL) ALL"
 Add "Defaults rootpw" to the bottom of the file.
 
 Bootloader. (You choose which one to install).
-20a. Grub Bootloader. (Multi-boot/Easy Mode) [DO NOT USE GRUB IF YOU DON"T WANT A BROKEN INSTALL!!!!]
+18a. Grub Bootloader. (Multi-boot/Easy Mode) [DO NOT USE GRUB IF YOU DON"T WANT A BROKEN INSTALL!!!!]
 a. pacman -S grub efibootmgr os-prober
 c. grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 d. nano etc/default/grub
 e. Make any changes to the grub config.
 f. grub-mkconfig -o /boot/grub/grub.cfg
 
-20b. Systemd-boot. (Requires manual entries/Hard Mode).
+18b. Systemd-boot. (Requires manual entries/Hard Mode).
 a. mount -t efivarfs efivarfs /sys/firmware/efi/efivars
 b. bootctl install
 c. systemctl enable systemd-boot-update.service
@@ -139,7 +138,7 @@ initrd /initramfs-linux.img
 initrd /intel-ucode.img or /amd-ucode.img
 f. echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf
 
-21. Graphics Drivers. (Plus some packages for Vulkan and OpenCL.)
+19. Graphics Drivers. (Plus some packages for Vulkan and OpenCL.)
 a.   AMD = pacman -S xf86-video-amdgpu libva-mesa-driver mesa opencl-mesa vulkan-radeon lib32-libva-mesa-driver lib32-mesa lib32-opencl-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
      INTEL = pacman -S xf86-video-intel mesa intel-compute-runtime intel-media-driver vulkan-intel lib32-mesa lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader
      NVIDIA (Proprietary) = pacman -S nvidia-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
@@ -147,7 +146,7 @@ a.   AMD = pacman -S xf86-video-amdgpu libva-mesa-driver mesa opencl-mesa vulkan
      NOUVEAU (Legacy Drivers) = xf86-video-nouveau mesa opencl-mesa lib32-mesa lib32-opencl-mesa
 Note: Nouveau drivers are kind of scuffed, so not recommended anyways and the Open GPU Kernel Moduels are only capatible on Turing and up graphics cards.
 
-22a. Configure Driver KMS/Enabling wayland support. (NVIDIA ONLY!)
+20a. Configure Driver KMS/Enabling wayland support. (NVIDIA ONLY!)
 a. nano /etc/mkinitcpio.conf
      Add "nvidia nvidia_modeset nvidia_uvm nvidia_drm" to the "MODULES()" line.
 Note: If you fuck up this line, you're in trouble. So make sure it's in this order perfectly.
@@ -176,25 +175,25 @@ When=PostTransaction
 Exec=/usr/bin/mkinitcpio -P
 
 
-22b. Configuring Driver KMS/Enabling wayland support. (AMDGPU ONLY!)
+20b. Configuring Driver KMS/Enabling wayland support. (AMDGPU ONLY!)
 a. nano /etc/mkinitcpio.conf
      Add "amdgpu" to the "MODLUES()" line.
 Note: If you fuck up this line, you're in trouble.
 b. mkinitcpio -P
 
 
-22c. Configuring Driver KMS/Enabling wayland support. (INTEL ONLY!)
+20c. Configuring Driver KMS/Enabling wayland support. (INTEL ONLY!)
 a. nano /etc/mkinitcpio.conf
      Add "i915" to the "MODULES()" line.
 Note: If you fuck up this line, you're in trouble.
 b. mkinitcpio -P
 
-23. Unmount drives and Reboot system.
+21. Unmount drives and Reboot system.
 a. exit
 b. umount -a
 c. reboot
 
-24. General checking.
+22. General checking.
 a. systemctl --failed (This is to make sure that nothing fucked up when starting up).
 b. sudo reflector --country [Your Country Here] --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 c. sudo nano /etc/xdg/reflector/reflector.conf
@@ -206,13 +205,13 @@ Edit the settings to your liking. An example is provided below
 --save /etc/pacman.d/mirrorlist
 d. sudo pacman -Sy
 
-25. Enable AUR support.
+23. Enable AUR support.
 a. git clone https://aur.archlinux.org/paru.git
 b. cd paru
 c. makepkg -csi
 d. paru -Syyu
 
-26. Graphical Environment. (I'm not going to be putting Window Managers in here because their too complex). [Fuck you past me. I added Window Managers lol]
+24. Graphical Environment. (I'm not going to be putting Window Managers in here because their too complex). [Fuck you past me. I added Window Managers lol]
 a. Install Xorg.
      sudo pacman -S xorg xorg-xinit 
 Note: If you want to use Wayland instead of Xorg. You have already enabled support for it, all you need to do is install a compatible Desktop Environment.
@@ -247,19 +246,19 @@ c. Installing and enabling a display manager.
 Note: Sway doesn't allow to be launched with a Display Manager so I will simply link to the arch wiki. https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login
 d. reboot
 
-27. Audio Drivers. (Pipewire is needed for wayland since by itself doesn't allow screen recording and alsa-ucm-conf is for basic non configurable GoXLR support).
+25. Audio Drivers. (Pipewire is needed for wayland since by itself doesn't allow screen recording and alsa-ucm-conf is for basic non configurable GoXLR support).
 sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber
 
-28. Gstreamer Full Support. (This only applies to the normal Desktop Environments. Window Managers can be used without it).
+26. Gstreamer Full Support. (This only applies to the normal Desktop Environments. Window Managers can be used without it).
 sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi
 
-28. Bash to Zsh replacment. (Optional)
+27. Bash to Zsh replacment. (Optional)
 a. sudo pacman -S zsh zsh-completions
 b. Run the command zsh and complete the initial setup configuration.
 Note: DO NOT USE A ZSH PLUGIN MANAGER AS THEY'RE JUST BLOAT!
 c. sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions
 
-29. Applications. (Just a list of basic applications/games. lol) This list is only if your using the terminal for packages.
+28. Applications. (Just a list of basic applications/games. lol) This list is only if your using the terminal for packages.
 Note: Before you install a program, always run a sudo pacman -Sy or sudopacman -Syu to make sure the repos are up to date so there is no incompatibility.
 Firefox = sudo pacman -S firefox
 Chromium = sudo pacman -S chromium
@@ -362,7 +361,9 @@ WineASIO (Good for Ableton or FL Studio running in Wine) = paru -S wineasio
 
 Note1: Only the official binary version of vs code will work with C/C++ C# etc. (Basically any code language developed by Microsoft is only compatible on the Microsoft version of vs code).
 
-Note2: Even though there are Clone Hero Packages in the AUR, I wouldn't recommend using those packages as they are not maintained by mdsitton, srylain or anyone else on the StrikeLine Team. Same thing with Moonscraper.
+Note2: Even though there are Clone Hero Packages in the AUR, I wouldn't recommend using those packages as they are not maintained by mdsitton, srylain or anyone else on the CloneHero/StrikeLine Team. Same thing with Moonscraper.
+
+Note3: If your going to install KDE and also the tytan652 version of obs, then select when installing KDE the phonon-qt5-vlc.
 
 To extract tar.gz files use tar -xvzf [Your compressed file].tar.gz
 
