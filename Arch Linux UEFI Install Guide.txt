@@ -1,4 +1,4 @@
-Arch Linux UEFI Install Guide. (More Info and some notes at the bottom).
+Arch Linux UEFI Install Guide. (More Info and some notes at the bottom. READ THEM!!!!)
 
 1. Basic initial setup.
 a. ls /sys/firmware/efi/efivars (If this command fails then your in legacy bios boot).
@@ -361,9 +361,11 @@ WineASIO (Good for Ableton or FL Studio running in Wine) = paru -S wineasio
 
 Note1: Only the official binary version of vs code will work with C/C++ C# etc. (Basically any code language developed by Microsoft is only compatible on the Microsoft version of vs code).
 
-Note2: Even though there are Clone Hero Packages in the AUR, I wouldn't recommend using those packages as they are not maintained by mdsitton, srylain or anyone else on the CloneHero/StrikeLine Team. Same thing with Moonscraper.
+Note2: If you do plan to use grub and don't care about it bricking your install then downgrade grub to 2.06.r261 as this has been confirmed to be stable.
 
-Note3: If your going to install KDE and also the tytan652 version of obs, then select when installing KDE the phonon-qt5-vlc.
+Note3: Even though there are Clone Hero Packages in the AUR, I wouldn't recommend using those packages as they are not maintained by mdsitton, srylain or anyone else on the CloneHero/StrikeLine Team. Same thing with Moonscraper.
+
+Note4: If your going to install KDE and also the tytan652 version of obs, then select when installing KDE the phonon-qt5-vlc.
 
 To extract tar.gz files use tar -xvzf [Your compressed file].tar.gz
 
