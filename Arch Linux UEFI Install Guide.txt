@@ -285,7 +285,8 @@ pcsx2 = paru -S pcsx2-git
 rpcs3 (Does not include ps3 firmware. Obviously) [Updated Upstream] = paru -S rpcs3-git
 itch.io launcher = paru -S itch-setup-bin
 osu! lazer = Download on Github
-DDLC = Download on itch.io and to make the .sh file executable run the command 'chmod +x DDLC.sh'.
+DDLC = Download on itch.io
+Katawa Shoujo = Download on website (kind of hard to find).
 Steamtinkerlaunch = paru -S steamtinkerlaunch
 Protonup-QT = paru -S protonup-qt
 Athenaeum = flatpak install athenaeum
@@ -328,6 +329,7 @@ Note: the dotnet and mono packages are so that Unity3D doesn't break when using 
 
 Discord Stable = sudo pacman -S discord
 	       = echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json
+Note: To fix discord breaking from updates, add to the settings.json file "SKIP_HOST_UPDATE": true
 
 Discord Canary/Nightly = sudo pacman -S discord-canary
 		       = echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json
@@ -346,31 +348,32 @@ OpenRGB = paru -S openrgb-git
 Flatpak = sudo pacman -S flatpak
         = reboot
 
-Microsoft Windows 11 Fonts (Has to be built manually) = git clone https://aur.archlinux.org/ttf-ms-win11-auto.git
-					              = cd ttf-ms-win11-auto
-					              = makepkg -csi
+Microsoft Windows 11 Fonts = git clone https://aur.archlinux.org/ttf-ms-win11-auto.git
+			   = cd ttf-ms-win11-auto
+			   = makepkg -csi
 
-Wine (Literally just a dependency nightmare) = sudo pacman -S wine-staging
-					     = sudo pacman -S winetricks
-				 	     = sudo pacman -S --needed giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader cups samba dosbox
+Wine (Literally just a dependency nightmare) = sudo pacman -S wine-staging winetricks
+				 	     = sudo pacman -S --needed giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader sdl2 lib32-sdl2 vkd3d lib32-vkd3d sane libgphoto2 gsm ffmpeg cups samba dosbox
 
-WineASIO (Good for Ableton or FL Studio running in Wine) = paru -S wineasio
+WineASIO (Good for running Ableton or FL Studio in Wine) = paru -S wineasio
 					                 = sudo usermod -aG realtime $(whoami)
 					                 For 32bit, run: regsvr32 /usr/lib32/wine/i386-windows/wineasio.dll
 					                 For 64bit, run: wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio.dll
 
 Note1: Only the official binary version of vs code will work with C/C++ C# etc. (Basically any code language developed by Microsoft is only compatible on the Microsoft version of vs code).
 
-Note2: If you do plan to use grub and don't care about it bricking your install then downgrade grub to 2.06.r261 as this has been confirmed to be stable.
+Note2: If you do plan to use grub and don't care about it bricking your install then use the downgrade tool to well downgrade grub to 2.06.r261 as this has been confirmed to be stable.
 
-Note3: Even though there are Clone Hero Packages in the AUR, I wouldn't recommend using those packages as they are not maintained by mdsitton, srylain or anyone else on the CloneHero/StrikeLine Team. Same thing with Moonscraper.
+Note3: Even though there are Packages in the AUR of some of these programs, I wouldn't recommend using those packages as they probably wont be maintained by devs.
 
-Note4: If your going to install KDE and also the tytan652 version of obs, then select when installing KDE the phonon-qt5-vlc.
+Note4: If your going to install KDE and also the tytan652 version of obs, then select when installing KDE the phonon-qt5-vlc package.
 
 To extract tar.gz files use tar -xvzf [Your compressed file].tar.gz
 
 To extract tar.xz files use tar -xvJf [Your compressed file].tar.xz
 
 To extract tar.bzip2 files use tar -xvjf [Your compressed file].tar.bzip2
+
+To run .sh files for games or scripts run the command 'chmod +x [Script Name].sh'. (Note: DO NOT RUN IT ON SCRIPTS YOU DON NOT TRUST!!!!)
 
 To run AppImages, you must have AppImageLauncher installed to have it fully intergrade into system and to be able to update the packages.
