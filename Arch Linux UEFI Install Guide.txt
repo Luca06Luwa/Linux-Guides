@@ -364,7 +364,7 @@ Note1: Only the official binary version of vs code will work with C/C++ C# etc. 
 
 Note2: If you do plan to use grub and don't care about it bricking your install then use the downgrade tool to well downgrade grub to 2.06.r261 as this has been confirmed to be stable.
 
-Note3: Even though there are Packages in the AUR of some of these programs, I wouldn't recommend using those packages as they probably wont be maintained by devs.
+Note3: Even though there are packages in the AUR of some of these programs, I wouldn't recommend using those packages as they probably wont be maintained by devs.
 
 Note4: If your going to install KDE and also the tytan652 version of obs, then select when installing KDE the phonon-qt5-vlc package.
 
