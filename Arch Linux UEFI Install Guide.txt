@@ -269,7 +269,7 @@ qbittorrent = sudo pacman -S qbittorrent
 Spotify = paru -S spotify
 GameMode = sudo pacman -S gamemode lib32-gamemode
 lf file manager = paru -S lf (This replaces ranger if you want). [it's L not I just so you know].
-Minecraft (Official support via AUR) = paru -S minecraft-launcher (Requires at least java 17 lts or java 8 lts).
+Minecraft (Official support via AUR) = paru -S minecraft-launcher (Requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any older builds).
 Steam = sudo pacman -S steam
 Ani-Cli (Not DMCA proof. User's own risk) = paru -S ani-cli-git
 Lutris (Requires you to have already installed Wine.) = sudo pacman -S lutris
@@ -377,3 +377,39 @@ To extract tar.bzip2 files use tar -xvjf [Your compressed file].tar.bzip2
 To run .sh files for games or scripts run the command 'chmod +x [Script Name].sh'. (Note: DO NOT RUN IT ON SCRIPTS YOU DON NOT TRUST!!!!)
 
 To run AppImages, you must have AppImageLauncher installed to have it fully intergrade into system and to be able to update the packages.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+( ͡° ͜ʖ ͡°) You found lenny.
