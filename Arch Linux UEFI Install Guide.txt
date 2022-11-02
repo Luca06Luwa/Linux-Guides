@@ -297,7 +297,7 @@ Timeshift = paru -S timeshift
 Clone Hero PTB = Download through their Discord.
 Clone Hero v23.2.2 = Download from website.
 ScoreSpy = Download from website.
-Moonscraper Chart Editor= Download on Github.
+Moonscraper Chart Editor = Download on Github.
 Blender 2.79b (Only use if it's needed) = Download through website.
 Blender Latest = sudo pacman -S blender
 Unreal Engine = Need to build from Github private repo. (Difficult to compile).
@@ -305,7 +305,6 @@ Python = sudo pacman -S python python-pip
 NodeJS = sudo pacman -S nodejs-lts-gallium npm
 Adoptium Java11 (AUR) = paru -S jdk11-temurin
 Adoptium Java8 (AUR) = paru -S jdk8-adoptopenjdk
-Adoptium Java16 (AUR) = paru -S jdk16-adoptopenjdk
 Adoptium Java17 (AUR) = paru -S jdk17-temurin
 AppImageLauncher = paru -S appimagelauncher
 Unity3D (AUR) = paru -S unityhub
@@ -316,7 +315,7 @@ Downgrade = paru -S downgrade
 Flatseal = flatpak install flatseal
 Activate Linux (This one is purely a joke). = paru -S activate-linux-git
 MPV = sudo pacman -S mpv
-7-Zip = paru -S 7-zip-full
+7-Zip = paru -S 7-zip-full (Recommended)
 Neofetch = sudo pacman -S neofetch
 cMatrix = sudo pacman -S cmatrix
 Arch Linux Wallpapers (Seriously, what were you expecting) = sudo pacman -S archlinux-wallpaper
@@ -326,6 +325,9 @@ VS Codium (Compiled binaries of vs code from source without telemetry) = paru -S
 Visual Studio Code (Microsoft Official Binaries. 'Has Telemetry') = paru -S visual-studios-code-bin
 	                  	                                  = sudo pacman -S dotnet-runtime dotnet-sdk mono-msbuild mono-msbuild-sdkresolver mono
 Note: the dotnet and mono packages are so that Unity3D doesn't break when using vscode for it.
+
+Steam Native Replacement = sudo pacman -S steam-native-runtime
+Note: Not recommended as could break games which require the original steam runtime.
 
 Discord Stable = sudo pacman -S discord
 	       = echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json
