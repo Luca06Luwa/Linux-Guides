@@ -127,7 +127,7 @@ e. Make any changes to the grub config.
 f. grub-mkconfig -o /boot/grub/grub.cfg
 
 18b. Systemd-boot. (Requires manual entries/Hard Mode).
-a. ls /sys/firmware/efi/efivars (This is to check if the efivars are mounted. Yes we did run this command ot the beginning but I dont care).
+a. ls /sys/firmware/efi/efivars (This is to check if the efivars are mounted. Yes we did run this command it the beginning but I dont care).
 b. bootctl install
 c. systemctl enable systemd-boot-update.service
 d. nano /boot/loader/entries/arch.conf
