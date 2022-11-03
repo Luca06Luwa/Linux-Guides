@@ -102,8 +102,8 @@ d. echo "127.0.1.1        [Add same hostname as before. lol]" >> /etc/hosts
 15. Laptop Battery Saver. (Optional)
 a. sudo pacman -S acpi acpid
 b. sudo pacman -S tlp (For lenovo thinkpad support).
-Note: If you're running an LTS kernel, you will need the acpi_call-lts.
-Note 2: If you're running a custom kernel, you will need acpi_call-dkms.
+Note: If you're running an LTS kernel, you will need the 'acpi_call-lts'.
+Note 2: If you're running a custom kernel, you will need 'acpi_call-dkms'.
 c. Enable the services.
 systemctl enable acpid.service
 systemctl tlp.service (Only if downloaded the package).
@@ -352,6 +352,7 @@ Flatpak = sudo pacman -S flatpak
 
 Microsoft Windows 11 Fonts = git clone https://aur.archlinux.org/ttf-ms-win11-auto.git
 			   = cd ttf-ms-win11-auto
+			   = Change the url to the newest one found in the comments of the AUR. (This is only necessary if the download url packaged with the PKGBUILD is flagged as outdated).
 			   = makepkg -csi
 
 Wine (Literally just a dependency nightmare) = sudo pacman -S wine-staging winetricks
@@ -368,13 +369,13 @@ Note2: If you do plan to use grub and don't care about it bricking your install 
 
 Note3: Even though there are packages in the AUR of some of these programs, I wouldn't recommend using those packages as they probably wont be maintained by devs.
 
-Note4: If your going to install KDE and also the tytan652 version of obs, then select when installing KDE the phonon-qt5-vlc package.
+Note4: If your going to install KDE and also the tytan652 version of obs, then select when installing KDE the 'phonon-qt5-vlc' package.
 
-To extract tar.gz files use tar -xvzf [Your compressed file].tar.gz
+To extract tar.gz files use 'tar -xvzf [Your compressed file].tar.gz'.
 
-To extract tar.xz files use tar -xvJf [Your compressed file].tar.xz
+To extract tar.xz files use 'tar -xvJf [Your compressed file].tar.xz'.
 
-To extract tar.bzip2 files use tar -xvjf [Your compressed file].tar.bzip2
+To extract tar.bzip2 files use 'tar -xvjf [Your compressed file].tar.bzip2'.
 
 To run .sh files for games or scripts run the command 'chmod +x [Script Name].sh'. (Note: DO NOT RUN IT ON SCRIPTS YOU DON NOT TRUST!!!!)
 
