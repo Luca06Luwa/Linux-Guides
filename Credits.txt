@@ -1,0 +1,22 @@
+These guides were made using elements from various different places. List of guides and credits for those guides are listed here. (Just wanted to give credit where credit is due).
+
+Note that not all of these guides are from other people. I had to change quite a bit so that there wouldn't be any errors when following them and update the package names as alot of them have been changed/removed.
+
+Arch Linux UEFI Install Guide:
+Credits for the arch install guide.
+
+    https://www.gloriouseggroll.tv/arch-linux-efi-install-guide/
+    https://wiki.archlinux.org/
+    https://youtu.be/68z11VAYMS8
+
+
+QEMU setup Guide Using KVM:
+Credits for the qemu setup guide.
+
+    https://wiki.archlinux.org/
+
+
+Gentoo Install Guide:
+Credits for the gentoo install guide.
+
+    I didn't bother with the gentoo guide as the official wiki is as good as it gets.
