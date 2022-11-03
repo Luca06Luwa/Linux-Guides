@@ -1,7 +1,5 @@
 Arch Linux UEFI Install Guide. (More Info and some notes at the bottom. READ THEM!!!!)
 
-This guide was made using elements from Glorious Eggrolls Guide, the Arch Installation video made by Denshi, the Arch Wiki and some of my own personal additions. Full credit will be at the very bottom of the guide. (Just wanted to give credit where credit is due). 
-
 1. Basic initial setup.
 a. ls /sys/firmware/efi/efivars (If this command fails then your in legacy bios boot).
 b. loadkeys us (done by default)
@@ -383,10 +381,6 @@ To run .sh files for games or scripts run the command 'chmod +x [Script Name].sh
 To run AppImages, you must have AppImageLauncher installed to have it fully intergrade into system and to be able to update the packages.
 
 
-Full Credit to the places where this guide took inspiration from.
-https://www.gloriouseggroll.tv/arch-linux-efi-install-guide/
-https://wiki.archlinux.org/
-https://youtu.be/68z11VAYMS8
 
 
 
