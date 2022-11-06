@@ -259,7 +259,7 @@ Note: DO NOT USE A ZSH PLUGIN MANAGER AS THEY'RE JUST BLOAT!
 c. sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions
 
 28. Applications. (Just a list of basic applications/games. lol) This list is only if your using the terminal for packages.
-Note: Before you install a program, always run a sudo pacman -Sy or sudopacman -Syu to make sure the repos are up to date so there is no incompatibility.
+Note: Before you install a program, always run a sudo pacman -Sy or sudo pacman -Syu to make sure the repos are up to date so there is no incompatibility.
 Firefox = sudo pacman -S firefox
 Chromium = sudo pacman -S chromium
 Brave = paru -S brave-bin
