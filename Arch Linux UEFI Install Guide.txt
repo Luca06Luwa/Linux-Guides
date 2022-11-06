@@ -1,11 +1,11 @@
-Arch Linux UEFI Install Guide. (More Info and some notes at the bottom. READ THEM!!!!)
+Arch Linux UEFI Install Guide. (More info and some notes at the bottom. READ THEM!!!!)
 
 1. Basic initial setup.
 a. ls /sys/firmware/efi/efivars (If this command fails then your in legacy bios boot).
 b. loadkeys us (done by default)
 c. timedatectl set-ntp true
 
-2. Networking. (If you have ehternet you can skip this step because systemd-networkd would have already configured it).
+2. Networking. (If you have ethernet you can skip this step because systemd-networkd would have already configured it).
 a. ip link (This is to check if you're getting an ip through ethernet or Wi-Fi).
 b. iwctl (This bit is for Wi-Fi. If you have ethernet then you can skip the iwd stuff).
 c. device list
@@ -17,7 +17,7 @@ h. ip link (To verify that you're getting an ip to Wi-Fi).
 
 3. ping archlinux.org (This is just to check that you're connected).
 
-4. Creating the Partition Tables.
+4. Creating the Partition Tables. (If you have a Windows install and want to dual boot, STOP and make sure your on win10 with secure boot disabled).
 a. lsblk (To see what hard drives you have installed)
 b. hdparm -i  /dev/the_disk_to_be_partitioned (This is to double check that you've selected the right drive).
 c. gdisk /dev/the_disk_to_be_partitioned (Only if you have another os on the drive and want to nuke it. If it's a blank drive then just skip this and move to cgdisk).
@@ -32,7 +32,7 @@ Home Partition = Default - [the remainder of the drive] - home
 Note: EF00 = uefi bootable partition, 8200 = swap and 8300 = linux filesystem. (Just incase you don't know what they mean).
 f. write changes to disk
 
-5. Format and Mount file systems.
+5. Format and Mount your partitions.
 a. lsblk (Just to see what your doing)
 b. mkfs.ext4 /dev/root_partition
 c. mkswap /dev/swap_partition
@@ -62,7 +62,7 @@ e. rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 8. Downloading Essential Packages.
 pacstrap -i /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence nano
 
-9. Generating the fstab and chrooting into the instal
+9. Generating the fstab and chrooting into the install.
 a. genfstab -U /mnt >> /mnt/etc/fstab
 b. arch-chroot /mnt
 
@@ -76,7 +76,7 @@ f. ln /usr/share/zoneinfo (This is to list the unix timezones)
 g. ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timesone Here] /etc/localtime
 h. hwclock --systohc --utc
 
-11. Configure Package Manager.
+11. Configure Pacman/Package Manager.
 a. nano /etc/pacman.conf
 b. Uncomment the line that you see below.
 [multilib]
@@ -106,7 +106,7 @@ Note: If you're running an LTS kernel, you will need the 'acpi_call-lts'.
 Note 2: If you're running a custom kernel, you will need 'acpi_call-dkms'.
 c. Enable the services.
 systemctl enable acpid.service
-systemctl tlp.service (Only if downloaded the package).
+systemctl enable tlp.service (Only if downloaded the package).
 
 16. passwd (root account)
 
@@ -138,7 +138,7 @@ initrd /initramfs-linux.img
 initrd /intel-ucode.img or /amd-ucode.img
 f. echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf
 
-19. Graphics Drivers. (Plus some packages for Vulkan and OpenCL.)
+19. Graphics Drivers. (Plus some Vulkan and OpenCL packages).
 a.   AMD = pacman -S xf86-video-amdgpu libva-mesa-driver mesa opencl-mesa vulkan-radeon lib32-libva-mesa-driver lib32-mesa lib32-opencl-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
      INTEL = pacman -S xf86-video-intel mesa intel-compute-runtime intel-media-driver vulkan-intel lib32-mesa lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader
      NVIDIA (Proprietary) = pacman -S nvidia-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
@@ -194,7 +194,7 @@ b. umount -a
 c. reboot
 
 22. General checking.
-a. systemctl --failed (This is to make sure that nothing fucked up when starting up).
+a. systemctl --failed (This is to make sure that nothing fucked up on start up).
 b. sudo reflector --country [Your Country Here] --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 c. sudo nano /etc/xdg/reflector/reflector.conf
 Edit the settings to your liking. An example is provided below
@@ -205,7 +205,7 @@ Edit the settings to your liking. An example is provided below
 --save /etc/pacman.d/mirrorlist
 d. sudo pacman -Sy
 
-23. Enable AUR support.
+23. Enabling AUR support.
 a. git clone https://aur.archlinux.org/paru.git
 b. cd paru
 c. makepkg -csi
@@ -243,13 +243,13 @@ c. Installing and enabling a display manager.
 									      		      lightdm-slick-greeter
 									      		      = sudo systemctl enable lightdm.service
      StartX on startup = Too complex for this guide so I will simply link to the arch wiki. https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login
-Note: Sway doesn't allow to be launched with a Display Manager so I will simply link to the arch wiki. https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login
+Note: Sway doesn't allow to be launched with a Display Manager so I will simply link to the arch wiki for instructions. https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login
 d. reboot
 
-25. Audio Drivers. (Pipewire is needed for wayland since by itself doesn't allow screen recording and alsa-ucm-conf is for basic non configurable GoXLR support).
+25. Audio Drivers. (Pipewire is needed for wayland since by itself wayland does NOT allow screen recording and alsa-ucm-conf is for basic non configurable GoXLR support).
 sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber
 
-26. Gstreamer Full Support. (This only applies to the normal Desktop Environments. Window Managers can be used without it).
+26. Gstreamer Full Support. (This only applies to the normal Desktop Environments. Window Managers and KDE with VLC backend can go without it).
 sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi
 
 27. Bash to Zsh replacment. (Optional)
@@ -272,7 +272,7 @@ lf file manager = paru -S lf (This replaces ranger if you want). [it's L not I j
 Minecraft (Official support via AUR) = paru -S minecraft-launcher (Requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any older builds).
 Steam = sudo pacman -S steam
 Ani-Cli (Not DMCA proof. User's own risk) = paru -S ani-cli-git
-Lutris (Requires you to have already installed Wine.) = sudo pacman -S lutris
+Lutris (Requires you to have already installed Wine) = sudo pacman -S lutris
 Reaper DAW = sudo pacman -S reaper
 Polyphone = sudo pacman -S polyphone
 Proton-GE = Download on Github.
@@ -300,7 +300,7 @@ ScoreSpy = Download from website.
 Moonscraper Chart Editor = Download on Github.
 Blender 2.79b (Only use if it's needed) = Download through website.
 Blender Latest = sudo pacman -S blender
-Unreal Engine = Need to build from Github private repo. (Difficult to compile).
+Unreal Engine = Need to build from Github private repo.
 Python = sudo pacman -S python python-pip
 NodeJS = sudo pacman -S nodejs-lts-gallium npm
 Adoptium Java11 (AUR) = paru -S jdk11-temurin
@@ -310,6 +310,7 @@ AppImageLauncher = paru -S appimagelauncher
 Unity3D (AUR) = paru -S unityhub
 Btop++ = sudo pacman -S btop
 Wireshark = sudo pacman -S wireshark-qt
+Fusée Launcher Interfacée = Download on Github.
 Htop = sudo pacman -S htop
 Downgrade = paru -S downgrade
 Flatseal = flatpak install flatseal
@@ -342,7 +343,7 @@ OBS Studio (Official support via Flatpak) = flatpak install obs-studios
 
 OBS Studio Tytan652 (Native version with some qol patches) = paru -s obs-studio-tytan652
 					                   = sudo pacman -S v4l2loopback-dkms
-Note: the Tytan652 version does not allow for twitch/youtube/restream account integration as this version is built from source and not an official binary.
+Note: the Tytan652 version does not allow for youtube account integration as this version is built from source and not an official binary. (Fuck twitch.tv).
 
 OpenRGB = paru -S openrgb-git
         = sudo pacman -S i2c-tools
@@ -371,12 +372,14 @@ Note3: Even though there are packages in the AUR of some of these programs, I wo
 
 Note4: If your going to install KDE and also the tytan652 version of obs, then select when installing KDE the 'phonon-qt5-vlc' package.
 
+Basic how to on how tarball archives work:
 To extract tar.gz files use 'tar -xvzf [Your compressed file].tar.gz'.
 
 To extract tar.xz files use 'tar -xvJf [Your compressed file].tar.xz'.
 
 To extract tar.bzip2 files use 'tar -xvjf [Your compressed file].tar.bzip2'.
 
+Basic how to on how other packages work:
 To run .sh files for games or scripts run the command 'chmod +x [Script Name].sh'. (Note: DO NOT RUN IT ON SCRIPTS YOU DON NOT TRUST!!!!)
 
 To run AppImages, you must have AppImageLauncher installed to have it fully intergrade into system and to be able to update the packages.
