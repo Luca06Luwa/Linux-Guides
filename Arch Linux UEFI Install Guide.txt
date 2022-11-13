@@ -1,23 +1,23 @@
 Arch Linux UEFI Install Guide. (More info and some notes at the bottom. READ THEM!!!!)
 
 1. Basic initial setup.
-a. ls /sys/firmware/efi/efivars (If this command fails then your in legacy bios boot).
+a. ls /sys/firmware/efi/efivars (If this command fail's, then your in legacy bios boot).
 b. loadkeys us (done by default)
 c. timedatectl set-ntp true
 
-2. Networking. (If you have ethernet you can skip this step because systemd-networkd would have already configured it).
-a. ip link (This is to check if you're getting an ip through ethernet or Wi-Fi).
+2. Networking. (If you have ethernet you can skip this step as systemd-networkd would have already configured it for you).
+a. ip link (This is to check if you're getting an ip connection through ethernet or Wi-Fi).
 b. iwctl (This bit is for Wi-Fi. If you have ethernet then you can skip the iwd stuff).
 c. device list
 d. station [Your wifi card] scan
 e. starion [Your wifi card] get-networks
 f. station [your wifi card] connect "[your network]"
 g. press ctrl + d to exit iwd
-h. ip link (To verify that you're getting an ip to Wi-Fi).
+h. ip link (To verify that you're getting an ip connection to Wi-Fi).
 
-3. ping archlinux.org (This is just to check that you're connected).
+3. ping archlinux.org (This is just to check that you can connect to the internet).
 
-4. Creating the Partition Tables. (If you have a Windows install and want to dual boot, STOP and make sure your on win10 with secure boot disabled).
+4. Creating the Partition Tables. (If you have a Windows 10/11 install and want to dual boot, STOP and make sure your win10/11 hard drive is removed).
 a. lsblk (To see what hard drives you have installed)
 b. hdparm -i  /dev/the_disk_to_be_partitioned (This is to double check that you've selected the right drive).
 c. gdisk /dev/the_disk_to_be_partitioned (Only if you have another os on the drive and want to nuke it. If it's a blank drive then just skip this and move to cgdisk).
@@ -33,7 +33,7 @@ Note: EF00 = uefi bootable partition, 8200 = swap and 8300 = linux filesystem. (
 f. write changes to disk
 
 5. Format and Mount your partitions.
-a. lsblk (Just to see what your doing)
+a. lsblk (Just to see what your doing).
 b. mkfs.ext4 /dev/root_partition
 c. mkswap /dev/swap_partition
 d. swapon /dev/swap_partition
@@ -54,7 +54,7 @@ i. mount /dev/efi_system_partition /mnt/boot/efi
 
 7. Configure mirrorlist.
 a. cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-b. nano /etc/pacman.d/mirrorlist (Check if all the servers are uncommented).
+b. nano /etc/pacman.d/mirrorlist (Check to see if all the servers are uncommented).
 c. pacman -Sy
 d. pacman -S pacman-contrib
 e. rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
@@ -126,7 +126,7 @@ d. nano etc/default/grub
 e. Make any changes to the grub config.
 f. grub-mkconfig -o /boot/grub/grub.cfg
 
-18b. Systemd-boot. (Requires manual entries/Hard Mode).
+18b. Systemd-boot. (Requires manual entries/Hard Mode)
 a. ls /sys/firmware/efi/efivars (This is to check if the efivars are mounted. Yes we did run this command it the beginning but I dont care).
 b. bootctl install
 c. systemctl enable systemd-boot-update.service
@@ -223,7 +223,7 @@ b. Selecting your Desktop Environment and or Window Manager.
      i3 = sudo pacman -S i3 alacritty pcmanfm-qt dmenu
      Gnome = sudo pacman -S gnome gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk (Wayland supported/enabled by default).
            = sudo pacman -S --needed gnome-menus gettext xdg-utils (Only needed if your using ArcMenu extension).
-     Hyprland = In VERY early stages of development and currently not recommended for daily use. [Not recommended]
+     Hyprland = In VERY early stages of development and currently not recommended for daily use.
      KDE Plasma (X11) = sudo pacman -S plasma kde-applications
      KDE Plasma (Wayland) = sudo pacman -S plasma kde-applications plasma-wayland-session qt6-wayland xdg-desktop-portal xdg-desktop-portal-kde
      LXQt = sudo pacman -S lxqt breeze-icons network-manager-applet leafpad
@@ -246,7 +246,7 @@ c. Installing and enabling a display manager.
 Note: Sway doesn't allow to be launched with a Display Manager so I will simply link to the arch wiki for instructions. https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login
 d. reboot
 
-25. Audio Drivers. (Pipewire is needed for wayland since by itself wayland does NOT allow screen recording and alsa-ucm-conf is for basic non configurable GoXLR support).
+25. Audio Drivers. (Pipewire is required for wayland since by itself wayland does NOT allow screen capture and alsa-ucm-conf is for basic non configurable GoXLR support).
 sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber
 
 26. Gstreamer Full Support. (This only applies to the normal Desktop Environments. Window Managers and KDE with VLC backend can go without it).
@@ -258,8 +258,9 @@ b. Run the command zsh and complete the initial setup configuration.
 Note: DO NOT USE A ZSH PLUGIN MANAGER AS THEY'RE JUST BLOAT!
 c. sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions
 
-28. Applications. (Just a list of basic applications/games. lol) This list is only if your using the terminal for packages.
-Note: Before you install a program, always run a sudo pacman -Sy or sudo pacman -Syu to make sure the repos are up to date so there is no incompatibility.
+28. Applications. (Just a list of basic applications/games. lol)
+Note1: This list is only if your using the terminal for installing packages.
+Note2: Before you install a program, always run a sudo pacman -Sy or sudo pacman -Syu to make sure the repos are up to date so there is no incompatibility.
 Firefox = sudo pacman -S firefox
 Chromium = sudo pacman -S chromium
 Brave = paru -S brave-bin
@@ -314,20 +315,19 @@ Fusée Launcher Interfacée = Download on Github.
 Htop = sudo pacman -S htop
 Downgrade = paru -S downgrade
 Flatseal = flatpak install flatseal
-Activate Linux (This one is purely a joke). = paru -S activate-linux-git
+Activate Linux = paru -S activate-linux-git (This one is purely a joke).
 MPV = sudo pacman -S mpv
 7-Zip = paru -S 7-zip-full (Recommended)
 Neofetch = sudo pacman -S neofetch
 cMatrix = sudo pacman -S cmatrix
-Arch Linux Wallpapers (Seriously, what were you expecting) = sudo pacman -S archlinux-wallpaper
-Olive Video Editor = paru -S olive-git
+Arch Linux Wallpapers = sudo pacman -S archlinux-wallpaper (Seriously, what were you expecting).
 Audacity = sudo pacman -S audacity
 VS Codium (Compiled binaries of vs code from source without telemetry) = paru -S vscodium-bin
 Visual Studio Code (Microsoft Official Binaries. 'Has Telemetry') = paru -S visual-studios-code-bin
 	                  	                                  = sudo pacman -S dotnet-runtime dotnet-sdk mono-msbuild mono-msbuild-sdkresolver mono
 Note: the dotnet and mono packages are so that Unity3D doesn't break when using vscode for it.
 
-Steam Native Replacement = sudo pacman -S steam-native-runtime
+Steam Native Runtime Replacement = sudo pacman -S steam-native-runtime
 Note: Not recommended as could break games which require the original steam runtime.
 
 Discord Stable = sudo pacman -S discord
@@ -364,6 +364,8 @@ WineASIO (Good for running Ableton or FL Studio in Wine) = paru -S wineasio
 					                 For 32bit, run: regsvr32 /usr/lib32/wine/i386-windows/wineasio.dll
 					                 For 64bit, run: wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio.dll
 
+
+More Info Section:
 Note1: Only the official binary version of vs code will work with C/C++ C# etc. (Basically any code language developed by Microsoft is only compatible on the Microsoft version of vs code).
 
 Note2: If you do plan to use grub and don't care about it bricking your install then use the downgrade tool to well downgrade grub to 2.06.r261 as this has been confirmed to be stable.
