@@ -1,7 +1,8 @@
-QEMU/KVM Setup Guide for Arch-Based Distrobutions. (This requires two GPU's for a really good gaming Virtual Machine. One for the host and one for the VM).
+QEMU/KVM Setup Guide for Arch-Based Distrobutions.
+This requires two GPU's for a really good gaming Virtual Machine. One for the host (AMD is recommended) and one for the VM (NVIDIA is recommended).
 
 1. Enable your CPU IOMMU Driver.
-Note: If you have an AMD processor, then you can just skip this step due to AMD iommu systems being enabled by default if enabled in BIOS.
+Note: If you have an AMD processor, then you can just skip this step if you enabled virtualization in BIOS.
 Systemd-boot = sudo nano /boot/loader/entries/arch.conf
 	     = Add "intel_iommu=on" to the end of the options line.
 	     = reboot
@@ -15,7 +16,7 @@ Grub Bootloader = sudo nano /etc/default/grub
 sudo dmesg | grep -i -e DMAR -e IOMMU
 
 3. Verify that the IOMMU groups are valid.
-a. paste this command and make sure to make sure your terminal does not change anything, just paste it in and that's it.
+a. Paste this command and make sure to make sure your terminal does not change anything, just paste it in and that's it.
 shopt -s nullglob
 for g in $(find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V); do
     echo "IOMMU Group ${g##*/}:"
@@ -30,9 +31,9 @@ IOMMU Group 13:
 	 06:00.0 VGA compatible controller: NVIDIA Corporation GM204 [GeForce GTX 970] [10de:13c2] (rev a1)
 	 06:00.1 Audio device: NVIDIA Corporation GM204 High Definition Audio Controller [10de:0fbb] (rev a1)
 
-(Note: If your GPU is assigned in a group with another device, you're going to need to ACS Patch your kernel and that's a bit too advanced for this guide, or you could install the zen kernel and use that for virtualization).
+Note: If your GPU is assigned in a group with another device, you're going to need to ACS Patch your kernel. Or you could install the zen kernel and use that for virtualization.
 
-4a. Isolating your GPU. (Grub Bootloader)
+4a. Isolating your GPU. (Grub Bootloader) [If you have a stable and safe version]
 a. sudo nano /etc/default/grub
 b. Add "vfio-pci.ids=10de:13c2,10de:0fbb" to GRUB_CMDLINE_LINUX_DEFAULT="".
 c. grub-mkconfig -o /boot/grub/grub.cfg
