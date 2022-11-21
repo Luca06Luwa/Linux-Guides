@@ -286,7 +286,7 @@ pcsx2 = paru -S pcsx2-git
 rpcs3 (Does not include ps3 firmware. Obviously) [Updated Upstream] = paru -S rpcs3-git
 itch.io launcher = paru -S itch-setup-bin
 osu! lazer = Download on Github
-DDLC = Download on itch.io
+DDLC = Download on itch.io (Even though there is a steam version, it's not setup for linux by default).
 Katawa Shoujo = Download on website (kind of hard to find).
 Steamtinkerlaunch = paru -S steamtinkerlaunch
 Protonup-QT = paru -S protonup-qt
@@ -334,7 +334,7 @@ Discord Stable = sudo pacman -S discord
 	       = echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json
 Note: To fix discord breaking from updates, add to the settings.json file "SKIP_HOST_UPDATE": true
 
-Discord Canary/Nightly = sudo pacman -S discord-canary
+Discord Canary/Nightly = paru -S discord-canary
 		       = echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json
 Note: To fix discord breaking from updates, add to the settings.json file "SKIP_HOST_UPDATE": true
 
