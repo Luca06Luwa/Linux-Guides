@@ -19,12 +19,12 @@ h. ip link (To verify that you're getting an ip connection to Wi-Fi).
 
 4. Creating the Partition Tables. (If you have a Windows 10/11 install and want to dual boot, STOP and make sure your win10/11 hard drive is removed).
 a. lsblk (To see what hard drives you have installed)
-b. hdparm -i  /dev/the_disk_to_be_partitioned (This is to double check that you've selected the right drive).
+b. hdparm -i /dev/the_disk_to_be_partitioned (This is to double check that you've selected the right drive).
 c. gdisk /dev/the_disk_to_be_partitioned (Only if you have another os on the drive and want to nuke it. If it's a blank drive then just skip this and move to cgdisk).
     x (for expert mode)
     z (To delete the entire content of the drive).
 d. cgdisk /dev/the_disk_to_be_partitioned
-e. Format the drive like this. 
+e. Format the drive like this.
 Boot Partition = Default - 1024MiB - EF00 - boot
 Swap Partition = Default - 16GiB - 8200 - swap
 Root Partition = Default - 32GiB - root
