@@ -10,7 +10,7 @@ a. ip link (This is to check if you're getting an ip connection through ethernet
 b. iwctl (This bit is for Wi-Fi. If you have ethernet then you can skip the iwd stuff).
 c. device list
 d. station [Your wifi card] scan
-e. starion [Your wifi card] get-networks
+e. station [Your wifi card] get-networks
 f. station [your wifi card] connect "[your network]"
 g. press ctrl + d to exit iwd
 h. ip link (To verify that you're getting an ip connection to Wi-Fi).
