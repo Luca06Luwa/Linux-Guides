@@ -49,8 +49,12 @@ a. mkdir /mnt/boot
 b. mount /dev/efi_system_partition /mnt/boot
 
 6b. Grub Bootloader. (Easy Mode) [DO NOT USE GRUB IF YOU DON"T WANT A BROKEN INSTALL!!!!]
-h. mkdir /mnt/boot/efi
-i. mount /dev/efi_system_partition /mnt/boot/efi
+a. mkdir /mnt/boot/efi
+b. mount /dev/efi_system_partition /mnt/boot/efi
+
+6c. rEFInd. (idk) [NOT COMPLETE!!]
+a.
+b.
 
 7. Configure mirrorlist.
 a. cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
@@ -119,7 +123,7 @@ Uncomment "%wheel ALL=(ALL) ALL"
 Add "Defaults rootpw" to the bottom of the file.
 
 Bootloader. (You choose which one to install).
-18a. Grub Bootloader. (Multi-boot/Easy Mode) [DO NOT USE GRUB IF YOU DON"T WANT A BROKEN INSTALL!!!!]
+18a. Grub Bootloader. (Linux dual boot/Easy Mode) [DO NOT USE GRUB IF YOU DON"T WANT A BROKEN INSTALL!!!!]
 a. pacman -S grub efibootmgr os-prober
 c. grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 d. nano etc/default/grub
@@ -137,6 +141,12 @@ linux /vmlinuz-linux (change this depending on what kernel you have).
 initrd /initramfs-linux.img
 initrd /intel-ucode.img or /amd-ucode.img
 f. echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf
+
+18c. rEFInd. (Simplest for windows dual booting) [NOT COMPLETE!!]
+a.
+b.
+c.
+d.
 
 19. Graphics Drivers. (Plus some Vulkan and OpenCL packages).
 a.   AMD = pacman -S xf86-video-amdgpu libva-mesa-driver mesa opencl-mesa vulkan-radeon lib32-libva-mesa-driver lib32-mesa lib32-opencl-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
