@@ -289,6 +289,7 @@ Reaper DAW = sudo pacman -S reaper
 Polyphone = sudo pacman -S polyphone
 Proton-GE = Download on Github.
 Wine-GE = Download on Github.
+Bottles = flatpak install bottles
 Dolphin Emulator = paru -S dolphin-emu-git
 Retroarch = sudo pacman -S retroarch
 Ryujinx = flatpak install ryujinx
