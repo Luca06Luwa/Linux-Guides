@@ -229,7 +229,6 @@ b. Selecting your Desktop Environment and or Window Manager.
      i3 = sudo pacman -S i3 alacritty pcmanfm-qt dmenu
      Gnome = sudo pacman -S gnome gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk (Wayland supported/enabled by default).
            = sudo pacman -S --needed gnome-menus gettext xdg-utils (Only needed if your using ArcMenu extension).
-	   = paru -S extension-manager
      Hyprland = In VERY early stages of development and currently not recommended for daily use.
      KDE Plasma (X11) = sudo pacman -S plasma kde-applications
      KDE Plasma (Wayland) = sudo pacman -S plasma kde-applications plasma-wayland-session qt6-wayland xdg-desktop-portal xdg-desktop-portal-kde
@@ -319,6 +318,7 @@ Zulu Java17 (AUR) = paru -S zulu-17-bin
 AppImageLauncher = paru -S appimagelauncher
 Unity3D (AUR) = paru -S unityhub
 Btop++ = sudo pacman -S btop
+Gnome Extension Manager = flatpak install ExtensionManager
 Wireshark = sudo pacman -S wireshark-qt
 Fusée Launcher Interfacée = Download on Github.
 Htop = sudo pacman -S htop
