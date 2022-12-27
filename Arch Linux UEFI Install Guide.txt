@@ -3,7 +3,7 @@ Arch Linux UEFI Install Guide. (More info and some notes at the bottom. READ THE
 1. Basic initial setup.
 a. ls /sys/firmware/efi/efivars (If this command fail's, then your in legacy bios boot).
 b. loadkeys us (done by default)
-c. timedatectl set-ntp true
+c. timedatectl status
 
 2. Networking. (If you have ethernet you can skip this step as systemd-networkd would have already configured it for you).
 a. ip link (This is to check if you're getting an ip connection through ethernet or Wi-Fi).
@@ -40,17 +40,14 @@ d. swapon /dev/swap_partition
 e. mkfs.fat -F 32 /dev/efi_system_partition
 f. mkfs.ext4 /dev/home_partition 
 g. mount /dev/root_partition /mnt
-h. mkdir /mnt/home
-i. mount /dev/home_partition /mnt/home
+h. mount --mkdir /dev/home_partition /mnt/home
 
 Mount Bootloader Partitions.
 6a. Systemd-Boot. (Hard Mode)
-a. mkdir /mnt/boot
-b. mount /dev/efi_system_partition /mnt/boot
+mount --mkdir /dev/efi_system_partition /mnt/boot
 
 6b. Grub Bootloader. (Easy Mode) [DO NOT USE GRUB IF YOU DON"T WANT A BROKEN INSTALL!!!!]
-a. mkdir /mnt/boot/efi
-b. mount /dev/efi_system_partition /mnt/boot/efi
+mount --mkdir /dev/efi_system_partition /mnt/boot/efi
 
 6c. rEFInd. (idk) [NOT COMPLETE!!]
 a.
@@ -64,7 +61,7 @@ d. pacman -S pacman-contrib
 e. rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
 8. Downloading Essential Packages.
-pacstrap -i /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence nano
+pacstrap -i -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence nano
 
 9. Generating the fstab and chrooting into the install.
 a. genfstab -U /mnt >> /mnt/etc/fstab
@@ -131,16 +128,15 @@ e. Make any changes to the grub config.
 f. grub-mkconfig -o /boot/grub/grub.cfg
 
 18b. Systemd-boot. (Requires manual entries/Hard Mode)
-a. ls /sys/firmware/efi/efivars (This is to check if the efivars are mounted. Yes we did run this command it the beginning but I dont care).
-b. bootctl install
-c. systemctl enable systemd-boot-update.service
-d. nano /boot/loader/entries/arch.conf
-e. Add the following content to the file
+a. bootctl install
+b. systemctl enable systemd-boot-update.service
+c. nano /boot/loader/entries/arch.conf
+d. Add the following content to the file
 title Abyssal Linux
 linux /vmlinuz-linux (change this depending on what kernel you have).
 initrd /initramfs-linux.img
 initrd /intel-ucode.img or /amd-ucode.img
-f. echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf
+e. echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf
 
 18c. rEFInd. (Simplest for windows dual booting) [NOT COMPLETE!!]
 a.
@@ -200,7 +196,7 @@ b. mkinitcpio -P
 
 21. Unmount drives and Reboot system.
 a. exit
-b. umount -a
+b. umount -r
 c. reboot
 
 22. General checking.
