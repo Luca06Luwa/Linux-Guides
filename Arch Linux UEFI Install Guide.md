@@ -59,9 +59,9 @@ e. Run `mkfs.fat -F 32 /dev/efi_system_partition` to format the boot partition.
 Here is a little choose your own adventure bit for this install guide. There are two commonly boot loaders that people tend to install. Choose the one you prefer and forget about the other one.
 
 6a. Systemd-Boot. (Hard Mode)</br>
-mount --mkdir /dev/efi_system_partition /mnt/boot
+Run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the boot partition for Systemd-Boot.
 
 6b. Grub Boot loader. (Easy Mode)</br>
 As of grub version v2.06 r403 the issue where grub would brick some installs is still prominent so for right now DO NOT USE GRUB IF YOU DO NOT WANT A BROKEN INSTALL!!!!</br>
 
-mount --mkdir /dev/efi_system_partition /mnt/boot/efi
+Run `mount --mkdir /dev/efi_system_partition /mnt/boot/efi` to create amd mount the boot partition for Grub.
