@@ -29,7 +29,7 @@ If you plan on dual booting Windows 10/11, STOP this guide is not for you.
 
 Note: If you have a blank drive that you know is empty, then skip step c.
 
-a. Rin `lsblk` to see what hard drives you have installed in your PC.</br>
+a. Run `lsblk` to see what hard drives you have installed in your PC.</br>
 b. If you cannot identify what drive(s) you have installed, run `hdparm -i /dev/the_disk_to_be_partitioned` to double check that you've selected the right drive.</br>
 c. If you only have one drive woth another OS on it and want to install clean, run `gdisk /dev/the_disk_to_be_partitioned`.
 - Press `x` to enable expert mode.
