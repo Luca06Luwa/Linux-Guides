@@ -1,4 +1,8 @@
 # Arch Linux UEFI Install Guide
+
+## PLEASE NOTE THAT THIS IS STILL BEING WRITTEN AND SOME STUFF IS LIKELY TO CHANGE.
+
+
 Small note: This took soo long to rewrite this guide as there is soo much stuff in it that had to be rewritten from scratch.
 
 This guide assumes that your default language is english.
