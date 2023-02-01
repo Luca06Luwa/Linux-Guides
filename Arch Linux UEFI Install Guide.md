@@ -22,7 +22,7 @@ d. Run `station [Your wifi card] scan` to scan the local area for networks.</br>
 e. Run `station [Your wifi card] get-networks` to list the available networks.</br>
 f. Run `station [your wifi card] connect "[your network]"` to connect to your network.</br>
 g. Press `ctrl + d` to exit iwd</br>
-h. ip link (To verify that you're getting an ip connection to Wi-Fi).
+h. Run `ip link` again to verify that you're getting an ip connection to Wi-Fi.
 
 ### Part Two (Testing Connection).
 Run `ping archlinux.org` to test the internet connection.</br>
@@ -67,8 +67,8 @@ This would be the recommended option as the packages are preinstalled onto syste
 
 Run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the boot partition for Systemd-Boot.
 
-6b. Grub Boot loader. (Easy Mode)</br>
-As of grub version v2.06 r403 the issue where grub would brick some installs is still prominent so for right now:</br>
+6b. GRand Unified Bootloader / GRUB. (Easy Mode)</br>
+As of grub version v2.06 r415 the issue where GRUB would brick some installs is still prominent so for right now:</br>
 DO NOT USE GRUB IF YOU DO NOT WANT A BROKEN INSTALL!!!!
 
-Run `mount --mkdir /dev/efi_system_partition /mnt/boot/efi` to create amd mount the boot partition for Grub.
+Run `mount --mkdir /dev/efi_system_partition /mnt/boot/efi` to create and mount the boot partition for GRUB.
