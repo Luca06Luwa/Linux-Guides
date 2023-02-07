@@ -72,3 +72,27 @@ As of grub version v2.06 r415 the issue where GRUB would brick some installs is 
 DO NOT USE GRUB IF YOU DO NOT WANT A BROKEN INSTALL!!!!
 
 Run `mount --mkdir /dev/efi_system_partition /mnt/boot/efi` to create and mount the boot partition for GRUB.
+
+## 5. Configure Mirrorlist.
+This step isn't really necessary but I would highly recommend it as it sorts the servers from best to worst.
+
+Note: Since we don't have a GUI interface for file management we must do everything through command line.
+
+a. Run `cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup` to create a backup.</br>
+b. Run `nano /etc/pacman.d/mirrorlist` to see if all the servers that are listed in the file are uncommented.</br>
+c. Once exited nano, run `pacman -Sy` to update the package database on the ISO.</br>
+d. Run `pacman -S pacman-contrib` to install the tools needed for sorting the servers.</br>
+e. Run `rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist` to sort the servers in the backup file and copy it to the main file.
+
+## 6. Download/Installing Essential Packages.
+This is where your going to actually install your system.
+
+The following packages that it will install are the necessary core functions and the drivers for some wifi cards.
+
+Run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence nano` to install the packages.
+
+## 7. Generating the fstab and chrooting into the install.
+This step is important as without doing this the system wont know what it's doing.
+
+a. Run `genfstab -U /mnt >> /mnt/etc/fstab` to generate the fstab file.</br>
+b. Run `arch-chroot /mnt` to gain access to your install.
