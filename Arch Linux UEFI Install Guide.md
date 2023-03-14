@@ -1,11 +1,7 @@
 # Arch Linux UEFI Install Guide
-
-## PLEASE NOTE THAT THIS IS STILL BEING WRITTEN AND SOME STUFF IS LIKELY TO CHANGE.
-
-
 Small note: This took soo long to rewrite this guide as there is soo much stuff in it that had to be rewritten from scratch.
 
-This guide assumes that your default language is english.
+This guide assumes that your default language is english and you are on desktop.
 
 ## 1. Basic initial Setup
 a. Run the command `ls /sys/firmware/efi/efivars` to check if your booted into UEFI.</br>
@@ -59,19 +55,21 @@ c. Run `mkfs.ext4 /dev/root_partition` to format the root partition and run `mou
 d. Run `mkfs.ext4 /dev/home_partition` to format the home partition and run `mount --mkdir /dev/home_partition /mnt/home` to create and mount the home partition </br>
 e. Run `mkfs.fat -F 32 /dev/efi_system_partition` to format the boot partition.
 
-### Mount Boot loader Partitions.
+### Mount Bootloader Partitions.
 Here is a little choose your own adventure bit for this install guide. There are two commonly boot loaders that people tend to install. Choose the one you prefer and forget about the other one.
 
-6a. Systemd-Boot. (Hard Mode)</br>
-This would be the recommended option as the packages are preinstalled onto system during install.
+Systemd-Boot. (Hard Mode)</br>
+This bootloader is what I would recommended you as the packages are preinstalled onto system during install.
 
-Run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the boot partition for Systemd-Boot.
-
-6b. GRand Unified Bootloader / GRUB. (Easy Mode)</br>
+GRand Unified Bootloader / GRUB. (Easy Mode)</br>
+This bootloader is the most common across most distro's and has the most documentation.</br>
 As of grub version v2.06 r415 the issue where GRUB would brick some installs is still prominent so for right now:</br>
-DO NOT USE GRUB IF YOU DO NOT WANT A BROKEN INSTALL!!!!
+PLEASE REGENERATE THE GRUB CONFIG EVERY TIME YOU UPDATE GRUB TO AVOID THE RISK OF BRICKS!!!!
 
-Run `mount --mkdir /dev/efi_system_partition /mnt/boot/efi` to create and mount the boot partition for GRUB.
+| Bootloader | Instructions |
+| ---------- | ------------ |
+| Systemd-Boot | Run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the boot partition for Systemd-Boot. |
+| GRUB | Run `mount --mkdir /dev/efi_system_partition /mnt/boot/efi` to create and mount the boot partition for GRUB. |
 
 ## 5. Configure Mirrorlist.
 This step isn't really necessary but I would highly recommend it as it sorts the servers from best to worst.
@@ -96,3 +94,61 @@ This step is important as without doing this the system wont know what it's doin
 
 a. Run `genfstab -U /mnt >> /mnt/etc/fstab` to generate the fstab file.</br>
 b. Run `arch-chroot /mnt` to gain access to your install.
+
+## 8. Localisation and Timezone.
+This step is to tell Arch Linux where you are and to set the system clock.
+
+WARNING: Anything and everything in this part is important. If you mess up when entering these commands your install is dead.
+
+a. Run `nano /etc/locale.gen` and scroll down to your locale of you know it. If you don't then uncomment `en_US.UTF-8 UTF-8`.</br>
+b. Once uncommented your locale of choice run `locale-gen` to generate the locales.
+c. Even though you've already assigned the locale, you still need to echo the locale for older programs. To do this run `echo "LANG=[the locale you selected].UTF-8" >> /etc/locale.conf` to set the locale.</br>
+d. This step is important and should be done either way. Run `export LANG=[the locale you selected].UTF-8`.</br>
+e. Skip this step if you have a us keyboard layout. If you have a keyboard other than us run `echo "KEYMAP=us" >> /etc/vconsole.conf`.</br>
+f. Run `ln /usr/share/zoneinfo` to list the unix timezones.
+g. Once found your timesone run `ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timesone Here] /etc/localtime`
+h. Run `hwclock --systohc --utc` to set the hardware clock.
+
+## 11. Configure Pacman/Package Manager.
+This step is where you will configure pacman to be able to download faster and enable the Multilib repo for 32-bit programs.
+
+a. Run `nano /etc/pacman.conf` to enter the pacman config file.</br>
+b. Uncomment the line that you see below.</br>
+
+```
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+
+c. In the Misc Options area, add/uncomment the following items. `ParallelDownloads = 5`, `Color` and `ILoveCandy`.</br>
+d. Once saved run `pacman -Sy` to update and download the repos.
+
+## 12. Installing more packages and enabling system services.
+This part is where you're going to install some more packages and some drivers for basic networking and enable some system functions.
+
+a. Run `pacman -S git networkmanager reflector pacman-contrib bluez bluez-utils bash-completion` to install the packages.</br>
+b. To make sure your CPU has no active exploits on it firmware, you need to install the microcode. To install it run `pacman -S [Your CPU Brand]-ucode`.</br>
+c. Enable the following services to start the drivers.
+```
+systemctl enable bluetooth.service
+systemctl enable NetworkManager.service
+systemctl enable fstrim.timer
+systemctl enable reflector.timer
+```
+
+## 14. Hostname Configuration and User Setup.
+This step is where you'll name the computer and add your user account. 
+
+a. Run `echo "[Insert Computer Name Here]" >> /etc/hostname` to set the name for the computer.</br>
+b. Run `nano /etc/hosts` and add the following into the file.
+```
+127.0.0.1        localhost
+::1              localhost
+127.0.1.1        [Add same hostname as before. lol]
+```
+
+c. Run `passwd` to set the root password.</br>
+d. Run `useradd -m -G wheel,storage,power -s /bin/bash [Insert Username Here]` to create your user account.</br>
+e. Run `passwd [Insert Username Here]` to set the password for the user account you just created.</br>
+f. Run `EDITOR=nano visudo` to and edit the following permissions.</br>
+Uncomment `%wheel ALL=(ALL) ALL` and add `Defaults rootpw` to the bottom of the file.
