@@ -152,3 +152,40 @@ d. Run `useradd -m -G wheel,storage,power -s /bin/bash [Insert Username Here]` t
 e. Run `passwd [Insert Username Here]` to set the password for the user account you just created.</br>
 f. Run `EDITOR=nano visudo` to and edit the following permissions.</br>
 Uncomment `%wheel ALL=(ALL) ALL` and add `Defaults rootpw` to the bottom of the file.
+
+## Bootloader.
+This step will be based off of which bootloader you decided to partition your hard drive for.
+
+If you chose to install GRUB then ONLY do 15a.</br>
+If you chose to install Systemd-Boot then ONLY do 15b.
+
+### 15a. Grub Bootloader. (Linux dual boot/Easy Mode)
+a. Run `pacman -S grub efibootmgr os-prober` to install the necessary packages.</br>
+b. Run `grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB` to inject and install Grub to your system.</br>
+c. Run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the grub configuration file.
+
+### 15b. Systemd-Boot. (Requires manual entries/Hard Mode)
+a. Re-run `ls /sys/firmware/efi/efivars` to check if the efi firmware is mounted and installed.</br>
+b. Run `bootctl install` to inject and install Systemd-Boot to your system.</br>
+c. Run `systemctl enable systemd-boot-update.service` to enable the updater script.</br>
+d. Run `nano /boot/loader/entries/arch.conf` and add the following lines.
+```
+title Arch Linux
+linux /vmlinuz-linux (change this depending on what kernel you have).
+initrd /initramfs-linux.img
+initrd /intel-ucode.img or /amd-ucode.img
+```
+
+e. Once added everything into the file, run `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf` to add the partition id of the root partition so that it tells arch linux that it will boot to that drive only.
+
+
+## 16. Graphics Drivers
+This step is necessary if you want your GPU to be working properly. The drivers are sorted based on what manufacturer your card is from so select the one that matches your card.
+
+| Manufacturer | Instructions |
+| ------------ | ------------ |
+| AMD | Run `pacman -S xf86-video-amdgpu libva-mesa-driver mesa opencl-mesa vulkan-radeon lib32-libva-mesa-driver lib32-mesa lib32-opencl-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for AMD cards. |
+| INTEL | Run `pacman -S xf86-video-intel mesa intel-compute-runtime intel-media-driver vulkan-intel lib32-mesa lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for INTEL cards. |
+| NVIDIA (PROPRIETARY) | Run `pacman -S nvidia-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for MAXWELL series cards or newer. |
+| NVIDIA (Open GPU Kernel Modules) | Run `pacman -S nvidia-open-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for TURING series cards or newer. |
+
