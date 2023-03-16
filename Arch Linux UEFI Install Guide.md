@@ -228,7 +228,7 @@ a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like th
 b. Once added those modules, run `mkinitcpio -P` to regenerate the initramfs.
 
 
-### 20c. INTEL
+### 17c. INTEL
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... i915 ...)`<br>
 b. Once added those modules, run `mkinitcpio -P` to regenerate the initramfs.
