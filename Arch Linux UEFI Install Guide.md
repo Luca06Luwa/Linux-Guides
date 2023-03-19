@@ -242,3 +242,33 @@ Congratulations. You have sucessfully installed the basic form of Arch Linux. Ho
 a. Type `exit` to return back to the install drive.<br>
 b. Type `umount -r /mnt` to safely unount the partitions.<br>
 c. `reboot`
+
+
+## 19. General First Install Checks.
+This part is just a general after install checks to make sure nothing went wrong with the install. It also contains configuration for regenerating mirrorlists automatically.
+
+Note: Now that you're actually using your system now, you will need to use sudo to perform root privilages.
+
+a. Once booted up, run `systemctl --failed` to verify a sucessful bootup.<br>
+b. Run `sudo reflector --country [Your Country Here] --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist` to set refector to generate the mirrorlist based on the settings given.<br>
+c. Run `sudo nano /etc/xdg/reflector/reflector.conf` and make sure the file is configured to your liking. An example is provided below:
+```
+--country [Your Country Here]
+--age 12
+--protocol https
+--sort rate
+--save /etc/pacman.d/mirrorlist
+```
+
+d. Run `sudo pacman -Sy` to resync and update the servers.
+
+
+## 23. Enabling AUR support.
+This step is necessary if you want to use the Arch User Repository for community maintained packages. 
+
+Traditionally, if you want to install packages from the AUR, you would need to compile them from source but with an AUR Helper it builds and installs it for you.
+
+a. Run `git clone https://aur.archlinux.org/paru.git` to download the required files to compile Paru.<br>
+b. Run `cd paru` to go into the folder.<br>
+c. Run `makepkg -si` to install Paru.<br>
+d. Once Paru is installed run `paru -Syyu` to update all packages installed on your computer.
