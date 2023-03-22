@@ -157,6 +157,8 @@ e. Run `passwd [Insert Username Here]` to set the password for the user account 
 f. Run `EDITOR=nano visudo` to and edit the following permissions.<br>
 Uncomment `%wheel ALL=(ALL) ALL` and add `Defaults rootpw` to the bottom of the file.
 
+The `Defaults rootpw` is so that you use the root password instead of your user password for sudo.
+
 ## Bootloader.
 This step will be based off of which bootloader you decided to partition your hard drive for.
 
@@ -231,11 +233,11 @@ a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like th
 `MODULES(... amdgpu ...)`<br>
 b. Once added those modules, run `mkinitcpio -P` to regenerate the initramfs.
 
-
 ### 17c. INTEL
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... i915 ...)`<br>
 b. Once added those modules, run `mkinitcpio -P` to regenerate the initramfs.
+
 
 ## 18. Unmount drives and Reboot system.
 Congratulations. You have sucessfully installed the basic form of Arch Linux. However you're not done just yet.
@@ -263,7 +265,7 @@ c. Run `sudo nano /etc/xdg/reflector/reflector.conf` and make sure the file is c
 d. Run `sudo pacman -Sy` to resync and update the servers.
 
 
-## 23. Enabling AUR support.
+## 20. Enabling AUR support.
 This step is necessary if you want to use the Arch User Repository for community maintained packages. 
 
 Traditionally, if you want to install packages from the AUR, you would need to compile them from source but with an AUR Helper it builds and installs it for you.
@@ -272,3 +274,63 @@ a. Run `git clone https://aur.archlinux.org/paru.git` to download the required f
 b. Run `cd paru` to go into the folder.<br>
 c. Run `makepkg -si` to install Paru.<br>
 d. Once Paru is installed run `paru -Syyu` to update all packages installed on your computer.
+
+
+## 21. Graphical Environment.
+This step is probably the most confusing to users and the most difficult part of the rewrite for me.
+
+Currently, there are two well known video drivers for linux. Wayland and Xorg. This guide is mainly focused on Xorg, however if you want to use Wayland it's already enabled and ready to go.
+
+Note: If you are having an issue with wayland on NVIDIA GPU's, install the `egl-wayland` package to fix the issue.
+
+### Part 1. Installing Xorg.
+Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
+
+### Part 2. Selecting your Desktop Environment and or Window Manager.
+| Desktop Environment | Instructions |
+| ------------------- | ------------ |
+| AwesomeWM | Run `sudo pacman -S awesome alacritty pcmanfm-qt` to install the packages for a working install of AwesomWM. |
+| i3 | Run `sudo pacman -S i3 alacritty pcmanfm-qt dmenu` to install the packages for a working install of i3.<br>Note: Make sure you select the `i3-gaps` package instead of the normal package. |
+| Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk` to install the packages for a working install of Gnome. |
+| KDE Plasma (X11) | Run `sudo pacman -S plasma kde-applications` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
+| KDE Plasma (Wayland) | If you want to use KDE under Wayland, install the X11 version and then run `plasma-wayland-session qt6-wayland xdg-desktop-portal xdg-desktop-portal-kde` to install the wayland packages. When prompted, select the VLC backend for audio. |
+| LXQt | Run `sudo pacman -S lxqt breeze-icons network-manager-applet leafpad` to install the packages for a working install of LXQt. |
+| Sway | Note: Sway only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar light grim slurp foot xdg-desktop-portal xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
+| Xfce | Run `sudo pacman -S xfce xfce-goodies network-manager-applet` to install the packages for a working install of Xfce. |
+
+
+### Part 3. Installing and enabling a display manager.
+| Display Manager | Instructions |
+| --------------- | ------------ |
+| GDM | Note: Since GDM is included with Gnome you don't need to install anything.<br>To enable the Display Manager upon reboot run `sudo systemctl enable gdm.service`. |
+| SDDM | Run `sudo pacman -S sddm` to install SDDM and then run `sudo systemctl enable sddm.service` to enable the Display Manager upon reboot. |
+| LightDM | Run `sudo pacman -S lightdm` to install the base version of lightDM and run `sudo systemctl enable lightdm.service`  to enable the Display Manager upon reboot.<br>Since LightDM does not include a environment to run on you wil have to install one of the greeters listed below. |
+| StartX | Since StartX is kind of difficult to setup i will simply like to the Arch Wiki for instructions. https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login. |
+| Sway on TTY | Since Sway doesn't allow to be launched with a Display Manager I will simply link to the arch wiki for instructions on how to set it up. https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login. |
+
+
+### Part 4. Choose the greeter you want to use for LightDM.
+If your using any other display manager then you can skip this step and move onto Part 5.
+
+The two versions is just what style you want. If you want a style that looks like Gnome then select the GTK version. If you want a style thats easy to configure and looks great then use the Webkit2 version.
+
+| Greeter | Instructions |
+| ------- | ------------ |
+| GTK | Run `sudo pacman -S lightdm-gtk-greeter lightdm-gtk-greeter-settings` to install the GTK greeter and configurator tool. |
+| Webkit2 | Run `sudo pacman -S lightdm-webkit2-greeter` to install the webkit2 greeter. |
+
+
+## 22. Audio Drivers.
+This step is necessary if you want to have a working audio setup. 
+
+One of the packages, `pipewire` to be exact, is required for wayland since by itself wayland does NOT allow screen capture for programs, and the `alsa-ucm-conf` package is needed for basic non configurable GoXLR support.
+
+Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber` to install all the packages needed for a working audio setup.
+
+## 23. Gstreamer Full Support.
+This step only applies to the the other Desktop Environments. Window Managers and KDE with VLC backend can go without it.
+
+Run `sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi` to install these packages.
+
+## 24. Reboot and login.
+Run `reboot` and then login to your user account and then you should see the Desktop you installed. Congratulations You have sucessfully installed Arch Linux.
