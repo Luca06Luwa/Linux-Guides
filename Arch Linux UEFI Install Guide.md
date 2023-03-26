@@ -1,8 +1,5 @@
 # Arch Linux UEFI Install Guide
 
-## PLEASE NOTE THAT THIS IS STILL BEING WRITTEN AND SOME STUFF IS LIKELY TO CHANGE.
-
-
 Small note: This took soo long to rewrite this guide as there is soo much stuff in it that had to be rewritten from scratch.
 
 This guide assumes that your default language is english and you are on desktop.
@@ -265,7 +262,7 @@ c. Run `sudo nano /etc/xdg/reflector/reflector.conf` and make sure the file is c
 d. Run `sudo pacman -Sy` to resync and update the servers.
 
 
-## 20. Enabling AUR support.
+## 20. Enabling AUR support and flatpak.
 This step is necessary if you want to use the Arch User Repository for community maintained packages. 
 
 Traditionally, if you want to install packages from the AUR, you would need to compile them from source but with an AUR Helper it builds and installs it for you.
@@ -273,7 +270,9 @@ Traditionally, if you want to install packages from the AUR, you would need to c
 a. Run `git clone https://aur.archlinux.org/paru.git` to download the required files to compile Paru.<br>
 b. Run `cd paru` to go into the folder.<br>
 c. Run `makepkg -si` to install Paru.<br>
-d. Once Paru is installed run `paru -Syyu` to update all packages installed on your computer.
+d. Once Paru is installed run `paru -Syyu` to update all packages installed on your computer.<br>
+e. Run `sudo pacman -S flatpak` to install the flatpak repo and installer.<br>
+f. `reboot` system to complete the install of flatpak.
 
 
 ## 21. Graphical Environment.
@@ -327,10 +326,12 @@ One of the packages, `pipewire` to be exact, is required for wayland since by it
 
 Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber` to install all the packages needed for a working audio setup.
 
-## 23. Gstreamer Full Support.
+
+## 23. Gstreamer Full Support. (Optional for KDE)
 This step only applies to the the other Desktop Environments. Window Managers and KDE with VLC backend can go without it.
 
 Run `sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi` to install these packages.
+
 
 ## 24. Reboot and login.
 Run `reboot` and then login to your user account and then you should see the Desktop you installed. Congratulations You have sucessfully installed Arch Linux.
