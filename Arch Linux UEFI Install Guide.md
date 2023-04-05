@@ -289,7 +289,7 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | Desktop Environment | Instructions |
 | ------------------- | ------------ |
 | AwesomeWM | Run `sudo pacman -S awesome alacritty pcmanfm-qt` to install the packages for a working install of AwesomWM. |
-| i3 | Run `sudo pacman -S i3 alacritty pcmanfm-qt dmenu` to install the packages for a working install of i3.<br>Note: Make sure you select the `i3-gaps` package instead of the normal package. |
+| i3 | Run `sudo pacman -S i3 alacritty pcmanfm-qt dmenu` to install the packages for a working install of i3. |
 | Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk` to install the packages for a working install of Gnome. |
 | KDE Plasma (X11) | Run `sudo pacman -S plasma kde-applications` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
 | KDE Plasma (Wayland) | If you want to use KDE under Wayland, install the X11 version and then run `plasma-wayland-session qt6-wayland xdg-desktop-portal xdg-desktop-portal-kde` to install the wayland packages. When prompted, select the VLC backend for audio. |
