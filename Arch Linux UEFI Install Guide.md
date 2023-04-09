@@ -6,7 +6,7 @@ This guide assumes that your default language is english and you are on desktop.
 
 ## 1. Basic initial Setup
 a. Run the command `ls /sys/firmware/efi/efivars` to check if your booted into UEFI.<br>
-b. Run `timedatectl status` to ensure the date and time is accurate.
+b. Run `timedatectl` to ensure the date and time is accurate.
 
 ## 2. Networking
 If you're not going to be using WI-FI, then skip steps b to h.
@@ -108,7 +108,7 @@ d. This step is important and should be done either way. Run `export LANG=[the l
 e. Skip this step if you have a us keyboard layout. If you have a keyboard other than us run `echo "KEYMAP=us" >> /etc/vconsole.conf`.<br>
 f. Run `ln /usr/share/zoneinfo` to list the unix timezones.<br>
 g. Once found your timesone run `ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timesone Here] /etc/localtime` to add a symbolic link for your time.<br>
-h. Run `hwclock --systohc --utc` to set the hardware clock.
+h. Run `hwclock --systohc` to set the hardware clock.
 
 ## 11. Configure Pacman/Package Manager.
 This step is where you will configure pacman to be able to download faster and enable the Multilib repo for 32-bit programs.
@@ -366,7 +366,9 @@ This list has been seperated into multiple sections based on what the package re
 | Clone Hero v1.0.0.4080-final | paru -S clonehero |
 | ScoreSpy | Download from website |
 | Heroic Games Launcher| paru -S heroic-games-launcher-bin |
-| Katawa Shoujo | Download on website (kind of hard to find) |
+| Tentacle Locker 2 | Download on itch |
+| Tentacle Locker | Needs to be run through Wine |
+| Protecc Your Loli | Needs to be run through Wine |
 
 | Emulators | Commands |
 | --------- | -------- |
@@ -449,6 +451,7 @@ This list has been seperated into multiple sections based on what the package re
 | Flatseal | flatpak install flatseal |
 | OBS Studio | 1. flatpak install obs-studios<br>2. sudo pacman -S v4l2loopback-dkms |
 | Extension Manager | This package is ONLY for Gnome.<br>flatpak install ExtensionManager |
+| Bottles | flatpak install bottles<br>Bottles requires you to have already installed the base version of Wine |
 
 | System Diagnostic Tools | Commands |
 | ----------------------- | -------- |
