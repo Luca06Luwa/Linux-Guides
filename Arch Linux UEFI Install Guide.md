@@ -290,11 +290,12 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | ------------------- | ------------ |
 | AwesomeWM | Run `sudo pacman -S awesome alacritty pcmanfm-qt` to install the packages for a working install of AwesomWM. |
 | i3 | Run `sudo pacman -S i3 alacritty pcmanfm-qt dmenu` to install the packages for a working install of i3. |
-| Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal xdg-desktop-portal-gtk` to install the packages for a working install of Gnome. |
+| Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal-gnome` to install the packages for a working install of Gnome. |
+| Hyprland | Run `sudo pacman -S hyprand grim slurp foot xdg-desktop-portal-hyprland` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
 | KDE Plasma (X11) | Run `sudo pacman -S plasma kde-applications` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
-| KDE Plasma (Wayland) | If you want to use KDE under Wayland, install the X11 version and then run `plasma-wayland-session qt6-wayland xdg-desktop-portal xdg-desktop-portal-kde` to install the wayland packages. When prompted, select the VLC backend for audio. |
+| KDE Plasma (Wayland) | If you want to use KDE under Wayland, install the X11 version and then run `plasma-wayland-session qt6-wayland xdg-desktop-portal-kde` to install the wayland packages. When prompted, select the VLC backend for audio. |
 | LXQt | Run `sudo pacman -S lxqt breeze-icons network-manager-applet leafpad` to install the packages for a working install of LXQt. |
-| Sway | Note: Sway only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar light grim slurp foot xdg-desktop-portal xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
+| Sway | Note: Sway only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
 | Xfce | Run `sudo pacman -S xfce xfce-goodies network-manager-applet` to install the packages for a working install of Xfce. |
 
 
@@ -305,7 +306,7 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | SDDM | Run `sudo pacman -S sddm` to install SDDM and then run `sudo systemctl enable sddm.service` to enable the Display Manager upon reboot. |
 | LightDM | Run `sudo pacman -S lightdm` to install the base version of lightDM and run `sudo systemctl enable lightdm.service`  to enable the Display Manager upon reboot.<br>Since LightDM does not include a environment to run on you wil have to install one of the greeters listed below. |
 | StartX | Since StartX is kind of difficult to setup i will simply like to the Arch Wiki for instructions. https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login. |
-| Sway on TTY | Since Sway doesn't allow to be launched with a Display Manager I will simply link to the arch wiki for instructions on how to set it up. https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login. |
+| wlroots on TTY | Since wayland compositors based on wlroots do not launch with a Display Manager I will simply link to the arch wiki for instructions on how to set it up. https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login. |
 
 
 ### Part 4. Choose the greeter you want to use for LightDM.
