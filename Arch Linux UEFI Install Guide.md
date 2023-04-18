@@ -370,6 +370,9 @@ This list has been seperated into multiple sections based on what the package re
 | Tentacle Locker 2 | Download on itch |
 | Tentacle Locker | Needs to be run through Wine |
 | Protecc Your Loli | Needs to be run through Wine |
+| Doki Doki Literature Club | Download on itch |
+| Monika After Story Mod | Download on Github |
+| MonikA.I | Download on Github |
 
 | Emulators | Commands |
 | --------- | -------- |
