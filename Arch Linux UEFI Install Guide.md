@@ -6,7 +6,7 @@ This guide assumes that your default language is english and you are on desktop.
 
 ## 1. Basic initial Setup
 a. Run the command `ls /sys/firmware/efi/efivars` to check if your booted into UEFI.<br>
-b. Run `timedatectl` to ensure the date and time is accurate.
+b. Run `timedatectl status` to ensure the date and time is accurate.
 
 ## 2. Networking
 If you're not going to be using WI-FI, then skip steps b to h.
