@@ -468,3 +468,5 @@ This list has been seperated into multiple sections based on what the package re
 | -------------- | -------- |
 | Wireshark | sudo pacman -S wireshark-qt |
 | Fusée Launcher Interfacée | Download on Github |
+| OSCDL | Download on Github |
+| WiiUDownloader | Download on Github |
