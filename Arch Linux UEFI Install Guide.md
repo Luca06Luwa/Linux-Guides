@@ -381,9 +381,9 @@ This list has been seperated into multiple sections based on what the package re
 | rpcs3 | paru -S rpcs3-git |
 | Retroarch | sudo pacman -S retroarch |
 | Yuzu | flatpak install yuzu |
-| Ryujinx | paru -S ryujinx-git |
+| Ryujinx | paru -S ryujinx-bin |
 | CEMU | paru -S cemu |
-| Citra | paru -S citra-qt-git |
+| Citra | flatpak install citra |
 | mGBA | paru -S mgba-qt-git |
 
 | Internet | Commands |
