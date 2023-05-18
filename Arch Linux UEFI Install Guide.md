@@ -349,24 +349,23 @@ This list has been seperated into multiple sections based on what the package re
 
 | Essential Packages | Commands |
 | ------------------ | -------- |
-| AppImageLauncher | paru -S appimagelauncher |
-| 7-Zip | paru -S 7-zip-full |
-| Windows 11 Fonts | paru -S ttf-ms-win11-auto |
-| Timeshift | paru -S timeshift |
-| Downgrade | paru -S downgrade |
+| AppImageLauncher | `paru -S appimagelauncher` |
+| 7-Zip | `paru -S 7-zip-full` |
+| Windows 11 Fonts | `paru -S ttf-ms-win11-auto` |
+| Timeshift | `paru -S timeshift` |
+| Downgrade | `paru -S downgrade` |
 
 | Games | Commands |
 | ----- | -------- |
-| Steam | sudo pacman -S steam |
-| Steam Native Runtime Replacement | sudo pacman -S steam-native-runtime |
-| Lutris | sudo pacman -S lutris<br>Lutris requires you to have already installed the base version of Wine |
-| osu! | paru -S osu-laser-bin |
-| Roblox (Grapejuice) | paru -S grapejuice-git<br>Grapejuice requires you to have already installed the base version of Wine |
-| Katawa Shoujo | paru -S katawa-shoujo |
-| Minecraft | paru -S minecraft-launcher<br>Minecraft requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any older builds |
-| Clone Hero v1.0.0.4080-final | paru -S clonehero |
+| Steam | `sudo pacman -S steam` |
+| Steam Native Runtime Replacement | `sudo pacman -S steam-native-runtime` |
+| Lutris | `sudo pacman -S lutris`<br>Lutris requires you to have already installed the base version of Wine |
+| osu! | `paru -S osu-laser-bin` |
+| Katawa Shoujo | `paru -S katawa-shoujo` |
+| Minecraft | `paru -S minecraft-launcher`<br>Minecraft requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any older builds |
+| Clone Hero v1.0.0.4080-final | `paru -S clonehero` |
 | ScoreSpy | Download from website |
-| Heroic Games Launcher| paru -S heroic-games-launcher-bin |
+| Heroic Games Launcher | `paru -S heroic-games-launcher-bin` |
 | Tentacle Locker 2 | Download on itch |
 | Tentacle Locker | Needs to be run through Wine |
 | Protecc Your Loli | Needs to be run through Wine |
@@ -376,97 +375,96 @@ This list has been seperated into multiple sections based on what the package re
 
 | Emulators | Commands |
 | --------- | -------- |
-| Dolphin Emulator | paru -S dolphin-emu-beta-git |
-| pcsx2 | paru -S pcsx2-git |
-| rpcs3 | paru -S rpcs3-git |
-| Retroarch | sudo pacman -S retroarch |
-| Yuzu | flatpak install yuzu |
-| Ryujinx | paru -S ryujinx-bin |
-| CEMU | paru -S cemu |
-| Citra | flatpak install citra |
-| mGBA | paru -S mgba-qt-git |
+| Dolphin Emulator | `paru -S dolphin-emu-beta-git` |
+| pcsx2 | `paru -S pcsx2-git` |
+| rpcs3 | `paru -S rpcs3-git` |
+| Retroarch | `sudo pacman -S retroarch` |
+| Yuzu | `flatpak install yuzu` |
+| Ryujinx | `paru -S ryujinx-bin` |
+| CEMU | `paru -S cemu` |
+| Citra | `flatpak install citra` |
+| mGBA | `paru -S mgba-qt-git` |
 
 | Internet | Commands |
 | -------- | -------- |
-| Firefox | sudo pacman -S firefox |
-| Chromium | sudo pacman -S chromium |
-| Brave | paru -S brave-bin |
-| Librewolf | paru -S librewolf-bin |
+| Firefox | `sudo pacman -S firefox` |
+| Chromium | `sudo pacman -S chromium` |
+| Brave | `paru -S brave-bin` |
+| Librewolf | `paru -S librewolf-bin` |
 
 | Media | Commands |
 | ----- | -------- |
-| Ani-Cli | paru -S ani-cli-git |
-| Spotify | paru -S spotify |
-| MPV | sudo pacman -S mpv |
+| Ani-Cli | `paru -S ani-cli-git` |
+| MPV | `sudo pacman -S mpv` |
 
 | Compatibility Tools/Wine | Commands |
 | ------------------------ | -------- |
 | Proton-GE | Download on Github |
 | Wine-GE | Download on Github |
-| GameMode | sudo pacman -S gamemode lib32-gamemode |
-| Protonup-QT | paru -S protonup-qt |
-| Wine | Please note that wine is literally a dependency nightmare if you don't know what you are doing.<br>1. sudo pacman -S wine-staging winetricks<br>2. sudo pacman -S --needed alsa-lib alsa-plugins cups dosbox ffmpeg giflib gnutls gst-plugins-base-libs gtk3 lib32-alsa-lib lib32-alsa-plugins lib32-giflib lib32-gnutls lib32-gst-plugins-base-libs lib32-gtk3 lib32-libpulse lib32-libva lib32-libxcomposite lib32-libxinerama lib32-ocl-icd lib32-sdl2 lib32-v4l-utils lib32-vulkan-icd-loader libgphoto2 libpulse libva libxcomposite libxinerama ocl-icd samba sane sdl2 v4l-utils vulkan-icd-loader |
-| WineASIO | This package is good for if you plan on running Ableton or FL Studio in Wine<br>1. paru -S wineasio<br>2. sudo usermod -aG realtime $(whoami)<br>For 32bit, run: regsvr32 /usr/lib32/wine/i386-windows/wineasio.dll<br>For 64bit, run: wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio.dll
+| GameMode | `sudo pacman -S gamemode lib32-gamemode` |
+| Protonup-QT | `paru -S protonup-qt` |
+| Wine | Please note that wine is literally a dependency nightmare if you don't know what you are doing.<br>1. `sudo pacman -S wine-staging winetricks`<br>2. `sudo pacman -S --needed alsa-lib alsa-plugins cups dosbox ffmpeg giflib gnutls gst-plugins-base-libs gtk3 lib32-alsa-lib lib32-alsa-plugins lib32-giflib lib32-gnutls lib32-gst-plugins-base-libs lib32-gtk3 lib32-libpulse lib32-libva lib32-libxcomposite lib32-libxinerama lib32-ocl-icd lib32-sdl2 lib32-v4l-utils lib32-vulkan-icd-loader libgphoto2 libpulse libva libxcomposite libxinerama ocl-icd samba sane sdl2 v4l-utils vulkan-icd-loader` |
+| WineASIO | This package is good for if you plan on running Ableton or FL Studio in Wine<br>1. `paru -S wineasio`<br>2. `sudo usermod -aG realtime $(whoami)`<br>For 32bit, run: `regsvr32 /usr/lib32/wine/i386-windows/wineasio.dll`<br>For 64bit, run: `wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio.dll` |
 
 | Miscellaneous | Commands |
 | ------------- | -------- |
-| Thunderbird | sudo pacman -S thunderbird |
-| qBittorrent | sudo pacman -S qbittorrent |
-| LF File Manager | sudo pacman -S lf |
-| OpenRGB | 1. paru -S openrgb-git<br>2. sudo pacman -S i2c-tools |
+| Thunderbird | `sudo pacman -S thunderbird` |
+| qBittorrent | `sudo pacman -S qbittorrent` |
+| LF File Manager | `sudo pacman -S lf` |
+| OpenRGB | 1. `paru -S openrgb-git`<br>2. `sudo pacman -S i2c-tools` |
 | Inochi2D Session | Download on Github |
 
 | Programming | Commands |
 | ------------ | -------- |
-| Python | sudo pacman -S python python-pip |
-| NodeJS | sudo pacman -S nodejs-lts-hydrogen npm |
-| Zulu Java8 | paru -S zulu-8-bin |
-| Zulu Java17 | paru -S zulu-17-bin |
-| VS Code | 1.paru -S visual-studios-code-bin<br>2. sudo pacman -S dotnet-runtime dotnet-sdk mono-msbuild mono-msbuild-sdkresolver mono |
+| Python | `sudo pacman -S python python-pip` |
+| NodeJS | `sudo pacman -S nodejs-lts-hydrogen npm` |
+| Zulu Java8 | `paru -S zulu-8-bin` |
+| Zulu Java17 | `paru -S zulu-17-bin` |
+| VS Code | 1. `paru -S visual-studios-code-bin`<br>2. `sudo pacman -S dotnet-runtime dotnet-sdk mono-msbuild mono-msbuild-sdkresolver mono` |
 
 | Production | Commands |
 | ---------- | -------- |
-| Reaper DAW | sudo pacman -S reaper |
-| Polyphone | sudo pacman -S polyphone |
-| Audacity | sudo pacman -S audacity |
+| Reaper DAW | `sudo pacman -S reaper` |
+| Polyphone | `sudo pacman -S polyphone` |
+| Audacity | `sudo pacman -S audacity` |
 | Moonscraper Chart Editor | Download on Github |
-| Blender 2.79b | paru -S blender-2.7 |
-| Blender Latest | sudo pacman -S blender |
+| Blender 2.79b | `paru -S blender-2.7` |
+| Blender Latest | `sudo pacman -S blender` |
 | Unreal Engine | Figure it out yourself |
-| Unity3D | paru -S unityhub |
+| Unity3D | `paru -S unityhub` |
 | Inochi2D Creator | Download on Github |
-| OBS Studio Tytan652 | 1. paru -s obs-studio-tytan652<br>2. sudo pacman -S v4l2loopback-dkms |
+| OBS Studio Tytan652 | 1. `paru -s obs-studio-tytan652`<br>2. `sudo pacman -S v4l2loopback-dkms` |
 
 | Communication | Commands |
 | ------------- | -------- |
-| Discord (Stable) | 1. sudo pacman -S discord<br>2. echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json |
-| Discord (Canary) | 1. paru -S discord-canary<br>2. echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json |
-| Skype | paru -S skypeforlinux-stable-bin |
+| Discord (Stable) | 1. `sudo pacman -S discord`<br>2. `echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json` |
+| Discord (Canary) | 1. `paru -S discord-canary`<br>2. `echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json` |
+| Skype | `paru -S skypeforlinux-stable-bin` |
 
 | Joke Packages | Commands |
 | ------------- | -------- |
-| cMatrix | sudo pacman -S cmatrix |
-| Neofetch | sudo pacman -S neofetch |
-| Activate Linux | paru -S activate-linux-git |
-| Arch Linux Wallpapers | This isn't a joke package. It's literally just wallpapers.<br>sudo pacman -S archlinux-wallpaper |
+| cMatrix | `sudo pacman -S cmatrix` |
+| Neofetch | `sudo pacman -S neofetch` |
+| Activate Linux | `paru -S activate-linux-git` |
+| Arch Linux Wallpapers | This isn't a joke package. It's literally just wallpapers.<br>`sudo pacman -S archlinux-wallpaper` |
 
 | Flatpak Packages | Commands |
 | ---------------- | -------- |
-| Flatseal | flatpak install flatseal |
-| OBS Studio | 1. flatpak install obs-studios<br>2. sudo pacman -S v4l2loopback-dkms |
-| Extension Manager | This package is ONLY for Gnome.<br>flatpak install ExtensionManager |
-| Bottles | flatpak install bottles<br>Bottles requires you to have already installed the base version of Wine |
+| Flatseal | `flatpak install flatseal` |
+| OBS Studio | 1. `flatpak install obs-studios`<br>2. `sudo pacman -S v4l2loopback-dkms` |
+| Extension Manager | This package is ONLY for Gnome.<br>`flatpak install ExtensionManager` |
+| Bottles | `flatpak install bottles`<br>Bottles requires you to have already installed the base version of Wine |
 
 | System Diagnostic Tools | Commands |
 | ----------------------- | -------- |
-| Mangohud | paru -S mangohud lib32-mangohud |
-| GOverlay | paru -S goverlay-bin |
-| Btop++ | sudo pacman -S btop |
-| Htop | sudo pacman -S htop |
+| Mangohud | `paru -S mangohud lib32-mangohud` |
+| GOverlay | `paru -S goverlay-bin` |
+| Btop++ | `sudo pacman -S btop` |
+| Htop | `sudo pacman -S htop` |
 
 | Device Hacking | Commands |
 | -------------- | -------- |
-| Wireshark | sudo pacman -S wireshark-qt |
+| Wireshark | `sudo pacman -S wireshark-qt` |
 | Fusée Launcher Interfacée | Download on Github |
 | OSCDL | Download on Github |
 | WiiUDownloader | Download on Github |
