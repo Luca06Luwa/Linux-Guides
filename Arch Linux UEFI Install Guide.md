@@ -328,10 +328,10 @@ One of the packages, `pipewire` to be exact, is required for wayland since by it
 Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber` to install all the packages needed for a working audio setup.
 
 
-## 23. Gstreamer Full Support. (Optional for KDE)
-This step only applies to the the other Desktop Environments. Window Managers and KDE with VLC backend can go without it.
+## 23. Gstreamer Full Support. (Optional)
+This step only applies to users who want Desktop Environments that don't utilise VLC . Window Managers and KDE with VLC backend can go without this though.
 
-Run `sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi` to install these packages.
+Run `sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi` and `paru -S gst-plugin-libde265 gst-plugins-openh264` to install the base package and other codec's.
 
 
 ## 24. Reboot and login.
