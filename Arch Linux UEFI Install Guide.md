@@ -2,7 +2,7 @@
 
 Small note: This took soo long to rewrite this guide as there is soo much stuff in it that had to be rewritten from scratch.
 
-This guide assumes that your default language is english and you are on desktop.
+This guide assumes that your default language is english and you are on desktop with an AMD or INTEL GPU. NVIDIA is supported however it's highly discouraged.
 
 ## 1. Basic initial Setup
 a. Run the command `ls /sys/firmware/efi/efivars` to check if your booted into UEFI.<br>
@@ -291,7 +291,7 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | AwesomeWM | Run `sudo pacman -S awesome alacritty pcmanfm-qt` to install the packages for a working install of AwesomWM. |
 | i3 | Run `sudo pacman -S i3 alacritty pcmanfm-qt dmenu` to install the packages for a working install of i3. |
 | Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal-gnome` to install the packages for a working install of Gnome. |
-| Hyprland | Run `sudo pacman -S hyprand mako polkit-kde-agent hyprpaper cliphist grim slurp foot qt5-wayland qt6-wayland xdg-desktop-portal-hyprland` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi waybar-hyprland swww` to install the application launcher. |
+| Hyprland | Note: Sway only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S hyprland mako polkit-kde-agent hyprpaper cliphist grim slurp foot qt5-wayland qt6-wayland xdg-desktop-portal-hyprland` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi waybar-hyprland swww` to install the application launcher. |
 | KDE Plasma (X11) | Run `sudo pacman -S plasma kde-applications` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
 | KDE Plasma (Wayland) | If you want to use KDE under Wayland, install the X11 version and then run `plasma-wayland-session qt6-wayland xdg-desktop-portal-kde` to install the wayland packages. When prompted, select the VLC backend for audio. |
 | LXQt | Run `sudo pacman -S lxqt breeze-icons network-manager-applet leafpad` to install the packages for a working install of LXQt. |
@@ -309,7 +309,7 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | wlroots on TTY | Since wayland compositors based on wlroots do not launch with a Display Manager I will simply link to the arch wiki for instructions on how to set it up. https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login. |
 
 
-### Part 4. Choose the greeter you want to use for LightDM.
+### (Only for LightDM) Part 4. Choose the greeter you want to use for LightDM.
 If your using any other display manager then you can skip this step and move onto Part 5.
 
 The two versions is just what style you want. If you want a style that looks like Gnome then select the GTK version. If you want a style thats easy to configure and looks great then use the Webkit2 version.
