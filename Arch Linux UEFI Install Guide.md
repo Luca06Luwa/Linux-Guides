@@ -5,11 +5,11 @@ Small note: This took soo long to rewrite this guide as there is soo much stuff 
 This guide assumes that your default language is english and you are on desktop with an AMD or INTEL GPU. NVIDIA is supported however it's highly discouraged.
 
 ## 1. Basic initial Setup
-a. Run the command `ls /sys/firmware/efi/efivars` to check if your booted into UEFI.<br>
+a. Run the command `cat /sys/firmware/efi/fw_platform_size` to check if your booted into UEFI.<br>
 b. Run `timedatectl status` to ensure the date and time is accurate.
 
 ## 2. Networking
-If you're not going to be using WI-FI, then skip steps b to h.
+If you're not going to be using WI-FI, then skip part 1.
 
 ### Part One (Wi-Fi Setup).
 a. Run `ip link` to identify your network setup.<br>
@@ -64,13 +64,11 @@ This bootloader is what I would recommended you as the packages are preinstalled
 
 GRand Unified Bootloader / GRUB. (Easy Mode)<br>
 This bootloader is the most common across most distro's and has the most documentation.<br>
-As of release version v2.06 r415 the issue where GRUB would brick some installs is still prominent so for right now:<br>
-PLEASE REGENERATE THE GRUB CONFIG EVERY TIME YOU UPDATE GRUB TO AVOID THE RISK OF BRICKS!!!!
 
 | Bootloader | Instructions |
 | ---------- | ------------ |
 | Systemd-Boot | Run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the boot partition for Systemd-Boot. |
-| GRUB | Run `mount --mkdir /dev/efi_system_partition /mnt/boot/efi` to create and mount the boot partition for GRUB. |
+| GRUB | Run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the boot partition for GRUB. |
 
 ## 5. Configure Mirrorlist.
 This step isn't really necessary but I would highly recommend it as it sorts the servers from best to worst.
@@ -105,7 +103,7 @@ a. Run `nano /etc/locale.gen` and scroll down to your locale of you know it. If 
 b. Once uncommented your locale of choice run `locale-gen` to generate the locales.<br>
 c. Even though you've already assigned the locale, you still need to echo the locale for older programs. To do this run `echo "LANG=[the locale you selected].UTF-8" >> /etc/locale.conf` to set the locale.<br>
 d. This step is important and should be done either way. Run `export LANG=[the locale you selected].UTF-8`.<br>
-e. Skip this step if you have a us keyboard layout. If you have a keyboard other than us run `echo "KEYMAP=us" >> /etc/vconsole.conf`.<br>
+e. Skip this step if you have a us keyboard layout. If you have a keyboard other than us run `echo "KEYMAP=[your keyboard layout]" >> /etc/vconsole.conf`.<br>
 f. Run `ln /usr/share/zoneinfo` to list the unix timezones.<br>
 g. Once found your timesone run `ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timesone Here] /etc/localtime` to add a symbolic link for your time.<br>
 h. Run `hwclock --systohc` to set the hardware clock.
@@ -127,8 +125,10 @@ d. Once saved run `pacman -Sy` to update and download the repos.
 ## 12. Installing more packages and enabling system services.
 This part is where you're going to install some more packages and some drivers for basic networking and enable some system functions.
 
+Note: If you have an AMD processor, then you can skip the microcode installation, however I would still recommend installing it.
+
 a. Run `pacman -S git networkmanager reflector pacman-contrib bluez bluez-utils bash-completion` to install the packages.<br>
-b. To make sure your CPU has no active exploits on it firmware, you need to install the microcode. To install it run `pacman -S [Your CPU Brand]-ucode`.<br>
+b. To make sure your CPU has no active exploits on it firmware, you need to install the microcode. To install the CPU microcode run `pacman -S [Your CPU Brand]-ucode`.<br>
 c. Enable the following services to start the drivers.
 ```
 systemctl enable bluetooth.service
@@ -164,7 +164,7 @@ If you chose to install Systemd-Boot then ONLY do 15b.
 
 ### 15a. GRUB. (Linux dual boot/Easy Mode)
 a. Run `pacman -S grub efibootmgr os-prober` to install the necessary packages.<br>
-b. Run `grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB` to inject and install GRUB to your system.<br>
+b. Run `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB` to inject and install GRUB to your system.<br>
 c. Run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration files.
 
 ### 15b. Systemd-Boot. (Requires manual entries/Hard Mode)
@@ -187,7 +187,7 @@ This step is necessary if you want your GPU to be working properly. The drivers 
 
 | Manufacturer | Instructions |
 | ------------ | ------------ |
-| AMD | Run `pacman -S xf86-video-amdgpu libva-mesa-driver mesa opencl-mesa vulkan-radeon lib32-libva-mesa-driver lib32-mesa lib32-opencl-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for AMD cards. |
+| AMD | Run `pacman -S xf86-video-amdgpu libva-mesa-driver mesa rocm-opencl-runtime vulkan-radeon lib32-libva-mesa-driver lib32-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for AMD cards. |
 | INTEL | Run `pacman -S xf86-video-intel mesa intel-compute-runtime intel-media-driver vulkan-intel lib32-mesa lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for INTEL cards. |
 | NVIDIA (PROPRIETARY) | Run `pacman -S nvidia-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for MAXWELL series cards or newer. |
 | NVIDIA (Open GPU Kernel Modules) | Run `pacman -S nvidia-open-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for TURING series cards or newer. |
@@ -323,7 +323,7 @@ The two versions is just what style you want. If you want a style that looks lik
 ## 22. Audio Drivers.
 This step is necessary if you want to have a working audio setup. 
 
-One of the packages, `pipewire` to be exact, is required for wayland since by itself wayland does NOT allow screen capture for programs, and the `alsa-ucm-conf` package is needed for basic non configurable GoXLR support.
+Note: One of the packages, `pipewire` to be exact, is required for wayland since by itself wayland does NOT allow screen capture for programs, and the `alsa-ucm-conf` package is needed for basic non configurable GoXLR support.
 
 Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber` to install all the packages needed for a working audio setup.
 
@@ -355,17 +355,20 @@ This list has been seperated into multiple sections based on what the package re
 | Timeshift | `paru -S timeshift` |
 | Downgrade | `paru -S downgrade` |
 
-| Games | Commands |
+| Game Launchers | Commands |
 | ----- | -------- |
 | Steam | `sudo pacman -S steam` |
 | Steam Native Runtime Replacement | `sudo pacman -S steam-native-runtime` |
 | Lutris | `sudo pacman -S lutris`<br>Lutris requires you to have already installed the base version of Wine |
-| osu! | `paru -S osu-laser-bin` |
-| Katawa Shoujo | `paru -S katawa-shoujo` |
-| Minecraft | `paru -S minecraft-launcher`<br>Minecraft requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any older builds |
-| Clone Hero v1.0.0.4080-final | `paru -S clonehero` |
 | ScoreSpy | Download from website |
 | Heroic Games Launcher | `paru -S heroic-games-launcher-bin` |
+| Minecraft | `paru -S minecraft-launcher`<br>Minecraft requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any older builds |
+
+| Games | Commands |
+| -------------- | -------- |
+| osu! | `paru -S osu-laser-bin` |
+| Katawa Shoujo | `paru -S katawa-shoujo` |
+| Clone Hero v1.0.0.4080-final | `paru -S clonehero` |
 | Tentacle Locker 2 | Download on itch |
 | Tentacle Locker | Needs to be run through Wine |
 | Protecc Your Loli | Needs to be run through Wine |
@@ -378,7 +381,7 @@ This list has been seperated into multiple sections based on what the package re
 | Dolphin Emulator | `paru -S dolphin-emu-beta-git` |
 | pcsx2 | `paru -S pcsx2-git` |
 | rpcs3 | `paru -S rpcs3-git` |
-| Retroarch | `sudo pacman -S retroarch` |
+| melonDS | `paru -S melonds` |
 | Yuzu | `flatpak install yuzu` |
 | Ryujinx | `paru -S ryujinx-bin` |
 | CEMU | `paru -S cemu` |
@@ -394,8 +397,9 @@ This list has been seperated into multiple sections based on what the package re
 
 | Media | Commands |
 | ----- | -------- |
-| Ani-Cli | `paru -S ani-cli-git` |
+| Ani-Cli | `paru -S ani-cli` |
 | MPV | `sudo pacman -S mpv` |
+| VLC-luajit | `paru -S vlc-luajit` |
 
 | Compatibility Tools/Wine | Commands |
 | ------------------------ | -------- |
