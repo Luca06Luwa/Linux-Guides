@@ -280,23 +280,28 @@ This step is probably the most confusing to users and the most difficult part of
 
 Currently, there are two well known video drivers for linux. Wayland and Xorg. This guide is mainly focused on Xorg, however if you want to use Wayland it's already enabled and ready to go.
 
+If you do not want to use Xorg at all and want to have a pure Wayland configuration, then skip part 1 and just select a Wayland based desktop environment.
+
 Note: If you are having an issue with wayland on NVIDIA GPU's, install the `egl-wayland` package to fix the issue.
 
 ### Part 1. Installing Xorg.
 Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 
 ### Part 2. Selecting your Desktop Environment and or Window Manager.
-| Desktop Environment | Instructions |
-| ------------------- | ------------ |
+| Xorg Desktop Environment | Instructions |
+| ------------------------ | ------------ |
 | AwesomeWM | Run `sudo pacman -S awesome alacritty pcmanfm-qt` to install the packages for a working install of AwesomWM. |
 | i3 | Run `sudo pacman -S i3 alacritty pcmanfm-qt dmenu` to install the packages for a working install of i3. |
+| KDE Plasma (X11) | Run `sudo pacman -S plasma kde-applications` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
+| LXQt | Run `sudo pacman -S lxqt breeze-icons network-manager-applet leafpad` to install the packages for a working install of LXQt. |
+| Xfce | Run `sudo pacman -S xfce xfce-goodies network-manager-applet` to install the packages for a working install of Xfce. |
+
+| Wayland Desktop Environments | Instructions |
+| ---------------------------- | ------------ |
 | Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal-gnome` to install the packages for a working install of Gnome. |
 | Hyprland | Note: wlroots based compositors only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S hyprland mako polkit-kde-agent hyprpaper cliphist grim slurp foot qt5-wayland qt6-wayland xdg-desktop-portal-hyprland` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi waybar-hyprland swww` to install the application launcher. |
-| KDE Plasma (X11) | Run `sudo pacman -S plasma kde-applications` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
 | KDE Plasma (Wayland) | If you want to use KDE under Wayland, install the X11 version and then run `plasma-wayland-session qt6-wayland xdg-desktop-portal-kde` to install the wayland packages. When prompted, select the VLC backend for audio. |
-| LXQt | Run `sudo pacman -S lxqt breeze-icons network-manager-applet leafpad` to install the packages for a working install of LXQt. |
 | Sway | Note: wlroots based compositors only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
-| Xfce | Run `sudo pacman -S xfce xfce-goodies network-manager-applet` to install the packages for a working install of Xfce. |
 
 
 ### Part 3. Installing and enabling a display manager.
@@ -417,6 +422,7 @@ This list has been seperated into multiple sections based on what the package re
 | LF File Manager | `sudo pacman -S lf` |
 | OpenRGB | 1. `paru -S openrgb-git`<br>2. `sudo pacman -S i2c-tools` |
 | Inochi2D Session | Download on Github |
+| Rofi | `sudo pacman -S rofi` |
 
 | Programming | Commands |
 | ------------ | -------- |
