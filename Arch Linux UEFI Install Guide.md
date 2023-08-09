@@ -357,7 +357,7 @@ This list has been seperated into multiple sections based on what the package re
 | AppImageLauncher | `paru -S appimagelauncher` |
 | 7-Zip | `paru -S 7-zip-full` |
 | Windows 11 Fonts | `paru -S ttf-ms-win11-auto` |
-| Timeshift | `paru -S timeshift` |
+| Timeshift | `sudo pacman -S timeshift` |
 | Downgrade | `paru -S downgrade` |
 
 | Game Launchers | Commands |
@@ -420,7 +420,7 @@ This list has been seperated into multiple sections based on what the package re
 | Thunderbird | `sudo pacman -S thunderbird` |
 | qBittorrent | `sudo pacman -S qbittorrent` |
 | LF File Manager | `sudo pacman -S lf` |
-| OpenRGB | 1. `paru -S openrgb-git`<br>2. `sudo pacman -S i2c-tools` |
+| OpenRGB | 1. `paru -S openrgb`<br>2. `sudo pacman -S i2c-tools` |
 | Inochi2D Session | Download on Github |
 | Rofi | `sudo pacman -S rofi` |
 
@@ -456,7 +456,7 @@ This list has been seperated into multiple sections based on what the package re
 | cMatrix | `sudo pacman -S cmatrix` |
 | Neofetch | `sudo pacman -S neofetch` |
 | Activate Linux | `paru -S activate-linux-git` |
-| Arch Linux Wallpapers | This isn't a joke package. It's literally just wallpapers.<br>`sudo pacman -S archlinux-wallpaper` |
+| Arch Linux Wallpapers | This isn't a joke package. It's literally just some Arch Linux themed wallpapers.<br>`sudo pacman -S archlinux-wallpaper` |
 
 | Flatpak Packages | Commands |
 | ---------------- | -------- |
@@ -467,7 +467,7 @@ This list has been seperated into multiple sections based on what the package re
 
 | System Diagnostic Tools | Commands |
 | ----------------------- | -------- |
-| Mangohud | `paru -S mangohud lib32-mangohud` |
+| Mangohud | `sudo pacman -S mangohud lib32-mangohud` |
 | GOverlay | `paru -S goverlay-bin` |
 | Btop++ | `sudo pacman -S btop` |
 | Htop | `sudo pacman -S htop` |
@@ -475,7 +475,6 @@ This list has been seperated into multiple sections based on what the package re
 | Device Hacking | Commands |
 | -------------- | -------- |
 | Wireshark | `sudo pacman -S wireshark-qt` |
-| Guitar Configurator | 1. Download on Github<br>2. Go to https://sanjay900.github.io/guitar-configurator/guides/linux.html to setup the udev rules for this tool. |
 | Fusée Launcher Interfacée | Download on Github |
 | OSCDL | Download on Github |
 | WiiUDownloader | Download on Github |
