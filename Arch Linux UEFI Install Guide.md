@@ -391,7 +391,7 @@ This list has been seperated into multiple sections based on what the package re
 | Ryujinx | `paru -S ryujinx-bin` |
 | CEMU | `paru -S cemu` |
 | Citra | `flatpak install citra` |
-| mGBA | `paru -S mgba-qt-git` |
+| mGBA | `sudo pacman -S mgba-qt` |
 
 | Internet | Commands |
 | -------- | -------- |
