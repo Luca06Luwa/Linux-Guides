@@ -394,7 +394,7 @@ This list has been seperated into multiple sections based on what the package re
 | Dolphin Emulator | `paru -S dolphin-emu-beta-git` |
 | pcsx2 | `paru -S pcsx2-git` |
 | rpcs3 | `paru -S rpcs3-git` |
-| melonDS | `paru -S melonds` |
+| melonDS | `flatpak install melonds` |
 | Yuzu | `flatpak install yuzu` |
 | Ryujinx | `paru -S ryujinx-bin` |
 | CEMU | `paru -S cemu` |
