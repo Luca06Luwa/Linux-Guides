@@ -325,7 +325,15 @@ The two versions is just what style you want. If you want a style that looks lik
 | Webkit2 | Run `sudo pacman -S lightdm-webkit2-greeter` to install the webkit2 greeter. |
 
 
-## 22. Audio Drivers.
+## 22. Zsh Setup and Configuration. (Optional) Not complete
+This step is if you want a different terminal shell from the default bash setup.
+
+a. Run `sudo pacman -S zsh zsh-completions` to install Zsh.
+b. 
+c.
+
+
+## 23. Audio Drivers.
 This step is necessary if you want to have a working audio setup. 
 
 Note: One of the packages, `pipewire` to be exact, is required for wayland since by itself wayland does NOT allow screen capture for programs, and the `alsa-ucm-conf` package is needed for basic non configurable GoXLR support.
@@ -333,13 +341,13 @@ Note: One of the packages, `pipewire` to be exact, is required for wayland since
 Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber` to install all the packages needed for a working audio setup.
 
 
-## 23. Gstreamer Full Support. (Optional)
+## 24. Gstreamer Full Support. (Optional)
 This step only applies to users who want Desktop Environments that don't utilise VLC . Window Managers and KDE with VLC backend can go without this though.
 
 Run `sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi` and `paru -S gst-plugin-libde265 gst-plugins-openh264` to install the base package and other codec's.
 
 
-## 24. Reboot and login.
+## 25. Reboot and login.
 Run `reboot` and then login to your user account and then you should see the Desktop you installed. Congratulations You have sucessfully installed Arch Linux.
 
 
