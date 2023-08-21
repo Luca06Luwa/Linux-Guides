@@ -338,7 +338,7 @@ This step is necessary if you want to have a working audio setup.
 
 Note: One of the packages, `pipewire` to be exact, is required for wayland since by itself wayland does NOT allow screen capture for programs, and the `alsa-ucm-conf` package is needed for basic non configurable GoXLR support.
 
-Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber` to install all the packages needed for a working audio setup.
+Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-audio pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber` to install all the packages needed for a working audio setup.
 
 
 ## 24. Gstreamer Full Support. (Optional)
