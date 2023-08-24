@@ -53,22 +53,9 @@ f. write changes to disk
 a. Run `lsblk` to see what your doing.<br>
 b. Run `mkswap /dev/swap_partition` to format the swap partition and run `swapon /dev/swap_partition` to enable swap.<br>
 c. Run `mkfs.ext4 /dev/root_partition` to format the root partition and run `mount /dev/root_partition /mnt` to mount the drive.<br>
-d. Run `mkfs.ext4 /dev/home_partition` to format the home partition and run `mount --mkdir /dev/home_partition /mnt/home` to create and mount the home partition <br>
-e. Run `mkfs.fat -F 32 /dev/efi_system_partition` to format the boot partition.
-
-### Mount Bootloader Partitions.
-Here is a little choose your own adventure bit for this install guide. There are two commonly boot loaders that people tend to install. Choose the one you prefer and forget about the other one.
-
-Systemd-Boot. (Hard Mode)<br>
-This bootloader is what I would recommended you as the packages are preinstalled onto system during install.
-
-GRand Unified Bootloader / GRUB. (Easy Mode)<br>
-This bootloader is the most common across most distro's and has the most documentation.<br>
-
-| Bootloader | Instructions |
-| ---------- | ------------ |
-| Systemd-Boot | Run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the boot partition for Systemd-Boot. |
-| GRUB | Run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the boot partition for GRUB. |
+d. Run `mkfs.ext4 /dev/home_partition` to format the home partition and run `mount --mkdir /dev/home_partition /mnt/home` to create and mount the home partition.<br>
+e. Run `mkfs.fat -F 32 /dev/efi_system_partition` to format the boot partition.<br>
+f. Run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the boot partition.
 
 ## 5. Configure Mirrorlist.
 This step isn't really necessary but I would highly recommend it as it sorts the servers from best to worst.
@@ -86,7 +73,7 @@ This is where your going to actually install your system.
 
 The following packages that it will install are the necessary core functions and the drivers for some wifi cards.
 
-Run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence nano` to install the packages.
+Run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence man-db man-pages  nano` to install the packages.
 
 ## 7. Generating the fstab and chrooting into the install.
 This step is important as without doing this the system wont know what it's doing.
@@ -157,13 +144,19 @@ Uncomment `%wheel ALL=(ALL) ALL` and add `Defaults rootpw` to the bottom of the 
 The `Defaults rootpw` is so that you use the root password instead of your user password for sudo.
 
 ## Bootloader.
-This step will be based off of which bootloader you decided to partition your hard drive for.
+Here is a little choose your own adventure bit for this install guide. There are two commonly boot loaders that people tend to install. Choose the one you prefer and forget about the other one.
+
+Systemd-Boot. (Hard Mode)<br>
+This bootloader is what I would recommended you as the packages are preinstalled onto system during install.
+
+GRand Unified Bootloader / GRUB. (Easy Mode)<br>
+This bootloader is the most common across most distro's and has the most documentation.<br>
 
 If you chose to install GRUB then ONLY do 15a.<br>
 If you chose to install Systemd-Boot then ONLY do 15b.
 
 ### 15a. GRUB. (Linux dual boot/Easy Mode)
-a. Run `pacman -S grub efibootmgr os-prober` to install the necessary packages.<br>
+a. Run `pacman -S grub efibootmgr` to install the necessary packages.<br>
 b. Run `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB` to inject and install GRUB to your system.<br>
 c. Run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration files.
 
@@ -179,7 +172,7 @@ initrd /initramfs-linux.img
 initrd /intel-ucode.img or /amd-ucode.img
 ```
 
-e. Once added everything into the file, run `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf` to add the partition id of the root partition so that it tells Arch Linux that it will boot to that drive only.
+e. Once added everything into the file, run `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf` to add the partition id of the root partition so that it tells Arch Linux that it will boot to that drive only. (Credit to Glorious Eggroll for this command)
 
 
 ## 16. Graphics Drivers
@@ -299,7 +292,7 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | Wayland Desktop Environments | Instructions |
 | ---------------------------- | ------------ |
 | Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal-gnome` to install the packages for a working install of Gnome. |
-| Hyprland | Note: wlroots based compositors only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S hyprland mako polkit-kde-agent hyprpaper cliphist grim slurp foot qt5-wayland qt6-wayland xdg-desktop-portal-hyprland` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi waybar-hyprland swww` to install the application launcher. |
+| Hyprland | Note: wlroots based compositors only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S hyprland mako polkit-kde-agent hyprpaper cliphist grim slurp foot qt5-wayland qt6-wayland xdg-desktop-portal-hyprland` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi waybar-hyprland` to install the application launcher. |
 | KDE Plasma (Wayland) | If you want to use KDE under Wayland, install the X11 version and then run `plasma-wayland-session qt6-wayland xdg-desktop-portal-kde` to install the wayland packages. When prompted, select the VLC backend for audio. |
 | Sway | Note: wlroots based compositors only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
 
@@ -413,6 +406,7 @@ This list has been seperated into multiple sections based on what the package re
 | Ani-Cli | `paru -S ani-cli` |
 | MPV | `sudo pacman -S mpv` |
 | VLC-luajit | `paru -S vlc-luajit` |
+| GoXLR-Utility | `paru -S goxlr-utility` |
 
 | Compatibility Tools/Wine | Commands |
 | ------------------------ | -------- |
