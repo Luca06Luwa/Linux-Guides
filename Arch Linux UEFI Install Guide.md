@@ -387,6 +387,7 @@ This list has been seperated into multiple sections based on what the package re
 | Dolphin Emulator | `paru -S dolphin-emu-beta-git` |
 | pcsx2 | `paru -S pcsx2-git` |
 | rpcs3 | `paru -S rpcs3-git` |
+| DuckStation | `paru -S duckstation-git` |
 | melonDS | `flatpak install melonds` |
 | Yuzu | `flatpak install yuzu` |
 | Ryujinx | `paru -S ryujinx-bin` |
@@ -477,6 +478,6 @@ This list has been seperated into multiple sections based on what the package re
 | Device Hacking | Commands |
 | -------------- | -------- |
 | Wireshark | `sudo pacman -S wireshark-qt` |
-| Fusée Launcher Interfacée | Download on Github |
+| Fusée Launcher Interfacée | `paru -S fusee-interfacee-tk-bin` |
 | OSCDL | Download on Github |
 | WiiUDownloader | Download on Github |
