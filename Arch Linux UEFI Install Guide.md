@@ -318,12 +318,14 @@ The two versions is just what style you want. If you want a style that looks lik
 | Webkit2 | Run `sudo pacman -S lightdm-webkit2-greeter` to install the webkit2 greeter. |
 
 
-## 22. Zsh Setup and Configuration. (Optional) Not complete
+## 22. Zsh Setup and Configuration. (Optional)
 This step is if you want a different terminal shell from the default bash setup.
 
-a. Run `sudo pacman -S zsh zsh-completions` to install Zsh.
-b. 
-c.
+Note: NEVER USE A ZSH PLUGIN MANAGER AS IT IS JUST BLOATWARE!!!!
+
+a. Run `sudo pacman -S zsh zsh-completions` to install Zsh.<br>
+b. Once installed, run `zsh` to begin the initial setup<br>
+c. Now that Zsh is setup, run `chsh -s /usr/bin/zsh` to set Zsh as your default shell.
 
 
 ## 23. Audio Drivers.
