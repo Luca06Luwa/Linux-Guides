@@ -231,6 +231,7 @@ b. Once added those modules, run `mkinitcpio -P` to regenerate the initramfs.
 
 ## 18. Unmount drives and Reboot system.
 Congratulations. You have sucessfully installed the basic form of Arch Linux. However you're not done just yet.
+
 a. Type `exit` to return back to the install drive.<br>
 b. Type `umount -r /mnt` to safely unount the partitions.<br>
 c. `reboot`
@@ -428,6 +429,7 @@ This list has been seperated into multiple sections based on what the package re
 | OpenRGB | 1. `paru -S openrgb`<br>2. `sudo pacman -S i2c-tools` |
 | Inochi2D Session | Download on Github |
 | Rofi | `sudo pacman -S rofi` |
+| Zsh plugins | 1. `sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions`<br> 2. `echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> .zshrc` and `echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> .zshrc` |
 
 | Programming | Commands |
 | ------------ | -------- |
