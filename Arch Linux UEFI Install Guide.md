@@ -451,6 +451,7 @@ This list has been seperated into multiple sections based on what the package re
 | Unity3D | `paru -S unityhub` |
 | Inochi2D Creator | Download on Github |
 | OBS Studio Tytan652 | 1. `paru -s obs-studio-tytan652`<br>2. `sudo pacman -S v4l2loopback-dkms` |
+| Kame-Editor | `paru -S kame-editor-git` |
 
 | Communication | Commands |
 | ------------- | -------- |
