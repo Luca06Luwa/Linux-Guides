@@ -483,6 +483,7 @@ This list has been seperated into multiple sections based on what the package re
 | Device Hacking | Commands |
 | -------------- | -------- |
 | Wireshark | `sudo pacman -S wireshark-qt` |
+| Guitar Configurator | 1. Download on Github<br>2. Go to https://sanjay900.github.io/guitar-configurator/guides/linux.html to setup the udev rules for this tool. |
 | Fusée Launcher Interfacée | `paru -S fusee-interfacee-tk-bin` |
 | OSCDL | Download on Github |
 | WiiUDownloader | Download on Github |
