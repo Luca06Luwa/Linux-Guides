@@ -34,7 +34,7 @@ a. Run `lsblk` to see what hard drives you have installed in your PC.<br>
 b. If you cannot identify what drive(s) you have installed, run `hdparm -i /dev/the_disk_to_be_partitioned` to double check that you've selected the right drive.<br>
 c. If you only have one drive woth another OS on it and want to install clean, run `gdisk /dev/the_disk_to_be_partitioned`.
 - Press `x` to enable expert mode.
-- Press `z` to delete the entire content of the drive.
+- Press `z` to delete the entire contents of the drive
 
 d. Run `cgdisk /dev/the_disk_to_be_partitioned` to format the drive.<br>
 e. Format the drive like this.
@@ -45,7 +45,8 @@ e. Format the drive like this.
 | Root partition | Default | 32GiB | Default | root |
 | Home partition | Default | The Remainder of the drive | Default | home |
 
-Help: EF00 = uefi bootable partition, 8200 = swap and 8300 = linux filesystem.
+Help: EF00 = uefi bootable partition, 8200 = swap and 8300 = linux filesystem.<br>
+Note: If you get something above the boot partition with 1000KiB of free space, DON'T TOUCH IT. That is the protective MBR allocation.
 
 f. write changes to disk
 
@@ -73,7 +74,7 @@ This is where your going to actually install your system.
 
 The following packages that it will install are the necessary core functions and the drivers for some wifi cards.
 
-Run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence man-db man-pages  nano` to install the packages.
+Run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence man-db man-pages  nano sof-firmware texinfo` to install the packages.
 
 ## 7. Generating the fstab and chrooting into the install.
 This step is important as without doing this the system wont know what it's doing.
@@ -161,7 +162,7 @@ b. Run `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=G
 c. Run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration files.
 
 ### 15b. Systemd-Boot. (Requires manual entries/Hard Mode)
-a. Re-run `ls /sys/firmware/efi/efivars` to check if the efi firmware is mounted and installed.<br>
+a. Run `ls /sys/firmware/efi/efivars` to verify if the efi firmware is mounted and installed.<br>
 b. Run `bootctl install` to inject and install Systemd-Boot to your system.<br>
 c. Run `systemctl enable systemd-boot-update.service` to enable the updater script.<br>
 d. Run `nano /boot/loader/entries/arch.conf` and add the following lines.
@@ -319,7 +320,7 @@ The two versions is just what style you want. If you want a style that looks lik
 | Webkit2 | Run `sudo pacman -S lightdm-webkit2-greeter` to install the webkit2 greeter. |
 
 
-## 22. Zsh Setup and Configuration. (Optional)
+## 22. Zsh Setup and Configuration.
 This step is if you want a different terminal shell from the default bash setup.
 
 Note: NEVER USE A ZSH PLUGIN MANAGER AS IT IS JUST BLOATWARE!!!!
@@ -334,7 +335,7 @@ This step is necessary if you want to have a working audio setup.
 
 Note: One of the packages, `pipewire` to be exact, is required for wayland since by itself wayland does NOT allow screen capture for programs, and the `alsa-ucm-conf` package is needed for basic non configurable GoXLR support.
 
-Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-audio pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph sof-firmware wireplumber` to install all the packages needed for a working audio setup.
+Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-audio pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph wireplumber` to install all the packages needed for a working audio setup.
 
 
 ## 24. Gstreamer Full Support. (Optional)
@@ -344,7 +345,7 @@ Run `sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plug
 
 
 ## 25. Reboot and login.
-Run `reboot` and then login to your user account and then you should see the Desktop you installed. Congratulations You have sucessfully installed Arch Linux.
+Run `reboot`, then login to your user account and then you should see the Desktop you installed. Congratulations You have sucessfully installed Arch Linux.
 
 
 ## Applications.
