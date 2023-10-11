@@ -379,6 +379,7 @@ This list has been seperated into multiple sections based on what the package re
 | osu! | `paru -S osu-laser-bin` |
 | Katawa Shoujo | `paru -S katawa-shoujo` |
 | Clone Hero v1.0.0.4080-final | `paru -S clonehero` |
+| Roblox (Grapejuice) | `paru -S grapejuice`<br>Grapejuice requires you to have already installed the base version of Wine |
 | Tentacle Locker 2 | Download on itch |
 | Tentacle Locker | Needs to be run through Wine |
 | Protecc Your Loli | Needs to be run through Wine |
