@@ -432,6 +432,7 @@ This list has been seperated into multiple sections based on what the package re
 | Inochi2D Session | Download on Github |
 | Rofi | `sudo pacman -S rofi` |
 | Zsh plugins | 1. `sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions`<br> 2. `echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> .zshrc` and `echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> .zshrc` |
+| Syncthing | `sudo pacman -S syncthing` |
 
 | Programming | Commands |
 | ------------ | -------- |
