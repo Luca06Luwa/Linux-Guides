@@ -392,11 +392,11 @@ This list has been seperated into multiple sections based on what the package re
 | Dolphin Emulator | `paru -S dolphin-emu-beta-git` |
 | pcsx2 | `paru -S pcsx2-git` |
 | rpcs3 | `paru -S rpcs3-git` |
-| DuckStation | `paru -S duckstation-git` |
+| DuckStation | `flatpak install duckstation` |
 | melonDS | `flatpak install melonds` |
 | Yuzu | `flatpak install yuzu` |
 | Ryujinx | `paru -S ryujinx-bin` |
-| CEMU | `paru -S cemu` |
+| CEMU | `paru -S cemu-bin` |
 | Citra | `flatpak install citra` |
 | mGBA | `sudo pacman -S mgba-qt` |
 
