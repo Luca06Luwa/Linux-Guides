@@ -2,7 +2,7 @@
 
 Small note: This took soo long to rewrite this guide as there is soo much stuff in it that had to be rewritten from scratch.
 
-This guide assumes that your default language is english and you are on desktop with an AMD or INTEL GPU. NVIDIA is supported however it's highly discouraged.
+This guide assumes that your default language is english and you are on desktop with an AMD. NVIDIA and INTEL ARC is supported however it's also highly discouraged as the drivers can be weird.
 
 ## 1. Basic initial Setup
 a. Run the command `cat /sys/firmware/efi/fw_platform_size` to check if your booted into UEFI.<br>
