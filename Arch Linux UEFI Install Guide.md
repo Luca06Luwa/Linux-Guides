@@ -396,7 +396,7 @@ This list has been seperated into multiple sections based on what the package re
 | melonDS | `flatpak install melonds` |
 | Yuzu | `flatpak install yuzu` |
 | Ryujinx | `paru -S ryujinx-bin` |
-| CEMU | `paru -S cemu-bin` |
+| CEMU | `flatpak install cemu` |
 | Citra | `flatpak install citra` |
 | mGBA | `sudo pacman -S mgba-qt` |
 
@@ -451,7 +451,6 @@ This list has been seperated into multiple sections based on what the package re
 | Blender 2.79b | `paru -S blender-2.7` |
 | Blender Latest | `sudo pacman -S blender` |
 | Unreal Engine | Figure it out yourself |
-| Unity3D | `paru -S unityhub` |
 | Inochi2D Creator | Download on Github |
 | OBS Studio Tytan652 | 1. `paru -s obs-studio-tytan652`<br>2. `sudo pacman -S v4l2loopback-dkms` |
 | Kame-Editor | `paru -S kame-editor-git` |
@@ -465,6 +464,8 @@ This list has been seperated into multiple sections based on what the package re
 | Joke Packages | Commands |
 | ------------- | -------- |
 | cMatrix | `sudo pacman -S cmatrix` |
+| cowsay | `sudo pacman -S cowsay` |
+| lolcat | `sudo pacman -S lolcat` |
 | Neofetch | `sudo pacman -S neofetch` |
 | Activate Linux | `paru -S activate-linux-git` |
 | Arch Linux Wallpapers | This isn't a joke package. It's literally just some Arch Linux themed wallpapers.<br>`sudo pacman -S archlinux-wallpaper` |
