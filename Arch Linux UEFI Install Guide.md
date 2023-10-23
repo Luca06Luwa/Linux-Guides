@@ -390,7 +390,7 @@ This list has been seperated into multiple sections based on what the package re
 | Emulators | Commands |
 | --------- | -------- |
 | Dolphin Emulator | `paru -S dolphin-emu-beta-git` |
-| pcsx2 | `paru -S pcsx2-git` |
+| pcsx2 | `flatpak install pcsx2` |
 | rpcs3 | `paru -S rpcs3-git` |
 | DuckStation | `flatpak install duckstation` |
 | melonDS | `flatpak install melonds` |
