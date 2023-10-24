@@ -4,9 +4,18 @@ Small note: This took soo long to rewrite this guide as there is soo much stuff 
 
 This guide assumes that your default language is english and you are on desktop with an AMD. NVIDIA and INTEL ARC is supported however it's also highly discouraged as the drivers can be weird.
 
+
+## 0. Getting the ISO
+a. Go to archlinux.org and click on download.<br>
+b. Download the image from the download server that is in you region.<br>
+c. Get some kind of ISO burner for a usb and just write the ISO to the USB.<br>
+Note: If you have qbittorrent, you can use the torrent link instead of the download mirrors.
+
+
 ## 1. Basic initial Setup
 a. Run the command `cat /sys/firmware/efi/fw_platform_size` to check if your booted into UEFI.<br>
 b. Run `timedatectl status` to ensure the date and time is accurate.
+
 
 ## 2. Networking
 If you're not going to be using WI-FI, then skip part 1.
@@ -24,6 +33,7 @@ h. Run `ip link` again to verify that you're getting an ip connection to Wi-Fi.
 ### Part Two (Testing Connection).
 Run `ping archlinux.org` to test the internet connection.<br>
 Note: You can press `ctrl + c` to stop pinging.
+
 
 ## 3. Creating the Partition Tables.
 If you plan on dual booting Windows 10/11, STOP this guide is not for you.
@@ -50,6 +60,7 @@ Note: If you get something above the boot partition with 1000KiB of free space, 
 
 f. write changes to disk
 
+
 ## 4. Format and Mount your partitions.
 a. Run `lsblk` to see what your doing.<br>
 b. Run `mkswap /dev/swap_partition` to format the swap partition and run `swapon /dev/swap_partition` to enable swap.<br>
@@ -57,6 +68,7 @@ c. Run `mkfs.ext4 /dev/root_partition` to format the root partition and run `mou
 d. Run `mkfs.ext4 /dev/home_partition` to format the home partition and run `mount --mkdir /dev/home_partition /mnt/home` to create and mount the home partition.<br>
 e. Run `mkfs.fat -F 32 /dev/efi_system_partition` to format the boot partition.<br>
 f. Run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the boot partition.
+
 
 ## 5. Configure Mirrorlist.
 This step isn't really necessary but I would highly recommend it as it sorts the servers from best to worst.
@@ -69,18 +81,21 @@ c. Once exited nano, run `pacman -Sy` to update the package database on the ISO.
 d. Run `pacman -S pacman-contrib` to install the tools needed for sorting the servers.<br>
 e. Run `rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist` to sort the servers in the backup file and copy it to the main file.
 
+
 ## 6. Download/Installing Essential Packages.
 This is where your going to actually install your system.
 
 The following packages that it will install are the necessary core functions and the drivers for some wifi cards.
 
-Run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence man-db man-pages  nano sof-firmware texinfo` to install the packages.
+Run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence man-db man-pages nano sof-firmware texinfo` to install the packages.
+
 
 ## 7. Generating the fstab and chrooting into the install.
 This step is important as without doing this the system wont know what it's doing.
 
 a. Run `genfstab -U /mnt >> /mnt/etc/fstab` to generate the fstab file.<br>
 b. Run `arch-chroot /mnt` to gain access to your install.
+
 
 ## 8. Localisation and Timezone.
 This step is to tell Arch Linux where you are and to set the system clock.
@@ -96,7 +111,8 @@ f. Run `ls /usr/share/zoneinfo` to list the unix timezones.<br>
 g. Once found your timesone run `ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timesone Here] /etc/localtime` to add a symbolic link for your time.<br>
 h. Run `hwclock --systohc` to set the hardware clock.
 
-## 11. Configure Pacman/Package Manager.
+
+## 9. Configure Pacman/Package Manager.
 This step is where you will configure pacman to be able to download faster and enable the Multilib repo for 32-bit programs.
 
 a. Run `nano /etc/pacman.conf` to enter the pacman config file.<br>
@@ -110,10 +126,11 @@ Include = /etc/pacman.d/mirrorlist
 c. In the Misc Options area, add/uncomment the following items. `ParallelDownloads = 5`, `Color` and `ILoveCandy`.<br>
 d. Once saved run `pacman -Sy` to update and download the repos.
 
-## 12. Installing more packages and enabling system services.
+
+## 10. Installing more packages and enabling system services.
 This part is where you're going to install some more packages and some drivers for basic networking and enable some system functions.
 
-Note: If you have an AMD processor, then you can skip the microcode installation, however I would still recommend installing it.
+Note: If you have an AMD processor, then you can skip the microcode installation, however I would still recommend installing it anyways.
 
 a. Run `pacman -S git networkmanager reflector pacman-contrib bluez bluez-utils bash-completion` to install the packages.<br>
 b. To make sure your CPU has no active exploits on it firmware, you need to install the microcode. To install the CPU microcode run `pacman -S [Your CPU Brand]-ucode`.<br>
@@ -125,7 +142,8 @@ systemctl enable fstrim.timer
 systemctl enable reflector.timer
 ```
 
-## 14. Hostname Configuration and User Setup.
+
+## 11. Hostname Configuration and User Setup.
 This step is where you'll name the computer and add your user account. 
 
 a. Run `echo "[Insert Computer Name Here]" >> /etc/hostname` to set the name for the computer.<br>
@@ -142,7 +160,8 @@ e. Run `passwd [Insert Username Here]` to set the password for the user account 
 f. Run `EDITOR=nano visudo` to and edit the following permissions.<br>
 Uncomment `%wheel ALL=(ALL) ALL` and add `Defaults rootpw` to the bottom of the file.
 
-The `Defaults rootpw` is so that you use the root password instead of your user password for sudo.
+The `Defaults rootpw` is so that you use the root password instead of your user password for sudo. (makes more like windows)
+
 
 ## Bootloader.
 Here is a little choose your own adventure bit for this install guide. There are two commonly boot loaders that people tend to install. Choose the one you prefer and forget about the other one.
@@ -156,12 +175,12 @@ This bootloader is the most common across most distro's and has the most documen
 If you chose to install GRUB then ONLY do 15a.<br>
 If you chose to install Systemd-Boot then ONLY do 15b.
 
-### 15a. GRUB. (Linux dual boot/Easy Mode)
+### 12a. GRUB. (Linux dual boot/Easy Mode)
 a. Run `pacman -S grub efibootmgr` to install the necessary packages.<br>
 b. Run `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB` to inject and install GRUB to your system.<br>
 c. Run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration files.
 
-### 15b. Systemd-Boot. (Requires manual entries/Hard Mode)
+### 12b. Systemd-Boot. (Requires manual entries/Hard Mode)
 a. Run `ls /sys/firmware/efi/efivars` to verify if the efi firmware is mounted and installed.<br>
 b. Run `bootctl install` to inject and install Systemd-Boot to your system.<br>
 c. Run `systemctl enable systemd-boot-update.service` to enable the updater script.<br>
@@ -176,7 +195,7 @@ initrd /intel-ucode.img or /amd-ucode.img
 e. Once added everything into the file, run `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf` to add the partition id of the root partition so that it tells Arch Linux that it will boot to that drive only. (Credit to Glorious Eggroll for this command)
 
 
-## 16. Graphics Drivers
+## 13. Graphics Drivers
 This step is necessary if you want your GPU to be working properly. The drivers are sorted based on what manufacturer your card is from so select the one that matches your card.
 
 | Manufacturer | Instructions |
@@ -192,7 +211,7 @@ This part should only be done with the version that matches your card.
 
 WARNING: If you for whatever reason mess up on this your system is bricked!
 
-### 17a. NVIDIA
+### 14a. NVIDIA
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... nvidia nvidia_modeset nvidia_uvm nvidia_drm ...)`<br>
 b. Once added those modules, run `mkinitcpio -P` to regenerate the initramfs.<br>
@@ -219,18 +238,18 @@ When=PostTransaction
 Exec=/usr/bin/mkinitcpio -P
 ```
 
-### 17b. AMDGPU
+### 14b. AMDGPU
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... amdgpu ...)`<br>
 b. Once added those modules, run `mkinitcpio -P` to regenerate the initramfs.
 
-### 17c. INTEL
+### 14c. INTEL
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... i915 ...)`<br>
 b. Once added those modules, run `mkinitcpio -P` to regenerate the initramfs.
 
 
-## 18. Unmount drives and Reboot system.
+## 15. Unmount drives and Reboot system.
 Congratulations. You have sucessfully installed the basic form of Arch Linux. However you're not done just yet.
 
 a. Type `exit` to return back to the install drive.<br>
@@ -238,7 +257,7 @@ b. Type `umount -r /mnt` to safely unount the partitions.<br>
 c. `reboot`
 
 
-## 19. General First Install Checks.
+## 16. General First Install Checks.
 This part is just a general after install checks to make sure nothing went wrong with the install. It also contains configuration for regenerating mirrorlists automatically.
 
 Note: Now that you're actually using your system now, you will need to use sudo to perform root privilages.
@@ -257,7 +276,7 @@ c. Run `sudo nano /etc/xdg/reflector/reflector.conf` and make sure the file is c
 d. Run `sudo pacman -Sy` to resync and update the servers.
 
 
-## 20. Enabling AUR support and flatpak.
+## 17. Enabling AUR support and flatpak.
 This step is necessary if you want to use the Arch User Repository for community maintained packages. 
 
 Traditionally, if you want to install packages from the AUR, you would need to compile them from source but with an AUR Helper it builds and installs it for you.
@@ -270,10 +289,10 @@ e. Run `sudo pacman -S flatpak` to install the flatpak repo and installer.<br>
 f. `reboot` system to complete the install of flatpak.
 
 
-## 21. Graphical Environment.
+## 18. Graphical Environment.
 This step is probably the most confusing to users and the most difficult part of the rewrite for me.
 
-Currently, there are two well known video drivers for linux. Wayland and Xorg. This guide is mainly focused on Xorg, however if you want to use Wayland it's already enabled and ready to go.
+Currently, there are two well known video drivers for linux. Wayland and Xorg. This guide is mainly focused on Xorg, however, if you want to use Wayland then it's already enabled and ready to go.
 
 If you do not want to use Xorg at all and want to have a pure Wayland configuration, then skip part 1 and just select a Wayland based desktop environment.
 
@@ -298,16 +317,14 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | KDE Plasma (Wayland) | If you want to use KDE under Wayland, install the X11 version and then run `plasma-wayland-session qt6-wayland xdg-desktop-portal-kde` to install the wayland packages. When prompted, select the VLC backend for audio. |
 | Sway | Note: wlroots based compositors only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
 
-
 ### Part 3. Installing and enabling a display manager.
 | Display Manager | Instructions |
 | --------------- | ------------ |
 | GDM | Note: Since GDM is included with Gnome you don't need to install anything.<br>To enable the Display Manager upon reboot run `sudo systemctl enable gdm.service`. |
 | SDDM | Run `sudo pacman -S sddm` to install SDDM and then run `sudo systemctl enable sddm.service` to enable the Display Manager upon reboot. |
 | LightDM | Run `sudo pacman -S lightdm` to install the base version of lightDM and run `sudo systemctl enable lightdm.service`  to enable the Display Manager upon reboot.<br>Since LightDM does not include a environment to run on you wil have to install one of the greeters listed below. |
-| StartX | Since StartX is kind of difficult to setup i will simply like to the Arch Wiki for instructions. https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login. |
-| wlroots on TTY | Since wayland compositors based on wlroots do not launch with a Display Manager I will simply link to the arch wiki for instructions on how to set it up. https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login. |
-
+| StartX | Since StartX is kind of difficult to setup i will simply like to the [Arch Wiki](https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login) for instructions. |
+| wlroots on TTY | Since most wayland compositors are based on wlroots, they do not allow launching with a Display Manager. So, I will simply link to the [Arch Wiki](https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login) for instructions on how to setup TTY login. |
 
 ### (Only for LightDM) Part 4. Choose the greeter you want to use for LightDM.
 If your using any other display manager then you can skip this step and move onto Part 5.
@@ -320,7 +337,7 @@ The two versions is just what style you want. If you want a style that looks lik
 | Webkit2 | Run `sudo pacman -S lightdm-webkit2-greeter` to install the webkit2 greeter. |
 
 
-## 22. Zsh Setup and Configuration.
+## 19. Zsh Setup and Configuration.
 This step is if you want a different terminal shell from the default bash setup.
 
 Note: NEVER USE A ZSH PLUGIN MANAGER AS IT IS JUST BLOATWARE!!!!
@@ -330,7 +347,7 @@ b. Once installed, run `zsh` to begin the initial setup<br>
 c. Now that Zsh is setup, run `chsh -s /usr/bin/zsh` to set Zsh as your default shell.
 
 
-## 23. Audio Drivers.
+## 20. Audio Drivers.
 This step is necessary if you want to have a working audio setup. 
 
 Note: One of the packages, `pipewire` to be exact, is required for wayland since by itself wayland does NOT allow screen capture for programs, and the `alsa-ucm-conf` package is needed for basic non configurable GoXLR support.
@@ -338,13 +355,13 @@ Note: One of the packages, `pipewire` to be exact, is required for wayland since
 Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-audio pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph wireplumber` to install all the packages needed for a working audio setup.
 
 
-## 24. Gstreamer Full Support. (Optional)
+## 21. Gstreamer Full Support. (Optional)
 This step only applies to users who want Desktop Environments that don't utilise VLC . Window Managers and KDE with VLC backend can go without this though.
 
 Run `sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi` and `paru -S gst-plugin-libde265 gst-plugins-openh264` to install the base package and other codec's.
 
 
-## 25. Reboot and login.
+## 22. Reboot and login.
 Run `reboot`, then login to your user account and then you should see the Desktop you installed. Congratulations You have sucessfully installed Arch Linux.
 
 
