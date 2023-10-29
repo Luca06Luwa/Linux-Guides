@@ -386,23 +386,23 @@ This list has been seperated into multiple sections based on what the package re
 | ----- | -------- |
 | Steam | `sudo pacman -S steam` |
 | Steam Native Runtime Replacement | `sudo pacman -S steam-native-runtime` |
-| Lutris | `sudo pacman -S lutris`<br>Lutris requires you to have already installed the base version of Wine |
-| ScoreSpy | Download from website |
+| Lutris | `sudo pacman -S lutris`<br>Note: Lutris requires you to have already installed the base version of Wine |
+| ScoreSpy | [Download from website](https://clonehero.scorespy.online/) |
 | Heroic Games Launcher | `paru -S heroic-games-launcher-bin` |
-| Minecraft | `paru -S minecraft-launcher`<br>Minecraft requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any older builds |
+| Minecraft | `paru -S minecraft-launcher`<br>Note: Minecraft requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any older builds |
 
 | Games | Commands |
 | -------------- | -------- |
 | osu! | `paru -S osu-laser-bin` |
 | Katawa Shoujo | `paru -S katawa-shoujo` |
 | Clone Hero v1.0.0.4080-final | `paru -S clonehero` |
-| Roblox (Grapejuice) | `paru -S grapejuice`<br>Grapejuice requires you to have already installed the base version of Wine |
-| Tentacle Locker 2 | Download on itch |
-| Tentacle Locker | Needs to be run through Wine |
-| Protecc Your Loli | Needs to be run through Wine |
-| Doki Doki Literature Club | Download on itch |
-| Monika After Story Mod | Download on Github |
-| MonikA.I | Download on Github |
+| Roblox (Grapejuice) | `paru -S grapejuice`<br>Note: Grapejuice requires you to have already installed the base version of Wine |
+| Tentacle Locker 2 | [Download on itch](https://hotpink.itch.io/tl2) |
+| Tentacle Locker | [Download on itch](https://hotpink.itch.io/tentacle-locker)<br>Note: Needs to be run through Wine |
+| Protecc Your Loli | [Download on itch](https://kamuo.itch.io/proteccloli)<br>Note: Needs to be run through Wine |
+| Doki Doki Literature Club | [Download on itch](https://teamsalvato.itch.io/ddlc) |
+| Monika After Story Mod | [Download on Github](https://www.monikaafterstory.com/) |
+| MonikA.I | [Download on Github](https://github.com/Rubiksman78/MonikA.I) |
 
 | Emulators | Commands |
 | --------- | -------- |
@@ -433,8 +433,8 @@ This list has been seperated into multiple sections based on what the package re
 
 | Compatibility Tools/Wine | Commands |
 | ------------------------ | -------- |
-| Proton-GE | Download on Github |
-| Wine-GE | Download on Github |
+| Proton-GE | [Download on Github](https://github.com/GloriousEggroll/proton-ge-custom) |
+| Wine-GE | [Download on Github](https://github.com/GloriousEggroll/wine-ge-custom) |
 | GameMode | `sudo pacman -S gamemode lib32-gamemode` |
 | Protonup-QT | `paru -S protonup-qt` |
 | Wine | Please note that wine is literally a dependency nightmare if you don't know what you are doing.<br>1. `sudo pacman -S wine-staging winetricks`<br>2. `sudo pacman -S --needed alsa-lib alsa-plugins cups dosbox ffmpeg giflib gnutls gst-plugins-base-libs gtk3 lib32-alsa-lib lib32-alsa-plugins lib32-giflib lib32-gnutls lib32-gst-plugins-base-libs lib32-gtk3 lib32-libpulse lib32-libva lib32-libxcomposite lib32-libxinerama lib32-ocl-icd lib32-sdl2 lib32-v4l-utils lib32-vulkan-icd-loader libgphoto2 libpulse libva libxcomposite libxinerama ocl-icd samba sane sdl2 v4l-utils vulkan-icd-loader` |
@@ -446,7 +446,7 @@ This list has been seperated into multiple sections based on what the package re
 | qBittorrent | `sudo pacman -S qbittorrent` |
 | LF File Manager | `sudo pacman -S lf` |
 | OpenRGB | 1. `paru -S openrgb`<br>2. `sudo pacman -S i2c-tools` |
-| Inochi2D Session | Download on Github |
+| Inochi2D Session | [Download on Github](https://inochi2d.com/) |
 | Rofi | `sudo pacman -S rofi` |
 | Zsh plugins | 1. `sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions`<br> 2. `echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> .zshrc` and `echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> .zshrc` |
 | Syncthing | `sudo pacman -S syncthing` |
@@ -464,11 +464,11 @@ This list has been seperated into multiple sections based on what the package re
 | Reaper DAW | `sudo pacman -S reaper` |
 | Polyphone | `sudo pacman -S polyphone` |
 | Audacity | `sudo pacman -S audacity` |
-| Moonscraper Chart Editor | Download on Github |
+| Moonscraper Chart Editor | [Download on Github](https://github.com/FireFox2000000/Moonscraper-Chart-Editor) |
 | Blender 2.79b | `paru -S blender-2.7` |
 | Blender Latest | `sudo pacman -S blender` |
 | Unreal Engine | Figure it out yourself |
-| Inochi2D Creator | Download on Github |
+| Inochi2D Creator | [Download on Github](https://inochi2d.com/) |
 | OBS Studio Tytan652 | 1. `paru -s obs-studio-tytan652`<br>2. `sudo pacman -S v4l2loopback-dkms` |
 | Kame-Editor | `paru -S kame-editor-git` |
 
@@ -492,7 +492,7 @@ This list has been seperated into multiple sections based on what the package re
 | Flatseal | `flatpak install flatseal` |
 | OBS Studio | 1. `flatpak install obs-studios`<br>2. `sudo pacman -S v4l2loopback-dkms` |
 | Extension Manager | This package is ONLY for Gnome.<br>`flatpak install ExtensionManager` |
-| Bottles | `flatpak install bottles`<br>Bottles requires you to have already installed the base version of Wine |
+| Bottles | `flatpak install bottles`<br>Note: Bottles requires you to have already installed the base version of Wine |
 
 | System Diagnostic Tools | Commands |
 | ----------------------- | -------- |
@@ -504,7 +504,7 @@ This list has been seperated into multiple sections based on what the package re
 | Device Hacking | Commands |
 | -------------- | -------- |
 | Wireshark | `sudo pacman -S wireshark-qt` |
-| Guitar Configurator | 1. Download on Github<br>2. Go to https://sanjay900.github.io/guitar-configurator/guides/linux.html to setup the udev rules for this tool. |
+| Guitar Configurator | 1. [Download on Github](https://github.com/sanjay900/guitar-configurator)<br>2. Go to https://sanjay900.github.io/guitar-configurator/guides/linux.html to setup the udev rules for this tool. |
 | Fusée Launcher Interfacée | `paru -S fusee-interfacee-tk-bin` |
-| OSCDL | Download on Github |
-| WiiUDownloader | Download on Github |
+| OSCDL | [Download on Github](https://github.com/dhtdht020/osc-dl) |
+| WiiUDownloader | [Download on Github](https://github.com/Xpl0itU/WiiUDownloader) |
