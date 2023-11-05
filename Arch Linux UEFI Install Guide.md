@@ -474,7 +474,7 @@ This list has been seperated into multiple sections based on what the package re
 
 | Communication | Commands |
 | ------------- | -------- |
-| Discord (Stable) | 1. `sudo pacman -S discord`<br>2. `echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json` |
+| Discord (Stable) | `flatpak install discord` |
 | Discord (Canary) | 1. `paru -S discord-canary`<br>2. `echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json` |
 | Skype | `paru -S skypeforlinux-stable-bin` |
 
