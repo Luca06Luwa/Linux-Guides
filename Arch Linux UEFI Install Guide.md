@@ -388,6 +388,7 @@ This list has been seperated into multiple sections based on what the package re
 | Steam Native Runtime Replacement | `sudo pacman -S steam-native-runtime` |
 | Lutris | `sudo pacman -S lutris`<br>Note: Lutris requires you to have already installed the base version of Wine |
 | ScoreSpy | [Download from website](https://clonehero.scorespy.online/) |
+| YARG | [Download on Github](https://github.com/YARC-Official/YARC-Launcher) |
 | Heroic Games Launcher | `paru -S heroic-games-launcher-bin` |
 | Minecraft | `paru -S minecraft-launcher`<br>Note: Minecraft requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any older builds |
 
