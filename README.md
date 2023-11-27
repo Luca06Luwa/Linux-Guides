@@ -2,7 +2,7 @@
 
 <b>If you want to install Arch Linux, please use the work-in-progress markdown formatted version as that ones more up to date.
 
-https://github.com/Luca06Luwa/Linux-Guides/blob/WIP-md-version/Arch%20Linux%20UEFI%20Install%20Guide.md
+[New Guide](https://github.com/Luca06Luwa/Linux-Guides/blob/WIP-md-version/Arch%20Linux%20UEFI%20Install%20Guide.md)
 
 ---
 This repo is where I keep my Linux Guides for Arch Linux, Gentoo, etc.
