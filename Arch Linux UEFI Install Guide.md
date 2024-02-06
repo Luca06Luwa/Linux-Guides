@@ -6,15 +6,15 @@ This guide assumes that your default language is english and you are on desktop 
 
 
 ## 0. Getting the ISO
-a. Go to archlinux.org and click on download.<br>
+a. Go to [archlinux.org]() and click on download.<br>
 b. Download the image from the download server that is in you region.<br>
-c. Get some kind of ISO burner for a usb and just write the ISO to the USB.<br>
-Note: If you have qbittorrent, you can use the torrent link instead of the download mirrors.
+c. Get some kind of [ISO burner]() for a usb and just write the ISO to the USB.<br>
+Note: If you have [qbittorrent](), you can use the torrent link instead of the download mirrors.
 
 
 ## 1. Basic initial Setup
 a. Run the command `cat /sys/firmware/efi/fw_platform_size` to check if your booted into UEFI.<br>
-b. Run `timedatectl status` to ensure the date and time is accurate.
+b. Run `timedatectl` to ensure the date and time is accurate.
 
 
 ## 2. Networking
@@ -132,11 +132,10 @@ This part is where you're going to install some more packages and some drivers f
 
 Note: If you have an AMD processor, then you can skip the microcode installation, however I would still recommend installing it anyways.
 
-a. Run `pacman -S git networkmanager reflector pacman-contrib bluez bluez-utils bash-completion` to install the packages.<br>
+a. Run `pacman -S git networkmanager reflector pacman-contrib bash-completion` to install the packages.<br>
 b. To make sure your CPU has no active exploits on it firmware, you need to install the microcode. To install the CPU microcode run `pacman -S [Your CPU Brand]-ucode`.<br>
 c. Enable the following services to start the drivers.
 ```
-systemctl enable bluetooth.service
 systemctl enable NetworkManager.service
 systemctl enable fstrim.timer
 systemctl enable reflector.timer
@@ -151,7 +150,7 @@ b. Run `nano /etc/hosts` and add the following into the file.
 ```
 127.0.0.1        localhost
 ::1              localhost
-127.0.1.1        [Add same hostname as before. lol]
+127.0.1.1        [Add same hostname as before.]
 ```
 
 c. Run `passwd` to set the root password.<br>
@@ -160,7 +159,7 @@ e. Run `passwd [Insert Username Here]` to set the password for the user account 
 f. Run `EDITOR=nano visudo` to and edit the following permissions.<br>
 Uncomment `%wheel ALL=(ALL) ALL` and add `Defaults rootpw` to the bottom of the file.
 
-The `Defaults rootpw` is so that you use the root password instead of your user password for sudo. (makes more like windows)
+Note: The `Defaults rootpw` is so that you use the root password instead of your user password for sudo. (makes more like windows)
 
 
 ## Bootloader.
@@ -209,7 +208,7 @@ This step is necessary if you want your GPU to be working properly. The drivers 
 ## Configure Drivers for KMS/Wayland Support.
 This part should only be done with the version that matches your card.
 
-WARNING: If you for whatever reason mess up on this your system is bricked!
+WARNING: If you for whatever reason mess up on this your system is dead!
 
 ### 14a. NVIDIA
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
@@ -221,22 +220,6 @@ c. This step will vary depending on your bootloader so make sure you select the 
 | ---------- | ------------ |
 | GRUB | 1. Run `nano /etc/default/grub` and modify the `GRUB_CMDLINE_LINUX_DEFAULT=` line to look like this. `GRUB_CMDLINE_LINUX_DEFAULT=... nvidia-drm.modeset=1`.<br>2.Once added, run `grub-mkconfig -o /boot/grub/grub.conf` to regenerate the grub configuration files. |
 | Systemd-Boot | Run `nano /boot/loader/entries/arch.conf` and at the end of the options line add `nvidia-drm.modeset=1`. |
-
-d. In order for the initramfs to update with the drivers for your NVIDIA card, we must create a hook. TO do this run `mkdir /etc/pacman.d/hooks` to create the directory for the hook files.<br>
-e. Run `nano /etc/pacman.d/hooks/nvidia.hook` to create the file and edit the file to look like this.
-```
-[Trigger]
-Operation=Install
-Operation=Upgrade
-Operation=Remove
-Type=Package
-Target=nvidia-dkms or nvidia-open-dkms
-
-[Action]
-Depends=mkinitcpio
-When=PostTransaction
-Exec=/usr/bin/mkinitcpio -P
-```
 
 ### 14b. AMDGPU
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
@@ -295,8 +278,6 @@ This step is probably the most confusing to users and the most difficult part of
 Currently, there are two well known video drivers for linux. Wayland and Xorg. This guide is mainly focused on Xorg, however, if you want to use Wayland then it's already enabled and ready to go.
 
 If you do not want to use Xorg at all and want to have a pure Wayland configuration, then skip part 1 and just select a Wayland based desktop environment.
-
-Note: If you are having an issue with wayland on NVIDIA GPU's, install the `egl-wayland` package to fix the issue.
 
 ### Part 1. Installing Xorg.
 Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
@@ -381,6 +362,7 @@ This list has been seperated into multiple sections based on what the package re
 | Windows 11 Fonts | `paru -S ttf-ms-win11-auto` |
 | Timeshift | `sudo pacman -S timeshift` |
 | Downgrade | `paru -S downgrade` |
+| Bluetooth | 1. `sudo pacman -S bluez bluez-utils`<br>2. `sudo systemctl enable bluetooth.service` |
 
 | Game Launchers | Commands |
 | ----- | -------- |
@@ -451,6 +433,7 @@ This list has been seperated into multiple sections based on what the package re
 | Rofi | `sudo pacman -S rofi` |
 | Zsh plugins | 1. `sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions`<br> 2. `echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> .zshrc` and `echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> .zshrc` |
 | Syncthing | `sudo pacman -S syncthing` |
+| Bridge/chorus encore | [Download on Github](https://github.com/Geomitron/Bridge) |
 
 | Programming | Commands |
 | ------------ | -------- |
@@ -466,8 +449,7 @@ This list has been seperated into multiple sections based on what the package re
 | Polyphone | `sudo pacman -S polyphone` |
 | Audacity | `sudo pacman -S audacity` |
 | Moonscraper Chart Editor | [Download on Github](https://github.com/FireFox2000000/Moonscraper-Chart-Editor) |
-| Blender 2.79b | `paru -S blender-2.7` |
-| Blender Latest | `sudo pacman -S blender` |
+| Blender | Install through steam. |
 | Unreal Engine | Figure it out yourself |
 | Inochi2D Creator | [Download on Github](https://inochi2d.com/) |
 | OBS Studio Tytan652 | 1. `paru -s obs-studio-tytan652`<br>2. `sudo pacman -S v4l2loopback-dkms` |
@@ -475,8 +457,7 @@ This list has been seperated into multiple sections based on what the package re
 
 | Communication | Commands |
 | ------------- | -------- |
-| Discord (Stable) | `flatpak install discord` |
-| Discord (Canary) | 1. `paru -S discord-canary`<br>2. `echo ""SKIP_HOST_UPDATE": true" >> /.config/discord/settings.json` |
+| Discord | `flatpak install discord` |
 | Skype | `paru -S skypeforlinux-stable-bin` |
 
 | Joke Packages | Commands |
