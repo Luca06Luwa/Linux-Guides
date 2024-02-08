@@ -6,10 +6,10 @@ This guide assumes that your default language is english and you are on desktop 
 
 
 ## 0. Getting the ISO
-a. Go to [archlinux.org]() and click on download.<br>
+a. Go to [archlinux.org](https://archlinux.org) and click on download.<br>
 b. Download the image from the download server that is in you region.<br>
-c. Get some kind of [ISO burner]() for a usb and just write the ISO to the USB.<br>
-Note: If you have [qbittorrent](), you can use the torrent link instead of the download mirrors.
+c. Get some kind of [ISO burner](https://etcher.balena.io/) for a usb and just write the ISO to the USB.<br>
+Note: If you have [qbittorrent](https://www.qbittorrent.org/), you can use the torrent link instead of the download mirrors.
 
 
 ## 1. Basic initial Setup
