@@ -1,3 +1,11 @@
+[DO NOT USE THIS GUIDE AS IT IS OUTDATED!!!!!]
+
+Please use the updated version as that one is more up to date
+
+https://github.com/Luca06Luwa/Linux-Guides/blob/WIP-md-version/Arch%20Linux%20UEFI%20Install%20Guide.md
+
+[Legacy Guide Starts Here]
+
 Arch Linux UEFI Install Guide. (More info and some notes at the bottom. READ THEM!!!!)
 
 1. Basic initial setup.
