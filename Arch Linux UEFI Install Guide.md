@@ -395,7 +395,7 @@ This list has been seperated into multiple sections based on what the package re
 | DuckStation | `flatpak install duckstation` |
 | melonDS | `flatpak install melonds` |
 | Yuzu | `flatpak install yuzu` |
-| Ryujinx | `paru -S ryujinx-bin` |
+| Ryujinx | `flatpak install ryujinx` |
 | CEMU | `flatpak install cemu` |
 | Citra | `flatpak install citra` |
 | mGBA | `sudo pacman -S mgba-qt` |
