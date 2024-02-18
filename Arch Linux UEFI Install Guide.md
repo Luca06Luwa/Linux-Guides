@@ -2,7 +2,7 @@
 
 Small note: This took soo long to rewrite this guide as there is soo much stuff in it that had to be rewritten from scratch.
 
-This guide assumes that your default language is english and you are on desktop with an AMD. NVIDIA and INTEL ARC is supported however it's also highly discouraged as the drivers can be weird.
+This guide assumes that your default language is english and you are on desktop with an AMD, NVIDIA (FUCK U), and INTEL ARC is supported however it's also highly discouraged as the drivers can be weird.
 
 
 ## 0. Getting the ISO
