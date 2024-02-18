@@ -411,8 +411,10 @@ This list has been seperated into multiple sections based on what the package re
 | ----- | -------- |
 | Ani-Cli | `paru -S ani-cli` |
 | MPV | `sudo pacman -S mpv` |
+| VLC | `sudo pacman -S vlc` |
 | VLC-luajit | `paru -S vlc-luajit` |
 | GoXLR-Utility | `paru -S goxlr-utility` |
+| Physical Media | `sudo pacman -S libcdio libdvdread libdvdcss libdvdnav libbluray libaacs`<br>Note: If your using KDE applications to play cd's, run `sudo pacman -S audiocd-kio` to install the package. |
 
 | Compatibility Tools/Wine | Commands |
 | ------------------------ | -------- |
