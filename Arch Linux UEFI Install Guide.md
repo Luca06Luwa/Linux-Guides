@@ -388,16 +388,16 @@ This list has been seperated into multiple sections based on what the package re
 
 | Emulators | Commands |
 | --------- | -------- |
-| Dolphin Emulator | `paru -S dolphin-emu-beta-git` |
-| pcsx2 | `flatpak install pcsx2` |
-| rpcs3 | `paru -S rpcs3-git` |
-| DuckStation | `flatpak install duckstation` |
-| melonDS | `flatpak install melonds` |
-| Yuzu | `flatpak install yuzu` |
-| Ryujinx | `flatpak install ryujinx` |
-| CEMU | `flatpak install cemu` |
-| Citra | `flatpak install citra` |
-| mGBA | `sudo pacman -S mgba-qt` |
+| Dolphin Emulator (Arch Package) | `sudo pacman -S dolphin-emu` |
+| pcsx2 (Upstream) | `flatpak install pcsx2` |
+| rpcs3 (Upstream) | `paru -S rpcs3-git` |
+| DuckStation (Upstream) | `flatpak install duckstation` |
+| melonDS (Upstream) | `flatpak install melonds` |
+| Yuzu (Upstream) | `flatpak install yuzu` |
+| Ryujinx (Upstream) | `flatpak install ryujinx` |
+| CEMU (Upstream) | `flatpak install cemu` |
+| Citra (Upstream) | `flatpak install citra` |
+| mGBA (Arch Package) | `sudo pacman -S mgba-qt` |
 
 | Internet | Commands |
 | -------- | -------- |
