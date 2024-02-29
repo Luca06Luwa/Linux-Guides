@@ -279,6 +279,8 @@ Currently, there are two well known video drivers for linux. Wayland and Xorg. T
 
 If you do not want to use Xorg at all and want to have a pure Wayland configuration, then skip part 1 and just select a Wayland based desktop environment.
 
+Note: Most wayland compositors may not work with Nvidia, so if you have Nvidia use X11/Xorg.
+
 ### Part 1. Installing Xorg.
 Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 
@@ -294,9 +296,8 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | Wayland Desktop Environments | Instructions |
 | ---------------------------- | ------------ |
 | Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal-gnome` to install the packages for a working install of Gnome. |
-| Hyprland | Note: wlroots based compositors only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S hyprland mako polkit-kde-agent cliphist grim slurp foot qt5-wayland qt6-wayland xdg-desktop-portal-hyprland` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi waybar-hyprland swww waypaper-git` to install the application launcher. |
+| Hyprland | Run `sudo pacman -S hyprland mako polkit-kde-agent cliphist grim slurp foot qt5-wayland qt6-wayland xdg-desktop-portal-hyprland` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi waybar-hyprland swww waypaper-git` to install the application launcher. |
 | KDE Plasma (Wayland) | If you want to use KDE under Wayland, install the X11 version and then run `plasma-wayland-session qt6-wayland xdg-desktop-portal-kde` to install the wayland packages. When prompted, select the VLC backend for audio. |
-| Sway | Note: wlroots based compositors only works on AMDGPU's and only under Wayland.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
 
 ### Part 3. Installing and enabling a display manager.
 | Display Manager | Instructions |
