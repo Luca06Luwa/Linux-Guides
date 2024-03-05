@@ -394,10 +394,8 @@ This list has been seperated into multiple sections based on what the package re
 | rpcs3 (Upstream) | `paru -S rpcs3-git` |
 | DuckStation (Upstream) | `flatpak install duckstation` |
 | melonDS (Upstream) | `flatpak install melonds` |
-| Yuzu (Upstream) | `flatpak install yuzu` |
 | Ryujinx (Upstream) | `flatpak install ryujinx` |
 | CEMU (Upstream) | `flatpak install cemu` |
-| Citra (Upstream) | `flatpak install citra` |
 | mGBA (Arch Package) | `sudo pacman -S mgba-qt` |
 
 | Internet | Commands |
