@@ -397,6 +397,7 @@ This list has been seperated into multiple sections based on what the package re
 | Ryujinx (Upstream) | `flatpak install ryujinx` |
 | CEMU (Upstream) | `flatpak install cemu` |
 | mGBA (Arch Package) | `sudo pacman -S mgba-qt` |
+| Snes9x (Arch Package) | `sudo pacman -S snes9x-gtk` |
 
 | Internet | Commands |
 | -------- | -------- |
