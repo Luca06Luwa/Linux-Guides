@@ -390,7 +390,7 @@ This list has been seperated into multiple sections based on what the package re
 
 | Emulators | Commands |
 | --------- | -------- |
-| Dolphin Emulator (Arch Package) | `sudo pacman -S dolphin-emu` |
+| Dolphin Emulator (Arch Package) | `sudo pacman -S dolphin-emu-git` |
 | pcsx2 (Upstream) | `flatpak install pcsx2` |
 | rpcs3 (Upstream) | `paru -S rpcs3-git` |
 | DuckStation (Upstream) | `flatpak install duckstation` |
@@ -399,7 +399,7 @@ This list has been seperated into multiple sections based on what the package re
 | CEMU (Upstream) | `flatpak install cemu` |
 | mGBA (Arch Package) | `sudo pacman -S mgba-qt` |
 | Snes9x (Arch Package) | `sudo pacman -S snes9x-gtk` |
-| ??? | soon |
+| Panda3DS (Upstream) | [Download on Github](https://github.com/wheremyfoodat/Panda3DS) |
 | ??? | soon |
 
 | Internet | Commands |
