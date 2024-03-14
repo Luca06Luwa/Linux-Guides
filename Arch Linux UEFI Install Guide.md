@@ -379,6 +379,7 @@ This list has been seperated into multiple sections based on what the package re
 | osu! | `paru -S osu-laser-bin` |
 | Katawa Shoujo | `paru -S katawa-shoujo` |
 | Clone Hero v1.0.0.4080-final | `paru -S clonehero` |
+| Clone Hero v1.1.0.4261-PTB | `paru -S clonehero-ptb` |
 | Roblox (Grapejuice) | `paru -S grapejuice`<br>Note: Grapejuice requires you to have already installed the base version of Wine |
 | Tentacle Locker 2 | [Download on itch](https://hotpink.itch.io/tl2) |
 | Tentacle Locker | [Download on itch](https://hotpink.itch.io/tentacle-locker)<br>Note: Needs to be run through Wine |
@@ -398,6 +399,8 @@ This list has been seperated into multiple sections based on what the package re
 | CEMU (Upstream) | `flatpak install cemu` |
 | mGBA (Arch Package) | `sudo pacman -S mgba-qt` |
 | Snes9x (Arch Package) | `sudo pacman -S snes9x-gtk` |
+| ??? | soon |
+| ??? | soon |
 
 | Internet | Commands |
 | -------- | -------- |
@@ -434,7 +437,7 @@ This list has been seperated into multiple sections based on what the package re
 | Rofi | `sudo pacman -S rofi` |
 | Zsh plugins | 1. `sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions`<br> 2. `echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> .zshrc` and `echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> .zshrc` |
 | Syncthing | `sudo pacman -S syncthing` |
-| Bridge/chorus encore | [Download on Github](https://github.com/Geomitron/Bridge) |
+| Bridge/Enchor.us | [Download on Github](https://github.com/Geomitron/Bridge) |
 
 | Programming | Commands |
 | ------------ | -------- |
