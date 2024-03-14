@@ -425,13 +425,14 @@ This list has been seperated into multiple sections based on what the package re
 | GameMode | `sudo pacman -S gamemode lib32-gamemode` |
 | Protonup-QT | `paru -S protonup-qt` |
 | Wine | Please note that wine is literally a dependency nightmare if you don't know what you are doing.<br>1. `sudo pacman -S wine-staging winetricks`<br>2. `sudo pacman -S --needed alsa-lib alsa-plugins cups dosbox ffmpeg giflib gnutls gst-plugins-base-libs gtk3 lib32-alsa-lib lib32-alsa-plugins lib32-giflib lib32-gnutls lib32-gst-plugins-base-libs lib32-gtk3 lib32-libpulse lib32-libva lib32-libxcomposite lib32-libxinerama lib32-ocl-icd lib32-sdl2 lib32-v4l-utils lib32-vulkan-icd-loader libgphoto2 libpulse libva libxcomposite libxinerama ocl-icd samba sane sdl2 v4l-utils vulkan-icd-loader` |
-| WineASIO | This package is good for if you plan on running Ableton or FL Studio in Wine<br>1. `paru -S wineasio`<br>2. `sudo usermod -aG realtime $(whoami)`<br>For 32bit, run: `regsvr32 /usr/lib32/wine/i386-windows/wineasio.dll`<br>For 64bit, run: `wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio.dll` |
+| WineASIO | This package is good for if you plan on running Ableton or FL Studio in Wine<br>1. `paru -S wineasio`<br>2. `sudo usermod -aG realtime $(whoami)`<br>For 64bit, run: `wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio.dll` |
 
 | Miscellaneous | Commands |
 | ------------- | -------- |
 | Thunderbird | `sudo pacman -S thunderbird` |
 | qBittorrent | `sudo pacman -S qbittorrent` |
 | LF File Manager | `sudo pacman -S lf` |
+| Discord | `flatpak install discord` |
 | OpenRGB | 1. `paru -S openrgb`<br>2. `sudo pacman -S i2c-tools` |
 | Inochi2D Session | [Download on Github](https://inochi2d.com/) |
 | Rofi | `sudo pacman -S rofi` |
@@ -442,10 +443,10 @@ This list has been seperated into multiple sections based on what the package re
 | Programming | Commands |
 | ------------ | -------- |
 | Python | `sudo pacman -S python python-pip` |
-| NodeJS | `sudo pacman -S nodejs-lts-hydrogen npm` |
+| NodeJS | `sudo pacman -S nodejs-lts-iron npm` |
 | Zulu Java8 | `paru -S zulu-8-bin` |
 | Zulu Java17 | `paru -S zulu-17-bin` |
-| VS Code | 1. `paru -S visual-studios-code-bin`<br>2. `sudo pacman -S dotnet-runtime dotnet-sdk mono-msbuild mono-msbuild-sdkresolver mono` |
+| VS Code | 1. `paru -S visual-studios-code-bin`<br>2. `sudo pacman -S dotnet-runtime dotnet-sdk aspnet-runtime mono-msbuild mono-msbuild-sdkresolver mono` |
 
 | Production | Commands |
 | ---------- | -------- |
@@ -458,11 +459,6 @@ This list has been seperated into multiple sections based on what the package re
 | Inochi2D Creator | [Download on Github](https://inochi2d.com/) |
 | OBS Studio Tytan652 | 1. `paru -s obs-studio-tytan652`<br>2. `sudo pacman -S v4l2loopback-dkms` |
 | Kame-Editor | `paru -S kame-editor-git` |
-
-| Communication | Commands |
-| ------------- | -------- |
-| Discord | `flatpak install discord` |
-| Skype | `paru -S skypeforlinux-stable-bin` |
 
 | Joke Packages | Commands |
 | ------------- | -------- |
