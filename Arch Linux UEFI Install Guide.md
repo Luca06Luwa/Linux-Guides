@@ -188,7 +188,6 @@ d. Run `nano /boot/loader/entries/arch.conf` and add the following lines.
 title Arch Linux
 linux /vmlinuz-linux (change this depending on what kernel you have).
 initrd /initramfs-linux.img
-initrd /intel-ucode.img or /amd-ucode.img
 ```
 
 e. Once added everything into the file, run `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf` to add the partition id of the root partition so that it tells Arch Linux that it will boot to that drive only. (Credit to Glorious Eggroll for this command)
@@ -279,7 +278,7 @@ Currently, there are two well known video drivers for linux. Wayland and Xorg. T
 
 If you do not want to use Xorg at all and want to have a pure Wayland configuration, then skip part 1 and just select a Wayland based desktop environment.
 
-Note: Most wayland compositors may not work with Nvidia, so if you have Nvidia use X11/Xorg.
+Note: Most wayland compositors may not work with Nvidia, so if you have Nvidia use Xorg.
 
 ### Part 1. Installing Xorg.
 Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
