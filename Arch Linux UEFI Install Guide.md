@@ -372,6 +372,7 @@ This list has been seperated into multiple sections based on what the package re
 | YARG | 1. [Download on Github](https://github.com/YARC-Official/YARC-Launcher)<br>2. `sudo pacman -S hidapi systemd-libs` |
 | Heroic Games Launcher | `paru -S heroic-games-launcher-bin` |
 | Minecraft | `paru -S minecraft-launcher`<br>Note: Minecraft requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any older builds |
+| Prism Launcher (Minecraft) | `paru -S prismlauncher` |
 
 | Games | Commands |
 | -------------- | -------- |
