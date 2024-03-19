@@ -400,7 +400,8 @@ This list has been seperated into multiple sections based on what the package re
 | mGBA (Arch Package) | `sudo pacman -S mgba-qt` |
 | Snes9x (Arch Package) | `sudo pacman -S snes9x-gtk` |
 | Panda3DS (Upstream) | [Download on Github](https://github.com/wheremyfoodat/Panda3DS) |
-| ??? | soon |
+| ñ (PabloMK7 Fork) | soon |
+| suyu | soon |
 
 | Internet | Commands |
 | -------- | -------- |
