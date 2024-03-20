@@ -8,7 +8,10 @@ Credits for the arch install guide.
     https://www.gloriouseggroll.tv/arch-linux-efi-install-guide/
     https://wiki.archlinux.org/
     https://youtu.be/68z11VAYMS8
-
+    https://youtu.be/_JYIAaLrwcY?si=Es1iIuJsMWMf6aho&t=80
+    https://wiki.gentoo.org/wiki/Handbook:AMD64/
+    https://www.youtube.com/watch?v=H1ieRvLRxP0
+    Various other places
 
 QEMU setup Guide Using KVM:
 Credits for the qemu setup guide.
@@ -19,4 +22,4 @@ Credits for the qemu setup guide.
 Gentoo Install Guide:
 Credits for the gentoo install guide.
 
-    I didn't bother with the gentoo guide as the official wiki is as good as it gets.
+    I didn't bother with the gentoo guide as the official wiki is the best as it gets.
