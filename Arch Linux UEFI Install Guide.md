@@ -399,8 +399,8 @@ This list has been seperated into multiple sections based on what the package re
 | mGBA (Arch Package) | `sudo pacman -S mgba-qt` |
 | Snes9x (Arch Package) | `sudo pacman -S snes9x-gtk` |
 | Panda3DS (Upstream) | [Download on Github](https://github.com/wheremyfoodat/Panda3DS) |
-| ñ (PabloMK7 Fork) | soon |
-| suyu | [Build from Source](https://gitlab.com/suyu-emu/suyu/-/wikis/Building-for-Linux) |
+| ñ (PabloMK7 Fork) | Figure it out yourself |
+| suyu (Upstream) | [Download on Gitlab](https://gitlab.com/suyu-emu/suyu/-/releases) |
 
 | Internet | Commands |
 | -------- | -------- |
@@ -454,7 +454,8 @@ This list has been seperated into multiple sections based on what the package re
 | Polyphone | `sudo pacman -S polyphone` |
 | Audacity | `sudo pacman -S audacity` |
 | Moonscraper Chart Editor | [Download on Github](https://github.com/FireFox2000000/Moonscraper-Chart-Editor) |
-| Blender | Install through steam. |
+| Blender | `sudo pacman -S blender` |
+| Blender 2.79b | [Download on website](https://download.blender.org/release/Blender2.79/) |
 | Unreal Engine | Figure it out yourself |
 | Inochi2D Creator | [Download on Github](https://inochi2d.com/) |
 | OBS Studio Tytan652 | 1. `paru -s obs-studio-tytan652`<br>2. `sudo pacman -S v4l2loopback-dkms` |
