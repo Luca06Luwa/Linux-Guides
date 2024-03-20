@@ -1,9 +1,8 @@
 # Arch Linux UEFI Install Guide
 
-Small note: This took soo long to rewrite this guide as there is soo much stuff in it that had to be rewritten from scratch.
+This guide assumes that your default language is english and you are on desktop with an AMD and INTEL ARC is supported however it's also highly discouraged as the drivers can be weird.
 
-This guide assumes that your default language is english and you are on desktop with an AMD, NVIDIA (FUCK U), and INTEL ARC is supported however it's also highly discouraged as the drivers can be weird.
-
+"Nvidia, fuck you" - Linus Torvalds
 
 ## 0. Getting the ISO
 a. Go to [archlinux.org](https://archlinux.org) and click on download.<br>
