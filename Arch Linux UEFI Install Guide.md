@@ -1,6 +1,6 @@
 # Arch Linux UEFI Install Guide
 
-This guide assumes that your default language is english and you are on desktop with an AMD and INTEL ARC is supported however it's also highly discouraged as the drivers can be weird.
+This guide assumes that your default language is english and you are on desktop with an AMDGPU OR INTEL ARC.
 
 "Nvidia, fuck you" - Linus Torvalds
 
