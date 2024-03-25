@@ -400,7 +400,7 @@ This list has been seperated into multiple sections based on what the package re
 | Snes9x (Arch Package) | `sudo pacman -S snes9x-gtk` |
 | Panda3DS (Upstream) | [Download on Github](https://github.com/wheremyfoodat/Panda3DS) |
 | ñ (PabloMK7 Fork) | Figure it out yourself |
-| suyu (Upstream) | [Download on Gitlab](https://gitlab.com/suyu-emu/suyu/-/releases) |
+| suyu (Upstream) | [Download on Git](https://git.suyu.dev/suyu/suyu) |
 
 | Internet | Commands |
 | -------- | -------- |
