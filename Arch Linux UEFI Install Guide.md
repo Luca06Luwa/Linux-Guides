@@ -322,6 +322,8 @@ This step is if you want a different terminal shell from the default bash setup.
 
 Note: NEVER USE A ZSH PLUGIN MANAGER AS IT IS JUST BLOATWARE!!!!
 
+Tip: You migjt want to move some code from the `.bashrc` file to the `.zshrc` file (e.g. the prompt and the aliases). It's also recommended to move code from the `.bash_profile` file to the `.zprofile` file (e.g. the code that makes your window manager work).
+
 a. Run `sudo pacman -S zsh zsh-completions` to install Zsh.<br>
 b. Once installed, run `zsh` to begin the initial setup<br>
 c. Now that Zsh is setup, run `chsh -s /usr/bin/zsh` to set Zsh as your default shell.
