@@ -370,8 +370,9 @@ This list has been seperated into multiple sections based on what the package re
 | Lutris | `sudo pacman -S lutris`<br>Note: Lutris requires you to have already installed the base version of Wine |
 | YARG | 1. [Download on Github](https://github.com/YARC-Official/YARC-Launcher)<br>2. `sudo pacman -S hidapi systemd-libs` |
 | Heroic Games Launcher | `paru -S heroic-games-launcher-bin` |
-| Minecraft | `paru -S minecraft-launcher`<br>Note: Minecraft requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any older builds |
+| Minecraft | `paru -S minecraft-launcher`<br>Note: Minecraft requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any builds from classic to 1.12. |
 | Prism Launcher (Minecraft) | `paru -S prismlauncher` |
+| Lunar Client (Minecraft) | [Download from website](https://www.lunarclient.com/download) |
 
 | Games | Commands |
 | -------------- | -------- |
@@ -389,7 +390,7 @@ This list has been seperated into multiple sections based on what the package re
 
 | Emulators | Commands |
 | --------- | -------- |
-| Dolphin Emulator (Arch Package) | `sudo pacman -S dolphin-emu-git` |
+| Dolphin Emulator (Arch Package) | `sudo pacman -S dolphin-emu` |
 | pcsx2 (Upstream) | `flatpak install pcsx2` |
 | rpcs3 (Upstream) | `paru -S rpcs3-git` |
 | DuckStation (Upstream) | `flatpak install duckstation` |
@@ -425,13 +426,12 @@ This list has been seperated into multiple sections based on what the package re
 | GameMode | `sudo pacman -S gamemode lib32-gamemode` |
 | Protonup-QT | `paru -S protonup-qt` |
 | Wine | Please note that wine is literally a dependency nightmare if you don't know what you are doing.<br>1. `sudo pacman -S wine-staging winetricks`<br>2. `sudo pacman -S --needed alsa-lib alsa-plugins cups dosbox ffmpeg giflib gnutls gst-plugins-base-libs gtk3 lib32-alsa-lib lib32-alsa-plugins lib32-giflib lib32-gnutls lib32-gst-plugins-base-libs lib32-gtk3 lib32-libpulse lib32-libva lib32-libxcomposite lib32-libxinerama lib32-ocl-icd lib32-sdl2 lib32-v4l-utils lib32-vulkan-icd-loader libgphoto2 libpulse libva libxcomposite libxinerama ocl-icd samba sane sdl2 v4l-utils vulkan-icd-loader` |
-| WineASIO | This package is good for if you plan on running Ableton or FL Studio in Wine<br>1. `paru -S wineasio`<br>2. `sudo usermod -aG realtime $(whoami)`<br>For 64bit, run: `wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio.dll` |
+| WineASIO | This package is good for if you plan on running Ableton or FL Studio in Wine<br>1. `paru -S wineasio`<br>2. `sudo usermod -aG realtime $(whoami)`<br>For 64bit, run: `wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio64.dll`<br>For 32bit, run: `regsvr32 /usr/lib/wine/i386-windows/wineasio32.dll` |
 
 | Miscellaneous | Commands |
 | ------------- | -------- |
 | Thunderbird | `sudo pacman -S thunderbird` |
-| qBittorrent | `sudo pacman -S qbittorrent` |
-| LF File Manager | `sudo pacman -S lf` |
+| qBittorrent | `sudo pacman -S qbittorrent` 
 | Discord | `flatpak install discord` |
 | OpenRGB | 1. `paru -S openrgb`<br>2. `sudo pacman -S i2c-tools` |
 | Inochi2D Session | [Download on Github](https://inochi2d.com/) |
