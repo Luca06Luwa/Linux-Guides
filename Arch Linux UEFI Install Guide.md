@@ -294,6 +294,7 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | ---------------------------- | ------------ |
 | Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal-gnome` to install the packages for a working install of Gnome. |
 | KDE Plasma (Wayland) | Run `sudo pacman -S plasma kde-applications plasma-wayland-session qt6-wayland xdg-desktop-portal-kde` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
+| Sway | Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
 
 ### Part 3. Installing and enabling a display manager.
 | Display Manager | Instructions |
