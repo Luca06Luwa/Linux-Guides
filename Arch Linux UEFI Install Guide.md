@@ -164,21 +164,29 @@ Note: The `Defaults rootpw` is so that you use the root password instead of your
 ## Bootloader.
 Here is a little choose your own adventure bit for this install guide. There are two commonly boot loaders that people tend to install. Choose the one you prefer and forget about the other one.
 
+GRand Unified Bootloader / GRUB. (Easy Mode)<br>
+This bootloader is the most common across most distro's and has the most documentation. It is also the most customisable.<br>
+
+rEFInd. (Medium Mode)<br>
+This bootloader was originally designed for dualbooting mac but has been improved to have many more. This is what I would recommend if your trying to dualboot windows for some reason (i'm not helping with actually setting up windows dualboot).
+
 Systemd-Boot. (Hard Mode)<br>
 This bootloader is what I would recommended you as the packages are preinstalled onto system during install.
 
-GRand Unified Bootloader / GRUB. (Easy Mode)<br>
-This bootloader is the most common across most distro's and has the most documentation.<br>
-
-If you chose to install GRUB then ONLY do 15a.<br>
-If you chose to install Systemd-Boot then ONLY do 15b.
+If you chose to install GRUB then ONLY do 12a.<br>
+If you chose to install rEFInd then ONLY do 12b.<br>
+If you chose to install Systemd-Boot then ONLY do 12c.
 
 ### 12a. GRUB. (Linux dual boot/Easy Mode)
 a. Run `pacman -S grub efibootmgr` to install the necessary packages.<br>
 b. Run `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB` to inject and install GRUB to your system.<br>
 c. Run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration files.
 
-### 12b. Systemd-Boot. (Requires manual entries/Hard Mode)
+### 12b. rEFInd. (Medium Mode)
+a. Run `pacman -S refind` to install the necessary packages.<br>
+b. Run `refind-install` to inject and install rEFInd to your system.
+
+### 12c. Systemd-Boot. (Requires manual entries/Hard Mode)
 a. Run `ls /sys/firmware/efi/efivars` to verify if the efi firmware is mounted and installed.<br>
 b. Run `bootctl install` to inject and install Systemd-Boot to your system.<br>
 c. Run `systemctl enable systemd-boot-update.service` to enable the updater script.<br>
@@ -205,6 +213,10 @@ This step is necessary if you want your GPU to be working properly. The drivers 
 
 ## Configure Drivers for KMS/Wayland Support.
 This part should only be done with the version that matches your card.
+
+If you have installed NVIDIA drivers then ONLY do 14a.<br>
+If you have installed AMDGPU drivers then ONLY do 14b.<br>
+If you have installed INTEL drivers then ONLY do 14c.
 
 WARNING: If you for whatever reason mess up on this your system is dead!
 
@@ -286,6 +298,7 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | Xorg Desktop Environment | Instructions |
 | ------------------------ | ------------ |
 | AwesomeWM | Run `sudo pacman -S awesome alacritty pcmanfm-qt` to install the packages for a working install of AwesomWM. |
+| DWM | Note: You MUST configure the packages `config.h` file before building the package.<br>1. Run `git clone https://aur.archlinux.org/dwm.git`to download the PKGBUILD.<br>2. Configure the `config.h` file to your liking and ensure there are no errors.<br>3. Run `makepkg -si` to build and install your configured copy of DWM. |
 | i3 | Run `sudo pacman -S i3 alacritty pcmanfm-qt dmenu` to install the packages for a working install of i3. |
 | LXQt | Run `sudo pacman -S lxqt breeze-icons network-manager-applet leafpad` to install the packages for a working install of LXQt. |
 | Xfce | Run `sudo pacman -S xfce xfce-goodies network-manager-applet` to install the packages for a working install of Xfce. |
