@@ -184,7 +184,8 @@ c. Run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration file
 
 ### 12b. rEFInd. (Medium Mode)
 a. Run `pacman -S refind` to install the necessary packages.<br>
-b. Run `refind-install` to inject and install rEFInd to your system.
+b. Run `refind-install` to inject and install rEFInd to your system.<br>
+c. Run `nano /boot/refind_linux.conf` and modify the "Boot to Defaults" line 
 
 ### 12c. Systemd-Boot. (Requires manual entries/Hard Mode)
 a. Run `ls /sys/firmware/efi/efivars` to verify if the efi firmware is mounted and installed.<br>
@@ -229,6 +230,7 @@ c. This step will vary depending on your bootloader so make sure you select the 
 | Bootloader | Instructions |
 | ---------- | ------------ |
 | GRUB | 1. Run `nano /etc/default/grub` and modify the `GRUB_CMDLINE_LINUX_DEFAULT=` line to look like this. `GRUB_CMDLINE_LINUX_DEFAULT=... nvidia-drm.modeset=1`.<br>2.Once added, run `grub-mkconfig -o /boot/grub/grub.conf` to regenerate the grub configuration files. |
+| rEFInd | Run `nano /boot/loader/entries/arch.conf` and at the end of the options line add `nvidia-drm.modeset=1`. |
 | Systemd-Boot | Run `nano /boot/loader/entries/arch.conf` and at the end of the options line add `nvidia-drm.modeset=1`. |
 
 ### 14b. AMDGPU
