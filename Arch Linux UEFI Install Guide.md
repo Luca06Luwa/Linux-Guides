@@ -230,7 +230,7 @@ c. This step will vary depending on your bootloader so make sure you select the 
 | Bootloader | Instructions |
 | ---------- | ------------ |
 | GRUB | 1. Run `nano /etc/default/grub` and modify the `GRUB_CMDLINE_LINUX_DEFAULT=` line to look like this. `GRUB_CMDLINE_LINUX_DEFAULT=... nvidia-drm.modeset=1`.<br>2.Once added, run `grub-mkconfig -o /boot/grub/grub.conf` to regenerate the grub configuration files. |
-| rEFInd | Run `nano /boot/loader/entries/arch.conf` and at the end of the options line add `nvidia-drm.modeset=1`. |
+| rEFInd | Run `nano /boot/refind_linux.conf` and at the end of the "Boot with standard options" line add `nvidia-drm.modeset=1`. |
 | Systemd-Boot | Run `nano /boot/loader/entries/arch.conf` and at the end of the options line add `nvidia-drm.modeset=1`. |
 
 ### 14b. AMDGPU
