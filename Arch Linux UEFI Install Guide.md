@@ -6,9 +6,9 @@ This guide assumes that your default language is english and you are on desktop 
 
 ## 0. Getting the ISO
 a. Go to [archlinux.org](https://archlinux.org) and click on download.<br>
-b. Download the image from the download server that is in you region.<br>
+b. Download the image from the torrent.<br>
 c. Get some kind of [ISO burner](https://etcher.balena.io/) for a usb and just write the ISO to the USB.<br>
-Note: If you have [qbittorrent](https://www.qbittorrent.org/), you can use the torrent link instead of the download mirrors.
+Note: If you do not have [a torrent client](https://www.qbittorrent.org/), you can use the download mirrors instead.
 
 
 ## 1. Basic initial Setup
@@ -35,7 +35,7 @@ Note: You can press `ctrl + c` to stop pinging.
 
 
 ## 3. Creating the Partition Tables.
-If you plan on dual booting Windows 10/11, STOP this guide is not for you.
+If you plan on dual booting Windows 10/11, STOP this guide is not for you. If you still want to dualboot with windows, figure it out yourself.
 
 Note: If you have a blank drive that you know is empty, then skip step c.
 
@@ -107,7 +107,7 @@ c. Even though you've already assigned the locale, you still need to echo the lo
 d. This step is important and should be done either way. Run `export LANG=[the locale you selected].UTF-8`.<br>
 e. Skip this step if you have a us keyboard layout. If you have a keyboard other than us run `echo "KEYMAP=[your keyboard layout]" >> /etc/vconsole.conf`.<br>
 f. Run `ls /usr/share/zoneinfo` to list the unix timezones.<br>
-g. Once found your timesone run `ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timesone Here] /etc/localtime` to add a symbolic link for your time.<br>
+g. Once found your timesone run `ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timezone Here] /etc/localtime` to add a symbolic link for your time.<br>
 h. Run `hwclock --systohc` to set the hardware clock.
 
 
@@ -142,7 +142,7 @@ systemctl enable reflector.timer
 
 
 ## 11. Hostname Configuration and User Setup.
-This step is where you'll name the computer and add your user account. 
+This step is where you will name the computer and add your user account. 
 
 a. Run `echo "[Insert Computer Name Here]" >> /etc/hostname` to set the name for the computer.<br>
 b. Run `nano /etc/hosts` and add the following into the file.
@@ -185,7 +185,7 @@ c. Run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration file
 ### 12b. rEFInd. (Medium Mode)
 a. Run `pacman -S refind` to install the necessary packages.<br>
 b. Run `refind-install` to inject and install rEFInd to your system.<br>
-c. Run `nano /boot/refind_linux.conf` and modify the "Boot to Defaults" line 
+c. Run `nano /boot/refind_linux.conf` and modify the "Boot with standard options" line so that it has `initrd=[Your CPU Brand]-ucode.img` at the end.
 
 ### 12c. Systemd-Boot. (Requires manual entries/Hard Mode)
 a. Run `ls /sys/firmware/efi/efivars` to verify if the efi firmware is mounted and installed.<br>
@@ -196,6 +196,7 @@ d. Run `nano /boot/loader/entries/arch.conf` and add the following lines.
 title Arch Linux
 linux /vmlinuz-linux (change this depending on what kernel you have).
 initrd /initramfs-linux.img
+initrd /[Your CPU Brand]-ucode.img
 ```
 
 e. Once added everything into the file, run `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf` to add the partition id of the root partition so that it tells Arch Linux that it will boot to that drive only. (Credit to Glorious Eggroll for this command)
@@ -386,7 +387,7 @@ This list has been seperated into multiple sections based on what the package re
 | Lutris | `sudo pacman -S lutris`<br>Note: Lutris requires you to have already installed the base version of Wine |
 | YARG | 1. [Download on Github](https://github.com/YARC-Official/YARC-Launcher)<br>2. `sudo pacman -S hidapi systemd-libs` |
 | Heroic Games Launcher | `paru -S heroic-games-launcher-bin` |
-| Minecraft | `paru -S minecraft-launcher`<br>Note: Minecraft requires java 17 lts for builds from 1.17 onwards and java 8 lts can be used for any builds from classic to 1.12. |
+| Minecraft | `paru -S minecraft-launcher`<br>Note: Minecraft requires java 21 lts for builds from 1.21 onwards and java 8 lts can be used for any builds from classic to 1.12. |
 | Prism Launcher (Minecraft) | `paru -S prismlauncher` |
 | Lunar Client (Minecraft) | [Download from website](https://www.lunarclient.com/download) |
 
