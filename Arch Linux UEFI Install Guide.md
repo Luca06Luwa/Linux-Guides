@@ -483,7 +483,8 @@ This list has been seperated into multiple sections based on what the package re
 | cMatrix | `sudo pacman -S cmatrix` |
 | cowsay | `sudo pacman -S cowsay` |
 | lolcat | `sudo pacman -S lolcat` |
-| Neofetch | `sudo pacman -S neofetch` |
+| HyFetch (Updated Neofetch fork) | Note: This fork requires you to replace the neofetch command with neowofetch to use the updated fork.<br>`sudo pacman -S hyfetch` |
+| Fastfetch | `sudo pacman -S fastfetch` |
 | Activate Linux | `paru -S activate-linux-git` |
 | Arch Linux Wallpapers | This isn't a joke package. It's literally just some Arch Linux themed wallpapers.<br>`sudo pacman -S archlinux-wallpaper` |
 
