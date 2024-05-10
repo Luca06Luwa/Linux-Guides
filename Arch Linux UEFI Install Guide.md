@@ -396,7 +396,6 @@ This list has been seperated into multiple sections based on what the package re
 | Katawa Shoujo | `paru -S katawa-shoujo` |
 | Clone Hero v1.0.0.4080-final | `paru -S clonehero` |
 | Clone Hero v1.1.0.4261-PTB | `paru -S clonehero-ptb` |
-| Roblox (Grapejuice) | `paru -S grapejuice`<br>Note: Grapejuice requires you to have already installed the base version of Wine |
 | Tentacle Locker 2 | [Download on itch](https://hotpink.itch.io/tl2) |
 | Tentacle Locker | [Download on itch](https://hotpink.itch.io/tentacle-locker)<br>Note: Needs to be run through Wine |
 | Protecc Your Loli | [Download on itch](https://kamuo.itch.io/proteccloli)<br>Note: Needs to be run through Wine |
@@ -448,7 +447,6 @@ This list has been seperated into multiple sections based on what the package re
 | ------------- | -------- |
 | Thunderbird | `sudo pacman -S thunderbird` |
 | qBittorrent | `sudo pacman -S qbittorrent` 
-| Discord | `flatpak install discord` |
 | OpenRGB | 1. `paru -S openrgb`<br>2. `sudo pacman -S i2c-tools` |
 | Inochi2D Session | [Download on Github](https://inochi2d.com/) |
 | Rofi | `sudo pacman -S rofi` |
@@ -462,6 +460,7 @@ This list has been seperated into multiple sections based on what the package re
 | NodeJS | `sudo pacman -S nodejs-lts-iron npm` |
 | Zulu Java8 | `paru -S zulu-8-bin` |
 | Zulu Java17 | `paru -S zulu-17-bin` |
+| Zulu Java21 | `paru -S zulu-21-bin` |
 | VS Code | 1. `paru -S visual-studios-code-bin`<br>2. `sudo pacman -S dotnet-runtime dotnet-sdk aspnet-runtime mono-msbuild mono-msbuild-sdkresolver mono` |
 
 | Production | Commands |
@@ -492,6 +491,7 @@ This list has been seperated into multiple sections based on what the package re
 | ---------------- | -------- |
 | Flatseal | `flatpak install flatseal` |
 | OBS Studio | 1. `flatpak install obs-studios`<br>2. `sudo pacman -S v4l2loopback-dkms` |
+| Discord | `flatpak install discord` |
 | Extension Manager | This package is ONLY for Gnome.<br>`flatpak install ExtensionManager` |
 | Bottles | `flatpak install bottles`<br>Note: Bottles requires you to have already installed the base version of Wine |
 
