@@ -380,19 +380,24 @@ This list has been seperated into multiple sections based on what the package re
 | Bluetooth | 1. `sudo pacman -S bluez bluez-utils`<br>2. `sudo systemctl enable bluetooth.service` |
 
 | Game Launchers | Commands |
-| ----- | -------- |
+| -------------- | -------- |
 | Steam | `sudo pacman -S steam` |
 | Steam Native Runtime Replacement | `sudo pacman -S steam-native-runtime` |
 | Lutris | `sudo pacman -S lutris`<br>Note: Lutris requires you to have already installed the base version of Wine |
 | YARG | 1. [Download on Github](https://github.com/YARC-Official/YARC-Launcher)<br>2. `sudo pacman -S hidapi systemd-libs` |
 | Heroic Games Launcher | `paru -S heroic-games-launcher-bin` |
-| Minecraft | `paru -S minecraft-launcher`<br>Note: Minecraft requires java 21 lts for builds from 1.21 onwards and java 8 lts can be used for any builds from classic to 1.12. |
-| Prism Launcher (Minecraft) | `paru -S prismlauncher` |
-| Lunar Client (Minecraft) | [Download from website](https://www.lunarclient.com/download) |
+
+| Minecraft Launchers | Commands |
+| ------------------- | -------- |
+| Minecraft (Official) | `paru -S minecraft-launcher`<br>Note: Minecraft requires java 21 lts for builds from 1.21 onwards and java 8 lts can be used for any builds from classic to 1.12. |
+| Prism Launcher | `paru -S prismlauncher` |
+| Lunar Client | [Download from website](https://www.lunarclient.com/download) |
+| Modrinth Launcher | [Download from website](https://modrinth.com/app) |
 
 | Games | Commands |
-| -------------- | -------- |
+| ----- | -------- |
 | osu! | `paru -S osu-laser-bin` |
+| Minecraft | Moved to it's own section |
 | Katawa Shoujo | `paru -S katawa-shoujo` |
 | Clone Hero v1.0.0.4080-final | `paru -S clonehero` |
 | Clone Hero v1.1.0.4261-PTB | `paru -S clonehero-ptb` |
@@ -455,7 +460,7 @@ This list has been seperated into multiple sections based on what the package re
 | Bridge/Enchor.us | [Download on Github](https://github.com/Geomitron/Bridge) |
 
 | Programming | Commands |
-| ------------ | -------- |
+| ----------- | -------- |
 | Python | `sudo pacman -S python python-pip` |
 | NodeJS | `sudo pacman -S nodejs-lts-iron npm` |
 | Zulu Java8 | `paru -S zulu-8-bin` |
