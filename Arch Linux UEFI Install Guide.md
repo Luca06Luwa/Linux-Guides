@@ -495,6 +495,7 @@ This list has been seperated into multiple sections based on what the package re
 | Flatpak Packages | Commands |
 | ---------------- | -------- |
 | Flatseal | `flatpak install flatseal` |
+| Brave | Note: This is official but not yet optimised. Use the AUR version until stability is achieved.<br>`flatpak install brave` |
 | OBS Studio | 1. `flatpak install obs-studios`<br>2. `sudo pacman -S v4l2loopback-dkms` |
 | Discord | `flatpak install discord` |
 | Extension Manager | This package is ONLY for Gnome.<br>`flatpak install ExtensionManager` |
