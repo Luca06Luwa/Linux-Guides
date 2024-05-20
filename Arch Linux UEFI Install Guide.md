@@ -73,11 +73,11 @@ This step isn't really necessary but I would highly recommend it as it sorts the
 
 Note: Since we don't have a GUI interface for file management we must do everything through command line.
 
-a. Run `cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup` to create a backup.<br>
-b. Run `nano /etc/pacman.d/mirrorlist` to see if all the servers that are listed in the file are uncommented.<br>
-c. Once exited nano, run `pacman -Sy` to update the package database on the ISO.<br>
-d. Run `pacman -S pacman-contrib` to install the tools needed for sorting the servers.<br>
-e. Run `rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist` to sort the servers in the backup file and copy it to the main file.
+a. Run `pacman -Sy` to update the package database on the ISO.<br>
+b. Run `pacman -S pacman-contrib` to install the tools needed for sorting the servers.<br>
+c. Run `cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup` to create a backup.<br>
+d. Run `nano /etc/pacman.d/mirrorlist` to see if all the servers that are listed in the file are uncommented.<br>
+e. Once exited nano, run `rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist` to sort the servers in the backup file and copy it to the main file.
 
 
 ## 6. Download/Installing Essential Packages.
@@ -308,15 +308,15 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | ---------------------------- | ------------ |
 | Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal-gnome` to install the packages for a working install of Gnome. |
 | KDE Plasma | Run `sudo pacman -S plasma kde-applications qt5-wayland xdg-desktop-portal-kde` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
-| Sway | Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
+| Sway | Note: If you have an i3 install, this will be a drop in replacement as sway uses the i3 config files.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
 
 ### Part 3. Installing and enabling a display manager.
 | Display Manager | Instructions |
 | --------------- | ------------ |
 | GDM | Note: Since GDM is included with Gnome you don't need to install anything.<br>To enable the Display Manager upon reboot run `sudo systemctl enable gdm.service`. |
 | SDDM | Run `sudo pacman -S sddm` to install SDDM and then run `sudo systemctl enable sddm.service` to enable the Display Manager upon reboot. |
-| LightDM | Run `sudo pacman -S lightdm` to install the base version of lightDM and run `sudo systemctl enable lightdm.service`  to enable the Display Manager upon reboot.<br>Since LightDM does not include a environment to run on you wil have to install one of the greeters listed below. |
-| StartX | Since StartX is kind of difficult to setup i will simply like to the [Arch Wiki](https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login) for instructions. |
+| LightDM (X11 Only) | Run `sudo pacman -S lightdm` to install the base version of lightDM and run `sudo systemctl enable lightdm.service`  to enable the Display Manager upon reboot.<br>Since LightDM does not include a environment to run on you wil have to install one of the greeters listed below. |
+| StartX (X11 Only) | Since StartX is kind of difficult to setup i will simply like to the [Arch Wiki](https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login) for instructions. |
 | wlroots on TTY | Since most wayland compositors are based on wlroots, they do not allow launching with a Display Manager. So, I will simply link to the [Arch Wiki](https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login) for instructions on how to setup TTY login. |
 
 ### (Only for LightDM) Part 4. Choose the greeter you want to use for LightDM.
@@ -335,19 +335,19 @@ This step is if you want a different terminal shell from the default bash setup.
 
 Note: NEVER USE A ZSH PLUGIN MANAGER AS IT IS JUST BLOATWARE!!!!
 
-Tip: You might want to move some code from the `.bashrc` file to the `.zshrc` file (e.g. the prompt and the aliases). It's also recommended to move code from the `.bash_profile` file to the `.zprofile` file (e.g. the code that makes your window manager work).
-
 a. Run `sudo pacman -S zsh zsh-completions` to install Zsh.<br>
 b. Once installed, run `zsh` to begin the initial setup<br>
 c. Now that Zsh is configured, run `chsh -s /usr/bin/zsh` to set Zsh as your default terminal shell.
+
+Tip: You might want to move some code from the `.bashrc` file to the `.zshrc` file (e.g. the prompt and the aliases). It's also recommended to move code from the `.bash_profile` file to the `.zprofile` file (e.g. the code that makes your window manager work).
 
 
 ## 20. Audio Drivers.
 This step is necessary if you want to have a working audio setup. 
 
-Note: One of the packages, `pipewire` to be exact, is required for wayland since by itself wayland does NOT allow screen capture for programs.
+Note: One of the packages, `pipewire` to be exact, is a requirement for wayland since by itself wayland does NOT allow screen capture for programs.
 
-Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-audio pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack pulsemixer qpwgraph wireplumber` to install all the packages needed for a working audio setup.
+Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-audio pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack qpwgraph wireplumber` to install all the packages needed for a working audio setup.
 
 
 ## 21. Gstreamer Full Support. (Optional)
