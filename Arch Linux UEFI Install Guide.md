@@ -299,7 +299,7 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | Xorg Desktop Environment | Instructions |
 | ------------------------ | ------------ |
 | AwesomeWM | Run `sudo pacman -S awesome alacritty pcmanfm-qt` to install the packages for a working install of AwesomWM. |
-| DWM | Note: You MUST configure the packages `config.h` file before building the package.<br>1. Run `git clone https://aur.archlinux.org/dwm.git`to download the PKGBUILD.<br>2. Configure the `config.h` file to your liking and ensure there are no errors.<br>3. Run `makepkg -si` to build and install your configured copy of DWM. |
+| DWM | Note: You are responsible for ensuring that dwm is up to date after every stable release as pacman will not help you here.<br>1. Run `sudo pacman -S libx11 libxft libxinerama dmenu alacritty pcmanfm-qt` to install the dependencies.<br>2. Run `git clone https://git.suckless.org/dwm`to download the source files.<br>3. Run `sudo make clean install` to install dwm base.<br>4. Edit the `config.h` file to your liking and ensure the required dependencies are assigned.<br>5. Rebuild the package. |
 | i3 | Run `sudo pacman -S i3 alacritty pcmanfm-qt dmenu` to install the packages for a working install of i3. |
 | LXQt | Run `sudo pacman -S lxqt breeze-icons network-manager-applet leafpad` to install the packages for a working install of LXQt. |
 | Xfce | Run `sudo pacman -S xfce xfce-goodies network-manager-applet` to install the packages for a working install of Xfce. |
