@@ -104,7 +104,7 @@ a. Run `nano /etc/locale.gen` and scroll down to your locale and uncomment it. I
 b. Once your locale has been uncommented, run `locale-gen` to generate the locale files.<br>
 c. Even though you've already assigned the locale, you still need to echo the locale for older programs to function properly. To do this run `echo "LANG=[the locale you selected].UTF-8" >> /etc/locale.conf` to set the legacy locale.<br>
 d. This step is important and should be done either way. Run `export LANG=[the locale you selected].UTF-8`.<br>
-e. Skip this step if you have a us keyboard layout. If you have a keyboard other than us run `echo "KEYMAP=[your keyboard layout]" >> /etc/vconsole.conf`.<br>
+e. Skip this step if you have a qwerty us keyboard layout. If you have a keyboard other than us run `echo "KEYMAP=[your keyboard layout]" >> /etc/vconsole.conf`.<br>
 f. To set the timezone, run `ls /usr/share/zoneinfo` to list the unix timezones.<br>
 g. Once you have found your timezone, run `ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timezone Here] /etc/localtime` to add a symbolic link for your timezone.<br>
 h. To link the software clock to the hardware clock, run `hwclock --systohc` to set the hardware clock.
