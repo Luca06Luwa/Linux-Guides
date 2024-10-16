@@ -397,7 +397,6 @@ This list has been seperated into multiple sections based on what the package re
 | Games | Commands |
 | ----- | -------- |
 | osu! | `paru -S osu-laser-bin` |
-| Minecraft | Moved to it's own section |
 | Katawa Shoujo | `paru -S katawa-shoujo` |
 | Clone Hero v1.0.0.4080-final | `paru -S clonehero` |
 | Clone Hero v1.1.0.4261-PTB | `paru -S clonehero-ptb` |
@@ -419,9 +418,8 @@ This list has been seperated into multiple sections based on what the package re
 | CEMU (Upstream) | `flatpak install cemu` |
 | mGBA (Arch Package) | `sudo pacman -S mgba-qt` |
 | Snes9x (Arch Package) | `sudo pacman -S snes9x-gtk` |
-| Panda3DS (Upstream) | [Download on Github](https://github.com/wheremyfoodat/Panda3DS) |
+| Lime3DS (Upstream) | `flatpak install lime3ds` |
 | ñ (PabloMK7 Fork) | Figure it out yourself |
-| suyu (Upstream) | [Download on Git](https://git.suyu.dev/suyu/suyu) |
 
 | Internet | Commands |
 | -------- | -------- |
