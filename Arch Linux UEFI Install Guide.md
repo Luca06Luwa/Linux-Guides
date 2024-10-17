@@ -12,38 +12,38 @@ Note: If you do not have [a torrent client](https://www.qbittorrent.org/), you c
 
 
 ## 1. Basic initial Setup
-a. Run the command `cat /sys/firmware/efi/fw_platform_size` to check if your booted into UEFI.<br>
-b. Run `timedatectl` to ensure the date and time is accurate.
+a. Run the command `cat /sys/firmware/efi/fw_platform_size` to verify that you have a UEFI BIOS.<br>
+b. Run `timedatectl` to ensure the date and time is accurate to your current time.
 
 
 ## 2. Networking
-If you are using ethernet instead of WI-FI, then skip part 1.
+If you are giong to be using ethernet instead of WI-FI, then you can skip part 1.
 
 ### Part One (Wi-Fi Setup).
-a. Run `ip link` to identify your network setup.<br>
-b. Run `iwctl` to configure your Wi-Fi connection.<br>
-c. Once in iwd run `device list` to list your Wi-Fi card.<br>
-d. Run `station [Your wifi card] scan` to scan the local area for networks.<br>
-e. Run `station [Your wifi card] get-networks` to list the available networks.<br>
-f. Run `station [your wifi card] connect "[your network]"` to connect to your network.<br>
-g. Press `ctrl + d` to exit iwd<br>
-h. Run `ip link` again to verify that you're getting an ip connection to Wi-Fi.
+a. Run `ip link` to identify what network cards are available on your desktop.<br>
+b. Run `iwctl` to enter the Wi-Fi configurator (iwd).<br>
+c. Once in iwd, run `device list` to list the Wi-Fi card(s) available on your desktop.<br>
+d. Run `station [Your wifi card] scan` to scan the local area for your network.<br>
+e. Once completed, run `station [Your wifi card] get-networks` to list the recently scanned networks.<br>
+f. Once you have identified your network, run `station [your wifi card] connect "[your network]"` to connect to your network.<br>
+g. Once connected, press `ctrl + d` to exit iwd.<br>
+h. Run `ip link` again to verify that you're getting an ip address connection to your Wi-Fi network.
 
 ### Part Two (Testing Connection).
-Run `ping archlinux.org` to test the internet connection.<br>
-Note: You can press `ctrl + c` to stop pinging.
+Run `ping archlinux.org` to test if your internet connection is working correctly.<br>
+Note: You can press `ctrl + c` to stop pinging the website.
 
 
 ## 3. Creating the Partition Tables.
-If you plan on dual booting Windows 10/11, STOP this guide is not for you. If you still want to dualboot with windows, figure it out yourself, I will not help you.
+If you plan on dual booting Windows 10/11, STOP this guide is not for you. If you still want to dualboot with windows, figure it out yourself, I will not help you here.
 
 Note: If you have a blank drive that you know is empty, then you can skip step c.
 
-a. Run `lsblk` to see what hard drives you have installed in your PC.<br>
+a. Run `lsblk` to see what hard drives are installed in your PC.<br>
 b. If you cannot identify what drive(s) you have installed, run `hdparm -i /dev/the_disk_to_be_partitioned` to double check that you've selected the right drive.<br>
-c. If you only have one drive woth another OS on it and want to install clean, run `gdisk /dev/the_disk_to_be_partitioned`.
+c. If you only have one drive with another OS install on it and want to perform a clean install, run `gdisk /dev/the_disk_to_be_partitioned`.
 - Press `x` to enable expert mode.
-- Press `z` to delete the entire contents of the drive
+- Press `z` to delete the entire contents of the drive.
 
 d. Run `cgdisk /dev/the_disk_to_be_partitioned` to format the drive.<br>
 e. Format the drive like this.
@@ -57,61 +57,62 @@ e. Format the drive like this.
 Help: EF00 = uefi bootable partition, 8200 = swap and 8300 = linux filesystem.<br>
 Note: If you get something above the boot partition with 1000KiB of free space, DON'T TOUCH IT. That is the protective MBR allocation.
 
-f. write changes to disk
+f. write changes to disk.
 
 
 ## 4. Format and Mount your partitions.
-a. Run `lsblk` to see what your doing.<br>
-b. Run `mkfs.ext4 /dev/root_partition` to format the root partition and run `mount /dev/root_partition /mnt` to mount the drive.<br>
-c. Run `mkfs.ext4 /dev/home_partition` to format the home partition and run `mount --mkdir /dev/home_partition /mnt/home` to create and mount the home partition.<br>
+a. Run `lsblk` to list the drive with it's partition table created.<br>
+b. Run `mkfs.ext4 /dev/root_partition` to format the root partition and run `mount /dev/root_partition /mnt` to mount the install stick to the drive.<br>
+c. Run `mkfs.ext4 /dev/home_partition` to format the home partition and run `mount --mkdir /dev/home_partition /mnt/home` to create and mount the install stick to the home partition of the drive.<br>
 d. Run `mkswap /dev/swap_partition` to format the swap partition and run `swapon /dev/swap_partition` to enable swap.<br>
-e. Run `mkfs.fat -F 32 /dev/efi_system_partition` to format the boot partition and run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the boot partition.
+e. Run `mkfs.fat -F 32 /dev/efi_system_partition` to format the boot partition and run `mount --mkdir /dev/efi_system_partition /mnt/boot` to create and mount the install stick to the boot partition of the drive.
 
 
 ## 5. Configure Mirrorlist.
-This step isn't really necessary but I would highly recommend it as it sorts the servers from best to worst.
+This step isn't really necessary but I would highly recommend it as it sorts the package mirrors from best to worst.
 
-Note: Since we don't have a GUI interface for file management we must do everything through command line.
+Note: Since we don't have a GUI interface for file management we must do everything through command line. Don't worry though, it's completely safe.
 
 a. Run `pacman -Sy` to update the package database on the ISO.<br>
-b. Run `pacman -S pacman-contrib` to install the tools needed for sorting the servers.<br>
-c. Run `cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup` to create a backup.<br>
-d. Run `nano /etc/pacman.d/mirrorlist` to see if all the servers that are listed in the file are uncommented.<br>
+b. Once completed, run `pacman -S pacman-contrib` to install the necessary tools for sorting the mirrorlist.<br>
+c. Run `cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup` to create a backup of the current mirrorlist.<br>
+d. Once the copy has been created, run `nano /etc/pacman.d/mirrorlist` to see if all the servers that are listed in the file are uncommented.<br>
 e. Once exited nano, run `rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist` to sort the servers in the backup file and copy it to the main file.
 
 
 ## 6. Download/Installing Essential Packages.
 This step is where you get to actually install your system.
 
-The following packages that it will install are the necessary core packages and the drivers for some wifi cards and sound cards.
+The following packages that will be installed are the necessary core packages and the drivers for the install as well as some drivers for wifi cards and sound cards.
 
 Run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence man-db man-pages nano sof-firmware` to install the packages.
 
 
-## 7. Generating the fstab and chrooting into the install.
-This step is where you will generate the partition UUID as without doing so will result in a system that wont know what it's doing.
+## 7. Generating the fstab file and chrooting into the install.
+This step is where you will generate the drives partition UUID as without doing so will result in a system that wont know what it's doing.
 
 a. Run `genfstab -U /mnt >> /mnt/etc/fstab` to generate the fstab file.<br>
-b. Run `arch-chroot /mnt` to gain access to your install.
+b. Run `arch-chroot /mnt` to gain access to your install.<br>
+Congratulations, you are now in your Arch Linux install. Now you will complete the next few steps on your computer.
 
 
 ## 8. Localisation and Timezone.
-This step is to tell Arch Linux where you are from so that the locale and timmezone will be set accordingly. It will also set the system clock.
+This step is necessary so that your Arch Linux install knows where you are from so that the locale and timmezones will be set accordingly. It will also set the system clock for time syncronisation.
 
-WARNING: Anything and everything in this part is important. If you mess up when entering these commands your install is dead.
+WARNING: Anything and everything listed in this part is important and messing up when entering any of these commands will result in a dead install.
 
 a. Run `nano /etc/locale.gen` and scroll down to your locale and uncomment it. If you don't know your locale then uncomment `en_US.UTF-8 UTF-8`.<br>
-b. Once your locale has been uncommented, run `locale-gen` to generate the locale files.<br>
-c. Even though you've already assigned the locale, you still need to echo the locale for older programs to function properly. To do this run `echo "LANG=[the locale you selected].UTF-8" >> /etc/locale.conf` to set the legacy locale.<br>
+b. Once your locale has been uncommented, save and exit nano and run `locale-gen` to generate the locale files for your install.<br>
+c. Even though you've already assigned the locale, you still need to echo the locale to a specific file necessary for older programs to function properly. To do this run `echo "LANG=[the locale you selected].UTF-8" >> /etc/locale.conf` to set the legacy locale for your install.<br>
 d. This step is important and should be done either way. Run `export LANG=[the locale you selected].UTF-8`.<br>
-e. Skip this step if you have a qwerty us keyboard layout. If you have a keyboard other than us run `echo "KEYMAP=[your keyboard layout]" >> /etc/vconsole.conf`.<br>
-f. To set the timezone, run `ls /usr/share/zoneinfo` to list the unix timezones.<br>
-g. Once you have found your timezone, run `ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timezone Here] /etc/localtime` to add a symbolic link for your timezone.<br>
-h. To link the software clock to the hardware clock, run `hwclock --systohc` to set the hardware clock.
+e. Skip this step if you have a qwerty us keyboard layout. If you have a keyboard other than us qwerty layout, run `echo "KEYMAP=[your keyboard layout]" >> /etc/vconsole.conf` to set the correct keyboard scheme.<br>
+f. To set the timezone, run `ls /usr/share/zoneinfo` to list the unix timezones available on Arch Linux.<br>
+g. Once you have found your timezone, run `ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timezone Here] /etc/localtime` to register a symbolic link for your timezone.<br>
+h. To link the software clock to the hardware clock of your computer, run `hwclock --systohc` to set the hardware clock.
 
 
 ## 9. Configure Pacman/Package Manager.
-This step is where you will configure pacman to be able to download faster and also enable the ability to download 32-bit packages through the Multilib repository.
+This step is where you will configure pacman to be able to download multiple packages at the same time and also enable the ability to download 32-bit packages through the Multilib repository.
 
 a. Run `nano /etc/pacman.conf` to enter the pacman config file.<br>
 b. Uncomment the line that you see below.<br>
@@ -122,17 +123,17 @@ Include = /etc/pacman.d/mirrorlist
 ```
 
 c. In the Misc Options area, add/uncomment the following items. `ParallelDownloads = 5`, `Color` and `ILoveCandy`.<br>
-d. Once saved run `pacman -Sy` to apply the modified config and to download the repo.
+d. Once saved, run `pacman -Sy` to apply the modified changes to the config file and download the new repository.
 
 
 ## 10. Installing more packages and enabling system services.
-This step is where you are going to install some more packages and some miscellaneous drivers for connecting internet as well as enabling some necessary system functions.
+This step is where you are going to install some more packages and some miscellaneous drivers for connecting the internet as well as enabling some necessary system functions.
 
 Note: Skip the fstrim function if you don't have an SSD.
 
 a. Run `pacman -S git networkmanager reflector pacman-contrib bash-completion` to install the listed packages.<br>
-b. To make sure that your CPU has no active exploits on it's firmware, you need to install the microcode. To install your CPU's microcode run `pacman -S [Your CPU Brand]-ucode`.<br>
-c. Enable the following services to start the drivers and system functions.
+b. To make sure that your CPU has no active exploits on it's firmware, you need to install the manufacturer's microcode. To install the microcode for your processor, run `pacman -S [Your CPU Brand]-ucode` to install the microcode.<br>
+c. Once all packages have been installed, enable the following services to start the necessary drivers and system functions.
 ```
 systemctl enable NetworkManager.service
 systemctl enable fstrim.timer
@@ -140,9 +141,9 @@ systemctl enable reflector.timer
 ```
 
 ## 11. Hostname Configuration and User Setup.
-This step is where you will set the computer name and add your user accounts. 
+This step is where you will set the name of the computer name and add your user account(s). 
 
-a. Run `echo "[Insert Computer Name Here]" >> /etc/hostname` to set the computer name.<br>
+a. Run `echo "[Insert Computer Name Here]" >> /etc/hostname` to set the name of the computer.<br>
 b. Run `nano /etc/hosts` and add the following into the file.
 ```
 127.0.0.1        localhost
@@ -150,35 +151,35 @@ b. Run `nano /etc/hosts` and add the following into the file.
 127.0.1.1        [Add same hostname as before.]
 ```
 
-c. To setup the administrator account, run `passwd` to set the root password.<br>
-d. To add a user account, run `useradd -m -G wheel,storage,power -s /bin/bash [Insert Username Here]` to create your user account.<br>
+c. To setup the administrator account/root, run `passwd` to create the account and set the root password.<br>
+d. To add/create a user account, run `useradd -m -G wheel,storage,power -s /bin/bash [Insert Username Here]` to create your user account.<br>
 e. Run `passwd [Insert Username Here]` to set the password for the user account that you just created.<br>
-f. Run `EDITOR=nano visudo` to and edit the following permissions.<br>
+f. Once the user account(s) have been setup, run `EDITOR=nano visudo` to edit the administrative permissions/sudo.<br>
 Uncomment `%wheel ALL=(ALL) ALL` and add `Defaults rootpw` to the bottom of the file.
 
-Note: The `Defaults rootpw` is so that you use the root password instead of your user password for sudo. (makes more like windows)
+Note: The `Defaults rootpw` is so that you use the root password instead of your user password for running sudo commands which makes your install behave more like windows.
 
 
 ## Bootloader.
-Here is a little choose your own adventure bit for this install guide. There are three commonly used boot loaders that people tend to install. Choose the one you prefer and forget about the other one.
+Here is where you will be able to play a little choose your own adventure story for your install. There are three commonly used boot loaders that people tend to install on their systems. Choose the one you prefer and forget about the other ones.
 
 GRand Unified Bootloader / GRUB. (Easy Mode)<br>
-This bootloader is the most common across most distro's and has the most documentation around customisation.<br>
+This bootloader is the most common across most distro's and has the most documentation around customisation and configurations.<br>
 
 rEFInd. (Medium Mode)<br>
-This bootloader was originally designed for dualbooting mac but has been improved to support many more. This is what I would recommend if your trying to dualboot windows for some reason. (I'm not helping with setting up windows dualboot).
+This bootloader was originally designed for dualbooting OSX/mac but has been improved to support many more operating systems. This is what I would recommend if your trying to dualboot windows for some reason. (Still not helping with setting up windows dualboot).
 
 Systemd-Boot. (Hard Mode)<br>
-This bootloader is what I would recommended you as the packages are preinstalled onto your system during install.
+This bootloader is what I would recommended to you as the packages are preinstalled onto your system during install and are only targeted to booting a singular OS.
 
-If you chose to install GRUB then ONLY do 12a.<br>
-If you chose to install rEFInd then ONLY do 12b.<br>
-If you chose to install Systemd-Boot then ONLY do 12c.
+If you choose to install GRUB then ONLY do 12a.<br>
+If you choose to install rEFInd then ONLY do 12b.<br>
+If you choose to install Systemd-Boot then ONLY do 12c.
 
 ### 12a. GRUB. (Linux dual boot/Easy Mode)
-a. Run `pacman -S grub efibootmgr` to install the necessary packages.<br>
-b. Run `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB` to inject and install GRUB to your system.<br>
-c. Run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration files.
+a. Run `pacman -S grub efibootmgr` to install the necessary packages for installing GRUB.<br>
+b. Run `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB` to inject and install GRUB into your system.<br>
+c. Once installed, run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration files for the bootloader.
 
 ### 12b. rEFInd. (Medium Mode)
 a. Run `pacman -S refind` to install the necessary packages.<br>
