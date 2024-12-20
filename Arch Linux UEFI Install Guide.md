@@ -83,9 +83,9 @@ e. Once exited nano, run `rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /et
 ## 6. Download/Installing Essential Packages.
 This step is where you get to actually install your system.
 
-The following packages that will be installed are the necessary core packages and the drivers for the install as well as some drivers for wifi cards and sound cards.
+The following packages that will be installed are the necessary core packages and the drivers for the install as well as some drivers for wifi cards, sound cards, and your CPU manufacturer's microcode.
 
-Run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence man-db man-pages nano sof-firmware` to install the packages.
+To install the core components, run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence man-db man-pages nano sof-firmware` and before you confirm the command either add the `intel-ucode` or `amd-ucode` to the command and install the packages.
 
 
 ## 7. Generating the fstab file and chrooting into the install.
@@ -132,8 +132,7 @@ This step is where you are going to install some more packages and some miscella
 Note: Skip the fstrim function if you don't have an SSD.
 
 a. Run `pacman -S git networkmanager reflector pacman-contrib bash-completion` to install the listed packages.<br>
-b. To make sure that your CPU has no active exploits on it's firmware, you need to install the manufacturer's microcode. To install the microcode for your processor, run `pacman -S [Your CPU Brand]-ucode` to install the microcode.<br>
-c. Once all packages have been installed, enable the following services to start the necessary drivers and system functions.
+b. Once all packages have been installed, enable the following services to start the necessary drivers and system functions.
 ```
 systemctl enable NetworkManager.service
 systemctl enable fstrim.timer
@@ -178,71 +177,70 @@ If you choose to install Systemd-Boot then ONLY do 12c.
 
 ### 12a. GRUB. (Linux dual boot/Easy Mode)
 a. Run `pacman -S grub efibootmgr` to install the necessary packages for installing GRUB.<br>
-b. Run `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB` to inject and install GRUB into your system.<br>
-c. Once installed, run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration files for the bootloader.
+b. Once the packages are downloaded, run `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB` to inject and install GRUB into your system.<br>
+c. Once the bootloader is installed, run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration files for the bootloader.
 
 ### 12b. rEFInd. (Medium Mode)
-a. Run `pacman -S refind` to install the necessary packages.<br>
-b. Run `refind-install` to inject and install rEFInd to your system.<br>
-c. Run `nano /boot/refind_linux.conf` and modify the "Boot with standard options" line so that it has `initrd=[Your CPU Brand]-ucode.img` at the end.
+a. Run `pacman -S refind` to install the necessary packages for installing rEFInd.<br>
+b. Once the packages are downloaded, run `refind-install` to inject and install rEFInd to your system.<br>
+c. Once the bootloader is installed, run `nano /boot/refind_linux.conf` and modify the "Boot with standard options" line so that it has `initrd=[Your CPU Brand]-ucode.img` at the end. (This will need fixing in the future)
 
 ### 12c. Systemd-Boot. (Requires manual entries/Hard Mode)
-a. Run `ls /sys/firmware/efi/efivars` to verify if the efi firmware is mounted and installed.<br>
-b. Run `bootctl install` to inject and install Systemd-Boot to your system.<br
-c. Run `nano /boot/loader/entries/arch.conf` and add the following lines.
+a. You will not need to download any packages when installing SystemD-Boot but you will need to verify the presence of the efi firmware on your system, to do this run `ls /sys/firmware/efi/efivars` to verify if the system efi firmware is mounted and installed.<br>
+b. Once confirmed the presence of efi firmware, run `bootctl install` to inject and install Systemd-Boot to your system.<br
+c. Once the bootloader is installed, run `nano /boot/loader/entries/arch.conf` and add the following lines.
 ```
 title Arch Linux
-linux /vmlinuz-linux (change this depending on what kernel you have).
+linux /vmlinuz-linux (change this depending on what kernel you have. for example, linux-lts for the lts kernel or linux-zen for the zen kernel).
 initrd /initramfs-linux.img
-initrd /[Your CPU Brand]-ucode.img
 ```
 
-e. Once added everything into the file, run `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf` to add the partition UUID for the root partition. This is important as it tells Arch Linux to only boot to that drive. (Credit to Glorious Eggroll for this command.)
+d. Once added everything into the file, run `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf` to add the partition UUID for the root partition. This is important as it tells Arch Linux to only boot to that drive. (Credit to Glorious Eggroll for this command.)
 
 
 ## 13. Graphics Drivers
 This step is what I like to call "NIGHTMARE MODE" as you will be installing your GPU drivers. The drivers have been sorted based on what manufacturer your card is from. So select the one that matches your card.
 
-Note: There are two NVIDIA drivers so PLEASE be careful when installing your GPU driver. 
+Note: There are two NVIDIA drivers, the proprietary driver is for gtx700 series to rtx3000 series and the open modules are for rtx2000 series and newer. So PLEASE be careful when installing your GPU driver for NVIDIA. 
 
 | Manufacturer | Instructions |
 | ------------ | ------------ |
-| AMD | Run `pacman -S xf86-video-amdgpu libva-mesa-driver mesa rocm-opencl-runtime vulkan-radeon lib32-libva-mesa-driver lib32-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for AMD cards. |
-| INTEL | Run `pacman -S xf86-video-intel mesa intel-compute-runtime intel-media-driver vulkan-intel lib32-mesa lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for INTEL cards. |
-| NVIDIA (PROPRIETARY) | Run `pacman -S nvidia-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for MAXWELL series cards or newer. |
-| NVIDIA (Open GPU Kernel Modules) | Run `pacman -S nvidia-open-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers for TURING series cards or newer. |
+| AMD | For AMDGPU drivers, run `pacman -S xf86-video-amdgpu mesa opencl-rusticl-mesa vulkan-radeon lib32-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
+| INTEL | For INTEL ARC drivers, run `pacman -S xf86-video-intel mesa intel-compute-runtime intel-media-driver vulkan-intel lib32-mesa lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
+| NVIDIA (PROPRIETARY) | For MAXWELL to ADA LOVELACE cards, run `pacman -S nvidia-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
+| NVIDIA (Open GPU Kernel Modules) | For all newer cards from TURING onwards, run `pacman -S nvidia-open-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
 
 
 ## Configure Drivers for KMS/Wayland Support.
 This step should only be done with the version that matches your card.
 
-If you have installed the NVIDIA drivers then ONLY do 14a.<br>
-If you have installed the AMDGPU drivers then ONLY do 14b.<br>
-If you have installed the INTEL drivers then ONLY do 14c.
+If you have installed the NVIDIA drivers then ONLY do step 14a.<br>
+If you have installed the AMDGPU drivers then ONLY do step 14b.<br>
+If you have installed the INTEL ARC drivers then ONLY do step 14c.
 
-WARNING: If for whatever reason you mess up on this step your system is dead!
+WARNING: If for whatever reason you mess up on these steps your system is dead!
 
 ### 14a. NVIDIA
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... nvidia nvidia_modeset nvidia_uvm nvidia_drm ...)`<br>
-b. Once those modules have been added, run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
+b. Once those modules have been added, save the file and run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
 c. This step will vary depending on your bootloader so make sure you select the correct one.
 
 | Bootloader | Instructions |
 | ---------- | ------------ |
-| GRUB | 1. Run `nano /etc/default/grub` and modify the `GRUB_CMDLINE_LINUX_DEFAULT=` line to look like this. `GRUB_CMDLINE_LINUX_DEFAULT=... nvidia-drm.modeset=1`.<br>2.Once added, run `grub-mkconfig -o /boot/grub/grub.conf` to regenerate the grub configuration files. |
+| GRUB | 1. Run `nano /etc/default/grub` and modify the `GRUB_CMDLINE_LINUX_DEFAULT=` line to look like this. `GRUB_CMDLINE_LINUX_DEFAULT=... nvidia-drm.modeset=1`.<br>2.Once added, save the file and run `grub-mkconfig -o /boot/grub/grub.conf` to regenerate the grub configuration files. |
 | rEFInd | Run `nano /boot/refind_linux.conf` and at the end of the "Boot with standard options" line add `nvidia-drm.modeset=1`. |
 | Systemd-Boot | Run `nano /boot/loader/entries/arch.conf` and at the end of the options line add `nvidia-drm.modeset=1`. |
 
 ### 14b. AMDGPU
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... amdgpu ...)`<br>
-b. Once this module has been added, run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
+b. Once this module has been added, save the file and run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
 
 ### 14c. INTEL
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... i915 ...)`<br>
-b. Once this module has been added, run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
+b. Once this module has been added, save the file and run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
 
 
 ## 15. Unmount drives and Reboot system.
