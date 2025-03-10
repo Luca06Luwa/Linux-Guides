@@ -17,7 +17,7 @@ b. Run `timedatectl` to ensure the date and time is accurate to your current tim
 
 
 ## 2. Networking
-If you are giong to be using ethernet instead of WI-FI, then you can skip part 1.
+If you are going to be using ethernet instead of WI-FI, then you can skip part 1.
 
 ### Part One (Wi-Fi Setup).
 a. Run `ip link` to identify what network cards are available on your desktop.<br>
@@ -96,22 +96,34 @@ b. Run `arch-chroot /mnt` to gain access to your install.<br>
 Congratulations, you are now in your Arch Linux install. Now you will complete the next few steps on your computer.
 
 
-## 8. Localisation and Timezone.
+## 8. Localisation.
 This step is necessary so that your Arch Linux install knows where you are from so that the locale and timmezones will be set accordingly. It will also set the system clock for time syncronisation.
 
 WARNING: Anything and everything listed in this part is important and messing up when entering any of these commands will result in a dead install.
 
-a. Run `nano /etc/locale.gen` and scroll down to your locale and uncomment it. If you don't know your locale then uncomment `en_US.UTF-8 UTF-8`.<br>
+a. Run `nano /etc/locale.gen` and scroll down to your country's locale and uncomment it.<br>NOTE: If you don't know your locale then uncomment `en_US.UTF-8 UTF-8`.<br>Should look something like this.
+```
+#en_SG.UTF-8 UTF-8
+#en_SG ISO-8859-1
+en_US.UTF-8 UTF-8
+#en_ZA.UTF-8 UTF-8
+#en_Za ISO-8859-1
+```
 b. Once your locale has been uncommented, save and exit nano and run `locale-gen` to generate the locale files for your install.<br>
-c. Even though you've already assigned the locale, you still need to echo the locale to a specific file necessary for older programs to function properly. To do this run `echo "LANG=[the locale you selected].UTF-8" >> /etc/locale.conf` to set the legacy locale for your install.<br>
+c. Even though you've already assigned the locale with locale.gen, you will still need to echo the locale to a specific file necessary for older programs to function correctly. To do this run `echo "LANG=[the locale you selected].UTF-8" >> /etc/locale.conf` to set the legacy locale for your install.<br>
 d. This step is important and should be done either way. Run `export LANG=[the locale you selected].UTF-8`.<br>
-e. Skip this step if you have a qwerty us keyboard layout. If you have a keyboard other than us qwerty layout, run `echo "KEYMAP=[your keyboard layout]" >> /etc/vconsole.conf` to set the correct keyboard scheme.<br>
-f. To set the timezone, run `ls /usr/share/zoneinfo` to list the unix timezones available on Arch Linux.<br>
-g. Once you have found your timezone, run `ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timezone Here] /etc/localtime` to register a symbolic link for your timezone.<br>
-h. To link the software clock to the hardware clock of your computer, run `hwclock --systohc` to set the hardware clock.
+e. You can skip this step if you have a qwerty us keyboard. If you have a keyboard other than the us qwerty layout, run `echo "KEYMAP=[your keyboard layout]" >> /etc/vconsole.conf` to set the correct keyboard scheme for your keyboard.
 
 
-## 9. Configure Pacman/Package Manager.
+## 9. Timezones
+This step is to set the arch linux timezone correct to the one that you are in.
+
+a. To set the timezone, run `ls /usr/share/zoneinfo` to list the unix timezones available on Arch Linux.<br>
+b. Once you have found your timezone, run `ln -sf /usr/share/zoneinfo/[Your Country Here]/[Your Timezone Here] /etc/localtime` to register a symbolic link for your timezone.<br>
+c. To link the software clock to the hardware clock of your computer, run `hwclock --systohc` to set the hardware clock.
+
+
+## 10. Configure Pacman/Package Manager.
 This step is where you will configure pacman to be able to download multiple packages at the same time and also enable the ability to download 32-bit packages through the Multilib repository.
 
 a. Run `nano /etc/pacman.conf` to enter the pacman config file.<br>
@@ -126,7 +138,7 @@ c. In the Misc Options area, add/uncomment the following items. `ParallelDownloa
 d. Once saved, run `pacman -Sy` to apply the modified changes to the config file and download the new repository.
 
 
-## 10. Installing more packages and enabling system services.
+## 11. Installing more packages and enabling system services.
 This step is where you are going to install some more packages and some miscellaneous drivers for connecting the internet as well as enabling some necessary system functions.
 
 Note: Skip the fstrim function if you don't have an SSD.
@@ -139,7 +151,7 @@ systemctl enable fstrim.timer
 systemctl enable reflector.timer
 ```
 
-## 11. Hostname Configuration and User Setup.
+## 12. Hostname Configuration and User Setup.
 This step is where you will set the name of the computer name and add your user account(s). 
 
 a. Run `echo "[Insert Computer Name Here]" >> /etc/hostname` to set the name of the computer.<br>
@@ -171,23 +183,23 @@ This bootloader was originally designed for dualbooting OSX/mac but has been imp
 Systemd-Boot. (Hard Mode)<br>
 This bootloader is what I would recommended to you as the packages are preinstalled onto your system during install and are only targeted to booting a singular OS.
 
-If you choose to install GRUB then ONLY do 12a.<br>
-If you choose to install rEFInd then ONLY do 12b.<br>
-If you choose to install Systemd-Boot then ONLY do 12c.
+If you choose to install GRUB then ONLY do 13a.<br>
+If you choose to install rEFInd then ONLY do 13b.<br>
+If you choose to install Systemd-Boot then ONLY do 13c.
 
-### 12a. GRUB. (Linux dual boot/Easy Mode)
+### 13a. GRUB. (Linux dual boot/Easy Mode)
 a. Run `pacman -S grub efibootmgr` to install the necessary packages for installing GRUB.<br>
 b. Once the packages are downloaded, run `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB` to inject and install GRUB into your system.<br>
 c. Once the bootloader is installed, run `grub-mkconfig -o /boot/grub/grub.cfg` to generate the configuration files for the bootloader.
 
-### 12b. rEFInd. (Medium Mode)
+### 13b. rEFInd. (Medium Mode)
 a. Run `pacman -S refind` to install the necessary packages for installing rEFInd.<br>
 b. Once the packages are downloaded, run `refind-install` to inject and install rEFInd to your system.<br>
 c. Once the bootloader is installed, run `nano /boot/refind_linux.conf` and modify the "Boot with standard options" line so that it has `initrd=[Your CPU Brand]-ucode.img` at the end. (This will need fixing in the future)
 
-### 12c. Systemd-Boot. (Requires manual entries/Hard Mode)
+### 13c. Systemd-Boot. (Requires manual entries/Hard Mode)
 a. You will not need to download any packages when installing SystemD-Boot but you will need to verify the presence of the efi firmware on your system, to do this run `ls /sys/firmware/efi/efivars` to verify if the system efi firmware is mounted and installed.<br>
-b. Once confirmed the presence of efi firmware, run `bootctl install` to inject and install Systemd-Boot to your system.<br
+b. Once confirmed the presence of efi firmware, run `bootctl install` to inject and install Systemd-Boot to your system.<br>
 c. Once the bootloader is installed, run `nano /boot/loader/entries/arch.conf` and add the following lines.
 ```
 title Arch Linux
@@ -198,7 +210,7 @@ initrd /initramfs-linux.img
 d. Once added everything into the file, run `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf` to add the partition UUID for the root partition. This is important as it tells Arch Linux to only boot to that drive. (Credit to Glorious Eggroll for this command.)
 
 
-## 13. Graphics Drivers
+## 14. Graphics Drivers
 This step is what I like to call "NIGHTMARE MODE" as you will be installing your GPU drivers. The drivers have been sorted based on what manufacturer your card is from. So select the one that matches your card.
 
 Note: There are two NVIDIA drivers, the proprietary driver is for gtx700 series to rtx3000 series and the open modules are for rtx2000 series and newer. So PLEASE be careful when installing your GPU driver for NVIDIA. 
@@ -220,7 +232,7 @@ If you have installed the INTEL ARC drivers then ONLY do step 14c.
 
 WARNING: If for whatever reason you mess up on these steps your system is dead!
 
-### 14a. NVIDIA
+### 15a. NVIDIA
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... nvidia nvidia_modeset nvidia_uvm nvidia_drm ...)`<br>
 b. Once those modules have been added, save the file and run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
@@ -232,25 +244,25 @@ c. This step will vary depending on your bootloader so make sure you select the 
 | rEFInd | Run `nano /boot/refind_linux.conf` and at the end of the "Boot with standard options" line add `nvidia-drm.modeset=1`. |
 | Systemd-Boot | Run `nano /boot/loader/entries/arch.conf` and at the end of the options line add `nvidia-drm.modeset=1`. |
 
-### 14b. AMDGPU
+### 15b. AMDGPU
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... amdgpu ...)`<br>
 b. Once this module has been added, save the file and run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
 
-### 14c. INTEL
+### 15c. INTEL
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... i915 ...)`<br>
 b. Once this module has been added, save the file and run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
 
 
-## 15. Unmount drives and Reboot system.
+## 16. Unmount drives and Reboot system.
 a. Type `exit` to return back to the install drive.<br>
 b. Type `umount -r /mnt` to safely unount the partitions.<br>
 c. `reboot`<br>
 Congratulations. You have sucessfully installed the base version of Arch Linux. However you're not done just yet.
 
 
-## 16. General First Install Checks.
+## 17. General First Install Checks.
 This step is just a general after installation check to make sure that nothing went wrong with the install. It also contains configuration for regenerating mirrorlists automatically.
 
 Note: Now that you're actually using your system now, you will need to use sudo to perform root privilages.
@@ -269,7 +281,7 @@ c. Run `sudo nano /etc/xdg/reflector/reflector.conf` and make sure the file is c
 d. Run `sudo pacman -Sy` to resync and update the servers.
 
 
-## 17. Enabling AUR support and flatpak.
+## 18. Enabling AUR support and flatpak.
 This step is necessary if you want to use the best part of Arch linux. The Arch User Repository. This will also install flatpak.
 
 Traditionally, if you want to install packages from the AUR, you would need to compile them from source but with an AUR Helper it builds and installs everything for you.
@@ -282,7 +294,7 @@ e. Run `sudo pacman -S flatpak` to install the flatpak repo and installer.<br>
 f. `reboot` system to complete the install of flatpak.
 
 
-## 18. Graphical Environment.
+## 19. Graphical Environment.
 This step is probably the most confusing to new users. (It was also the most difficult part of the rewrite).
 
 Currently, there are two well known video drivers for linux. Wayland and Xorg (legacy). This guide is mainly focused on Xorg, however, if you want to use Wayland then it's already enabled and ready to go.
@@ -329,7 +341,7 @@ The two versions is just what style you want. If you want a style that looks lik
 | Webkit2 | Run `sudo pacman -S lightdm-webkit2-greeter` to install the webkit2 greeter. |
 
 
-## 19. Zsh Setup and Configuration.
+## 20. Zsh Setup and Configuration.
 This step is if you want a different terminal shell from the default bash setup.
 
 Note: NEVER USE A ZSH PLUGIN MANAGER AS IT IS JUST BLOATWARE!!!!
@@ -341,7 +353,7 @@ c. Now that Zsh is configured, run `chsh -s /usr/bin/zsh` to set Zsh as your def
 Tip: You might want to move some code from the `.bashrc` file to the `.zshrc` file (e.g. the prompt and the aliases). It's also recommended to move code from the `.bash_profile` file to the `.zprofile` file (e.g. the code that makes your window manager work).
 
 
-## 20. Audio Drivers.
+## 21. Audio Drivers.
 This step is necessary if you want to have a working audio setup. 
 
 Note: One of the packages, `pipewire` to be exact, is a requirement for wayland since by itself wayland does NOT allow screen capture for programs.
@@ -349,13 +361,13 @@ Note: One of the packages, `pipewire` to be exact, is a requirement for wayland 
 Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-audio pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack qpwgraph wireplumber` to install all the packages needed for a working audio setup.
 
 
-## 21. Gstreamer Full Support. (Optional)
+## 22. Gstreamer Full Support. (Optional)
 This step only applies to users who want Desktop Environments that don't utilise VLC. Window Managers and KDE with VLC backend can go without this though.
 
 Run `sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi` and `paru -S gst-plugin-libde265 gst-plugins-openh264` to install the base package and other codec's.
 
 
-## 22. Reboot and login.
+## 23. Reboot and login.
 Run `reboot`, then login to your user account and then you should see the Desktop you installed.<br>
 Congratulations You have sucessfully installed Arch Linux.
 
