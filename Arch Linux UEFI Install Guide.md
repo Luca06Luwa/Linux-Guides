@@ -318,6 +318,7 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | Wayland Desktop Environments | Instructions |
 | ---------------------------- | ------------ |
 | Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal-gnome` to install the packages for a working install of Gnome. |
+| Hyprland | Visit the [Hyprland wiki](https://wiki.hyprland.org/) to have a properly working install. |
 | KDE Plasma | Run `sudo pacman -S plasma kde-applications qt5-wayland xdg-desktop-portal-kde` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
 | Sway | Note: If you have an i3 install, this will be a drop in replacement as sway uses the i3 config files.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
 
@@ -329,6 +330,7 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | LightDM (X11 Only) | Run `sudo pacman -S lightdm` to install the base version of lightDM and run `sudo systemctl enable lightdm.service`  to enable the Display Manager upon reboot.<br>Since LightDM does not include a environment to run on you wil have to install one of the greeters listed below. |
 | StartX (X11 Only) | Since StartX is kind of difficult to setup i will simply like to the [Arch Wiki](https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login) for instructions. |
 | wlroots on TTY | Since most wayland compositors are based on wlroots, they do not allow launching with a Display Manager. So, I will simply link to the [Arch Wiki](https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login) for instructions on how to setup TTY login. |
+| uwsm | Follow the [Arch Wiki](https://wiki.archlinux.org/title/Universal_Wayland_Session_Manager) |
 
 ### (Only for LightDM) Part 4. Choose the greeter you want to use for LightDM.
 If your using any other display manager then you can skip this step.
