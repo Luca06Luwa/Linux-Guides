@@ -236,13 +236,6 @@ WARNING: If for whatever reason you mess up on these steps your system is dead!
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
 `MODULES(... nvidia nvidia_modeset nvidia_uvm nvidia_drm ...)`<br>
 b. Once those modules have been added, save the file and run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
-c. This step will vary depending on your bootloader so make sure you select the correct one.
-
-| Bootloader | Instructions |
-| ---------- | ------------ |
-| GRUB | 1. Run `nano /etc/default/grub` and modify the `GRUB_CMDLINE_LINUX_DEFAULT=` line to look like this. `GRUB_CMDLINE_LINUX_DEFAULT=... nvidia-drm.modeset=1`.<br>2.Once added, save the file and run `grub-mkconfig -o /boot/grub/grub.conf` to regenerate the grub configuration files. |
-| rEFInd | Run `nano /boot/refind_linux.conf` and at the end of the "Boot with standard options" line add `nvidia-drm.modeset=1`. |
-| Systemd-Boot | Run `nano /boot/loader/entries/arch.conf` and at the end of the options line add `nvidia-drm.modeset=1`. |
 
 ### 15b. AMDGPU
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
@@ -309,10 +302,9 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 ### Part 2. Selecting your Desktop Environment and or Window Manager.
 | Xorg Desktop Environment | Instructions |
 | ------------------------ | ------------ |
-| AwesomeWM | Run `sudo pacman -S awesome alacritty pcmanfm-qt` to install the packages for a working install of AwesomWM. |
-| DWM | Note: You are responsible for ensuring that dwm is up to date after every stable release as pacman will not help you here.<br>1. Run `sudo pacman -S libx11 libxft libxinerama dmenu alacritty pcmanfm-qt` to install the dependencies.<br>2. Run `git clone https://git.suckless.org/dwm`to download the source files.<br>3. Run `sudo make clean install` to install dwm base.<br>4. Edit the `config.h` file to your liking and ensure the required dependencies are assigned.<br>5. Rebuild the package. |
+| AwesomeWM | Run `sudo pacman -S awesome alacritty pcmanfm-qt` to install the packages for a working install of AwesomeWM. |
+| DWM | Go to [DWM Install Guide](https://github.com/Luca06Luwa/Linux-Guides/blob/WIP-md-version/DWM%20Install%20Guide.md) for installing dwm. |
 | i3 | Run `sudo pacman -S i3 alacritty pcmanfm-qt dmenu` to install the packages for a working install of i3. |
-| LXQt | Run `sudo pacman -S lxqt breeze-icons network-manager-applet leafpad` to install the packages for a working install of LXQt. |
 | Xfce | Run `sudo pacman -S xfce xfce-goodies network-manager-applet` to install the packages for a working install of Xfce. |
 
 | Wayland Desktop Environments | Instructions |
@@ -325,12 +317,12 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 ### Part 3. Installing and enabling a display manager.
 | Display Manager | Instructions |
 | --------------- | ------------ |
-| GDM | Note: Since GDM is included with Gnome you don't need to install anything.<br>To enable the Display Manager upon reboot run `sudo systemctl enable gdm.service`. |
-| SDDM | Run `sudo pacman -S sddm` to install SDDM and then run `sudo systemctl enable sddm.service` to enable the Display Manager upon reboot. |
+| GDM (Gnome Only) | Note: Since GDM is included with Gnome you don't need to install anything.<br>To enable the Display Manager upon reboot run `sudo systemctl enable gdm.service`. |
+| SDDM (X11 & Wayland (except sway)) | Run `sudo pacman -S sddm` to install SDDM and then run `sudo systemctl enable sddm.service` to enable the Display Manager upon reboot. |
 | LightDM (X11 Only) | Run `sudo pacman -S lightdm` to install the base version of lightDM and run `sudo systemctl enable lightdm.service`  to enable the Display Manager upon reboot.<br>Since LightDM does not include a environment to run on you wil have to install one of the greeters listed below. |
-| StartX (X11 Only) | Since StartX is kind of difficult to setup i will simply like to the [Arch Wiki](https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login) for instructions. |
-| wlroots on TTY | Since most wayland compositors are based on wlroots, they do not allow launching with a Display Manager. So, I will simply link to the [Arch Wiki](https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login) for instructions on how to setup TTY login. |
-| uwsm | Follow the [Arch Wiki](https://wiki.archlinux.org/title/Universal_Wayland_Session_Manager) |
+| StartX (X11 Only) | Since StartX is kind of difficult to setup, I will simply link you to the [Arch Wiki](https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login) for instructions. |
+| wlroots on TTY (Wayland Only) | Since most wayland compositors are based on wlroots, they do not allow launching with a Display Manager. So, I will simply link to the [Arch Wiki](https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login) for instructions on how to setup TTY login. |
+| uwsm (Wayland Only) | 1. Run `sudo pacman -S uwsm` to install uwsm<br>2. Follow the [Arch Wiki](https://wiki.archlinux.org/title/Universal_Wayland_Session_Manager) |
 
 ### (Only for LightDM) Part 4. Choose the greeter you want to use for LightDM.
 If your using any other display manager then you can skip this step.
@@ -363,8 +355,8 @@ Note: One of the packages, `pipewire` to be exact, is a requirement for wayland 
 Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-audio pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack qpwgraph wireplumber` to install all the packages needed for a working audio setup.
 
 
-## 22. Gstreamer Full Support. (Optional)
-This step only applies to users who want Desktop Environments that don't utilise VLC. Window Managers and KDE with VLC backend can go without this though.
+## 22. Gstreamer Full Support. (Everything except KDE and Window Managers)
+This step only applies to users who want Desktop Environments/Window managers that don't want to utilise VLC for audio backend. Window Managers and KDE installs with VLC as a backend can go without this though.
 
 Run `sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi` and `paru -S gst-plugin-libde265 gst-plugins-openh264` to install the base package and other codec's.
 
@@ -427,12 +419,11 @@ This list has been seperated into multiple sections based on what the package re
 | rpcs3 (Upstream) | `paru -S rpcs3-git` |
 | DuckStation (Upstream) | `flatpak install duckstation` |
 | melonDS (Upstream) | `flatpak install melonds` |
-| Ryujinx (Upstream) | `flatpak install ryujinx` |
 | CEMU (Upstream) | `flatpak install cemu` |
 | mGBA (Arch Package) | `sudo pacman -S mgba-qt` |
 | Snes9x (Arch Package) | `sudo pacman -S snes9x-gtk` |
 | Lime3DS (Upstream) | `flatpak install lime3ds` |
-| ñ (PabloMK7 Fork) | Figure it out yourself |
+| ñ (PabloMK7 Fork) | `paru -S citra` |
 
 | Internet | Commands |
 | -------- | -------- |
