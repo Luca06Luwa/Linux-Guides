@@ -249,18 +249,20 @@ b. Once this module has been added, save the file and run `mkinitcpio -P` to reg
 
 
 ## 16. Unmount drives and Reboot system.
-a. Type `exit` to return back to the install drive.<br>
-b. Type `umount -r /mnt` to safely unount the partitions.<br>
+a. Once you have finished setting up drivers, run the `exit` command to return back to the install drive.<br>
+b. Once you're back in the install drive, run `umount -r /mnt` to safely unount the install partitions from the install drive.<br>
 c. `reboot`<br>
-Congratulations. You have sucessfully installed the base version of Arch Linux. However you're not done just yet.
+Congratulations. You have sucessfully installed the base version of Arch Linux.
+
+However you're not done just yet. You still need to install a desktop and setup audio drivers.
 
 
 ## 17. General First Install Checks.
-This step is just a general after installation check to make sure that nothing went wrong with the install. It also contains configuration for regenerating mirrorlists automatically.
+This step is just a general after installation check to ensure that nothing went wrong with the install. This step also contains configuration guides for regenerating mirrorlists automatically.
 
-Note: Now that you're actually using your system now, you will need to use sudo to perform root privilages.
+Important: Now that you're actually using your Arch Linux install now, you will need to use the sudo command in order to perform root/administrator privilages.
 
-a. Once booted up and logged in, run `systemctl --failed` to verify a sucessful bootup.<br>
+a. Once rebooted and logged in, run `systemctl --failed` to verify that a sucessful boot had occured.<br>
 b. Run `sudo reflector --country [Your Country Here] --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist` to set refector to generate the mirrorlist based on the settings given.<br>
 c. Run `sudo nano /etc/xdg/reflector/reflector.conf` and make sure the file is configured to your liking. An example has been provided below:
 ```
@@ -275,46 +277,58 @@ d. Run `sudo pacman -Sy` to resync and update the servers.
 
 
 ## 18. Enabling AUR support and flatpak.
-This step is necessary if you want to use the best part of Arch linux. The Arch User Repository. This will also install flatpak.
+This step enables the ability to use the best part of Arch linux. The Arch User Repository (AUR). This will also install flatpak for official universal packages (this is simialr to what windows does).
 
-Traditionally, if you want to install packages from the AUR, you would need to compile them from source but with an AUR Helper it builds and installs everything for you.
+Traditionally, packages from the AUR have to be downloaded and compiled onto your system from source code, but with a program called an AUR Helper, it builds and installs everything for you.
 
-a. Run `git clone https://aur.archlinux.org/paru.git` to download the required files to compile Paru.<br>
-b. Run `cd paru` to go into the folder.<br>
-c. Run `makepkg -si` to install Paru.<br>
-d. Once Paru is installed run `paru -Syyu` to update all packages installed on your computer.<br>
-e. Run `sudo pacman -S flatpak` to install the flatpak repo and installer.<br>
-f. `reboot` system to complete the install of flatpak.
+a. To install an AUR helper, run `git clone https://aur.archlinux.org/paru-bin.git` to download the required files to compile Paru (the AUR helper).<br>
+b. Once downloaded, `cd paru-bin` to go into the newly downloaded folder.<br>
+c. Once you are in the `paru` folder, run `makepkg -si` to install Paru.<br>
+d. Once Paru is installed you update all packages installed on your computer through it as it also acts as a pacman replacement.<br>
+e. Now that Paru is installed, you can now install flatpak by running `sudo pacman -S flatpak` to install the main flatpak app and repository.<br>
+f. Normally, once flatpak is installed you would run `reboot` to complete the installation of flatpak. But we'll do that later.
 
 
-## 19. Graphical Environment.
-This step is probably the most confusing to new users. (It was also the most difficult part of the rewrite).
+## 19. Audio Drivers.
+This step is required if you want to have a working audio and video sharing setup. 
 
-Currently, there are two well known video drivers for linux. Wayland and Xorg (legacy). This guide is mainly focused on Xorg, however, if you want to use Wayland then it's already enabled and ready to go.
+Note: One of the packages, `pipewire` to be exact, is a requirement for Wayland since by itself Wayland does NOT allow screen capture for programs.
 
-If you do not want to use Xorg at all and want to have a pure Wayland configuration, then skip part 1 and just select a Wayland based desktop environment.
+To install audio drivers, run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-audio pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack qpwgraph wireplumber` to install all the packages needed for a working audio setup.
 
-Note: Most wayland compositors may not work with Nvidia, so if you have Nvidia use Xorg.
+
+## 20. Graphical Environment.
+This step is probably the most confusing to new users. (It is also the most difficult part for me to mantain as stuff changes every few months).
+
+Currently, there are two well known video drivers that a linux system can have installed, both of them being Wayland and Xorg (legacy). This guide is mainly focused on Xorg as most apps still use it (like most games), however if you want to use Wayland instead of Xorg then it's already been set up and enabled.
+
+If you do not want to use Xorg at all and want to have a pure Wayland configuration, then you can skip part 1 of this step and just install a Wayland based desktop environment.
+
+Note: Most Wayland compositors may not work with Nvidia GPU's, so if you have Nvidia GPU use Xorg.
 
 ### Part 1. Installing Xorg.
-Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
+To install Xorg and all it's necessary packages, run `sudo pacman -S xorg xorg-xinit` to install Xorg.
 
 ### Part 2. Selecting your Desktop Environment and or Window Manager.
+Note: Most desktops are now based on Wayland and have Xorg as fallback.
+
 | Xorg Desktop Environment | Instructions |
 | ------------------------ | ------------ |
 | AwesomeWM | Run `sudo pacman -S awesome alacritty pcmanfm-qt` to install the packages for a working install of AwesomeWM. |
-| DWM | Go to [DWM Install Guide](https://github.com/Luca06Luwa/Linux-Guides/blob/WIP-md-version/DWM%20Install%20Guide.md) for installing dwm. |
+| DWM | DWM is the most barebones Window manager, as a result of this the instuctions have benn moved. Go to [DWM Install Guide](https://github.com/Luca06Luwa/Linux-Guides/blob/WIP-md-version/DWM%20Install%20Guide.md) if you want to install DWM. |
 | i3 | Run `sudo pacman -S i3 alacritty pcmanfm-qt dmenu` to install the packages for a working install of i3. |
 | Xfce | Run `sudo pacman -S xfce xfce-goodies network-manager-applet` to install the packages for a working install of Xfce. |
 
 | Wayland Desktop Environments | Instructions |
 | ---------------------------- | ------------ |
 | Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal-gnome` to install the packages for a working install of Gnome. |
-| Hyprland | Visit the [Hyprland wiki](https://wiki.hyprland.org/) to have a properly working install. |
+| Hyprland | Because Hyprland has many first party dependencies, visit the [Hyprland wiki](https://wiki.hyprland.org/) to have a properly working install. |
 | KDE Plasma | Run `sudo pacman -S plasma kde-applications qt5-wayland xdg-desktop-portal-kde` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
-| Sway | Note: If you have an i3 install, this will be a drop in replacement as sway uses the i3 config files.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
+| Sway | Note: If you have an existing i3 installation, this will be a drop in replacement as sway uses the same i3 config files.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
 
 ### Part 3. Installing and enabling a display manager.
+Most display managers are designed to work with the desktop that they are typically packaged with. The only display managers that work universally are StartX, LightDM, wlroots on TTY, and uwsm. 
+
 | Display Manager | Instructions |
 | --------------- | ------------ |
 | GDM (Gnome Only) | Note: Since GDM is included with Gnome you don't need to install anything.<br>To enable the Display Manager upon reboot run `sudo systemctl enable gdm.service`. |
@@ -325,9 +339,9 @@ Run `sudo pacman -S xorg xorg-xinit` to install the xorg video drivers.
 | uwsm (Wayland Only) | 1. Run `sudo pacman -S uwsm` to install uwsm<br>2. Follow the [Arch Wiki](https://wiki.archlinux.org/title/Universal_Wayland_Session_Manager) |
 
 ### (Only for LightDM) Part 4. Choose the greeter you want to use for LightDM.
-If your using any other display manager then you can skip this step.
+If you have installed any other display manager other than LightDM, then you can skip this step.
 
-The two versions is just what style you want. If you want a style that looks like Gnome then select the GTK version. If you want a style thats easy to configure and looks great then use the Webkit2 version.
+By itself, LightDM does not come with any user interfaces. There are two versions that are listed here, one uses GTK as a customiser which is good if you have installed Xfce and the other uses Webkit2 as a customiser. If you want a style that looks like Gnome/Xfce, then install the GTK version. If you want a style that's easy to configure and looks great, then install the Webkit2 version.
 
 | Greeter | Instructions |
 | ------- | ------------ |
@@ -335,43 +349,37 @@ The two versions is just what style you want. If you want a style that looks lik
 | Webkit2 | Run `sudo pacman -S lightdm-webkit2-greeter` to install the webkit2 greeter. |
 
 
-## 20. Zsh Setup and Configuration.
-This step is if you want a different terminal shell from the default bash setup.
+## 21. Zsh Setup and Configuration. (Optional)
+This step is if you want to use a different terminal shell from the default bash shell.
 
-Note: NEVER USE A ZSH PLUGIN MANAGER AS IT IS JUST BLOATWARE!!!!
+Note: Zsh is plugin based for most customisations and most of those plugins are easy to install, as a result, most plugin managers such as Oh My Zsh are not needed and are actually considered bloatware.
 
-a. Run `sudo pacman -S zsh zsh-completions` to install Zsh.<br>
-b. Once installed, run `zsh` to begin the initial setup<br>
-c. Now that Zsh is configured, run `chsh -s /usr/bin/zsh` to set Zsh as your default terminal shell.
+a. To install Zsh, run `sudo pacman -S zsh zsh-completions` to install core Zsh and some first party plugins.<br>
+b. Once Zsh is installed, run `zsh` to begin the initial setup.<br>
+c. Now that Zsh is configured to your liking, run `chsh -s /usr/bin/zsh` to set Zsh as your default terminal shell.
 
 Tip: You might want to move some code from the `.bashrc` file to the `.zshrc` file (e.g. the prompt and the aliases). It's also recommended to move code from the `.bash_profile` file to the `.zprofile` file (e.g. the code that makes your window manager work).
 
 
-## 21. Audio Drivers.
-This step is necessary if you want to have a working audio setup. 
-
-Note: One of the packages, `pipewire` to be exact, is a requirement for wayland since by itself wayland does NOT allow screen capture for programs.
-
-Run `sudo pacman -S alsa-ucm-conf alsa-utils alsa-plugins pavucontrol pipewire pipewire-audio pipewire-alsa pipewire-jack pipewire-pulse lib32-pipewire lib32-pipewire-jack qpwgraph wireplumber` to install all the packages needed for a working audio setup.
-
-
 ## 22. Gstreamer Full Support. (Everything except KDE and Window Managers)
-This step only applies to users who want Desktop Environments/Window managers that don't want to utilise VLC for audio backend. Window Managers and KDE installs with VLC as a backend can go without this though.
+This step only applies to users who have installed a Desktop Environment/Window manager and don't want to utilise VLC for audio backend. Users who have installed a Window Manager or have installed KDE with VLC as a backend can skip this step entirely.
 
-Run `sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi` and `paru -S gst-plugin-libde265 gst-plugins-openh264` to install the base package and other codec's.
+To install Gstreamer, run `sudo pacman -S gstreamer lib32-gstreamer gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly gst-plugins-pipewire gstreamer-vaapi` and `paru -S gst-plugin-libde265 gst-plugins-openh264` to install the base package and other audio codec's.
 
 
 ## 23. Reboot and login.
-Run `reboot`, then login to your user account and then you should see the Desktop you installed.<br>
+Remember how I said at step 18 that we would skip the reboot part for flatpak, guess what, it's here. 
+
+Now that you have everything installed, `reboot` and login to your user account and then you should see the Desktop you installed.<br>
 Congratulations You have sucessfully installed Arch Linux.
 
 
 ## Applications.
 This is a list of all programs that have linux support that I am aware of. There are games and other programs in here too.
 
-Note 1: This list is only if your using the terminal for installing packages and before you install a program, always remember to run a `sudo pacman -Sy` or `sudo pacman -Syu` to make sure the repos are up to date so that there is no incompatibility.
+Note 1: This list is only if your using the terminal for installing packages and before you install a program, always remember to run a `sudo pacman -Sy` or `sudo pacman -Syu` every few months to make sure that the repos and packages are up to date so that there is no incompatibility issues.
 
-Note 2: If a program is distributed as an appimage, please use AppImageLauncher to install it instead of running it manually.
+Note 2: If a program is distributed as an appimage, please use AppImageLauncher to install it instead of running it manually. It's the same thing as a windows exe that you aren't sure about.
 
 This list has been seperated into multiple sections based on what the package relates to.
 
