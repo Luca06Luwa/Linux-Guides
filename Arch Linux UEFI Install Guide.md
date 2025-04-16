@@ -283,7 +283,7 @@ Traditionally, packages from the AUR have to be downloaded and compiled onto you
 
 a. To install an AUR helper, run `git clone https://aur.archlinux.org/paru-bin.git` to download the required files to compile Paru (the AUR helper).<br>
 b. Once downloaded, `cd paru-bin` to go into the newly downloaded folder.<br>
-c. Once you are in the `paru` folder, run `makepkg -si` to install Paru.<br>
+c. Once you are in the `paru-bin` folder, run `makepkg -si` to install Paru.<br>
 d. Once Paru is installed you update all packages installed on your computer through it as it also acts as a pacman replacement.<br>
 e. Now that Paru is installed, you can now install flatpak by running `sudo pacman -S flatpak` to install the main flatpak app and repository.<br>
 f. Normally, once flatpak is installed you would run `reboot` to complete the installation of flatpak. But we'll do that later.
