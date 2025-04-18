@@ -386,25 +386,24 @@ This list has been seperated into multiple sections based on what the package re
 | Essential Packages | Commands |
 | ------------------ | -------- |
 | AppImageLauncher | `paru -S appimagelauncher` |
-| 7-Zip | `paru -S 7-zip-full` |
+| 7-Zip | `sudo pacman -S 7zip` |
 | Windows 11 Fonts | `paru -S ttf-ms-win11-auto` |
 | Timeshift | `sudo pacman -S timeshift` |
 | Downgrade | `paru -S downgrade` |
+| Brave Browser | `paru -S brave-bin` |
 | Bluetooth | 1. `sudo pacman -S bluez bluez-utils`<br>2. `sudo systemctl enable bluetooth.service` |
 
 | Game Launchers | Commands |
 | -------------- | -------- |
 | Steam | `sudo pacman -S steam` |
-| Steam Native Runtime Replacement | `sudo pacman -S steam-native-runtime` |
 | Lutris | `sudo pacman -S lutris`<br>Note: Lutris requires you to have already installed the base version of Wine |
-| YARG | 1. [Download on Github](https://github.com/YARC-Official/YARC-Launcher)<br>2. `sudo pacman -S hidapi systemd-libs` |
+| YARG | 2. `sudo pacman -S hidapi systemd-libs`<br>2. [Download on Github](https://github.com/YARC-Official/YARC-Launcher)|
 | Heroic Games Launcher | `paru -S heroic-games-launcher-bin` |
 
 | Minecraft Launchers | Commands |
 | ------------------- | -------- |
 | Minecraft (Official) | `paru -S minecraft-launcher`<br>Note: Minecraft requires java 21 lts for builds from 1.21 onwards and java 8 lts can be used for any builds from classic to 1.12. |
-| Prism Launcher | `paru -S prismlauncher` |
-| Lunar Client | [Download from website](https://www.lunarclient.com/download) |
+| Prism Launcher | `sudo pacman -S prismlauncher` |
 | Modrinth Launcher | [Download from website](https://modrinth.com/app) |
 
 | Games | Commands |
@@ -431,23 +430,17 @@ This list has been seperated into multiple sections based on what the package re
 | mGBA (Arch Package) | `sudo pacman -S mgba-qt` |
 | Snes9x (Arch Package) | `sudo pacman -S snes9x-gtk` |
 | Lime3DS (Upstream) | `flatpak install lime3ds` |
-| ñ (PabloMK7 Fork) | `paru -S citra` |
-
-| Internet | Commands |
-| -------- | -------- |
-| Firefox | `sudo pacman -S firefox` |
-| Chromium | `sudo pacman -S chromium` |
-| Brave | `paru -S brave-bin` |
-| Librewolf | `paru -S librewolf-bin` |
+| ñ (PabloMK7 Fork) | Lost media |
+| Azahar (Upstream) | `flatpak install azahar` |
 
 | Media | Commands |
 | ----- | -------- |
 | Ani-Cli | `paru -S ani-cli` |
 | MPV | `sudo pacman -S mpv` |
 | VLC | `sudo pacman -S vlc` |
-| VLC-luajit | `paru -S vlc-luajit` |
+| VLC-luajit | `paru -S vlc-luajit`<br>Note: This one is useful if you plan to use oobs-tytan652 |
 | GoXLR-Utility | `paru -S goxlr-utility` |
-| Physical Media | `sudo pacman -S libcdio libdvdread libdvdcss libdvdnav libbluray libaacs`<br>Note: If your using KDE applications to play cd's, run `sudo pacman -S audiocd-kio` to install the package. |
+| Physical Media | `sudo pacman -S libcdio libdvdread libdvdcss libdvdnav libbluray libaacs`<br>Note: If your using KDE applications to read cd's, run `sudo pacman -S audiocd-kio` to install the package. |
 
 | Compatibility Tools/Wine | Commands |
 | ------------------------ | -------- |
@@ -455,14 +448,13 @@ This list has been seperated into multiple sections based on what the package re
 | Wine-GE | [Download on Github](https://github.com/GloriousEggroll/wine-ge-custom) |
 | GameMode | `sudo pacman -S gamemode lib32-gamemode` |
 | Protonup-QT | `paru -S protonup-qt` |
-| Wine | Please note that wine is literally a dependency nightmare if you don't know what you are doing.<br>1. `sudo pacman -S wine-staging winetricks`<br>2. `sudo pacman -S --needed alsa-lib alsa-plugins cups dosbox ffmpeg giflib gnutls gst-plugins-base-libs gtk3 lib32-alsa-lib lib32-alsa-plugins lib32-giflib lib32-gnutls lib32-gst-plugins-base-libs lib32-gtk3 lib32-libpulse lib32-libva lib32-libxcomposite lib32-libxinerama lib32-ocl-icd lib32-sdl2 lib32-v4l-utils lib32-vulkan-icd-loader libgphoto2 libpulse libva libxcomposite libxinerama ocl-icd samba sane sdl2 v4l-utils vulkan-icd-loader` |
-| WineASIO | This package is good for if you plan on running Ableton or FL Studio in Wine<br>1. `paru -S wineasio`<br>2. `sudo usermod -aG realtime $(whoami)`<br>For 64bit, run: `wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio64.dll`<br>For 32bit, run: `regsvr32 /usr/lib/wine/i386-windows/wineasio32.dll` |
+| Wine | Please note that wine is literally a dependency nightmare if you don't know what you are doing.<br>1. `sudo pacman -S wine-staging winetricks`<br>2. `sudo pacman -S --needed alsa-lib alsa-plugins cups dosbox ffmpeg giflib gnutls gst-plugins-base-libs gtk3 lib32-alsa-lib lib32-alsa-plugins lib32-giflib lib32-gnutls lib32-gst-plugins-base-libs lib32-gtk3 lib32-libpulse lib32-libva lib32-libxcomposite lib32-libxinerama lib32-ocl-icd lib32-sdl2-compact lib32-v4l-utils lib32-vulkan-icd-loader libgphoto2 libpulse libva libxcomposite libxinerama ocl-icd samba sane sdl2-compact v4l-utils vulkan-icd-loader wine-gecko wine-mono libpng lib32-libpng libldap lib32-libldap mpg123 lib32-mpg123 openal lib32-openal libjpeg-turbo lib32-libjpeg-turbo ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt` |
+| WineASIO | This package is good for if you plan on running Ableton or FL Studio in Wine<br>1. `paru -S wineasio`<br>2. `sudo usermod -aG realtime $(whoami)`<br>3. Run `wine64 regsvr32 /usr/lib/wine/x86_64-windows/wineasio64.dll` and `regsvr32 /usr/lib/wine/i386-windows/wineasio32.dll` to register the 32bit and 64 bit registry |
 
 | Miscellaneous | Commands |
 | ------------- | -------- |
-| Thunderbird | `sudo pacman -S thunderbird` |
-| qBittorrent | `sudo pacman -S qbittorrent` 
-| OpenRGB | 1. `paru -S openrgb`<br>2. `sudo pacman -S i2c-tools` |
+| qBittorrent | `sudo pacman -S qbittorrent` |
+| OpenRGB | 1. `sudo pacman -S openrgb`<br>2. `sudo pacman -S i2c-tools` |
 | Inochi2D Session | [Download on Github](https://inochi2d.com/) |
 | Rofi | `sudo pacman -S rofi` |
 | Zsh plugins | 1. `sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions`<br> 2. `echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> .zshrc` and `echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> .zshrc` |
@@ -472,7 +464,7 @@ This list has been seperated into multiple sections based on what the package re
 | Programming | Commands |
 | ----------- | -------- |
 | Python | `sudo pacman -S python python-pip` |
-| NodeJS | `sudo pacman -S nodejs-lts-iron npm` |
+| NodeJS | `sudo pacman -S nodejs-lts-jod npm` |
 | Zulu Java8 | `paru -S zulu-8-bin` |
 | Zulu Java17 | `paru -S zulu-17-bin` |
 | Zulu Java21 | `paru -S zulu-21-bin` |
@@ -480,7 +472,6 @@ This list has been seperated into multiple sections based on what the package re
 
 | Production | Commands |
 | ---------- | -------- |
-| Reaper DAW | `sudo pacman -S reaper` |
 | Polyphone | `sudo pacman -S polyphone` |
 | Audacity | `sudo pacman -S audacity` |
 | Moonscraper Chart Editor | [Download on Github](https://github.com/FireFox2000000/Moonscraper-Chart-Editor) |
@@ -496,7 +487,6 @@ This list has been seperated into multiple sections based on what the package re
 | cMatrix | `sudo pacman -S cmatrix` |
 | cowsay | `sudo pacman -S cowsay` |
 | lolcat | `sudo pacman -S lolcat` |
-| neofetch (legacy) | `sudo pacman -S neofetch` |
 | HyFetch (Updated Neofetch fork) | Note: This fork requires you to replace the neofetch command with neowofetch to use the updated fork.<br>`sudo pacman -S hyfetch` |
 | Fastfetch | Note: I would recommend you use this fork as it works better and is more feature complete.<br>`sudo pacman -S fastfetch` |
 | Activate Linux | `paru -S activate-linux-git` |
@@ -505,7 +495,6 @@ This list has been seperated into multiple sections based on what the package re
 | Flatpak Packages | Commands |
 | ---------------- | -------- |
 | Flatseal | `flatpak install flatseal` |
-| Brave | Note: This is official but not yet optimised. Use the AUR version until stability is achieved.<br>`flatpak install brave` |
 | OBS Studio | 1. `flatpak install obs-studios`<br>2. `sudo pacman -S v4l2loopback-dkms` |
 | Discord | `flatpak install discord` |
 | Extension Manager | This package is ONLY for Gnome.<br>`flatpak install ExtensionManager` |
@@ -514,7 +503,7 @@ This list has been seperated into multiple sections based on what the package re
 | System Diagnostic Tools | Commands |
 | ----------------------- | -------- |
 | Mangohud | `sudo pacman -S mangohud lib32-mangohud` |
-| GOverlay | `paru -S goverlay-bin` |
+| GOverlay | `sudo pacman -S -S goverlay` |
 | Btop++ | `sudo pacman -S btop` |
 | Htop | `sudo pacman -S htop` |
 
