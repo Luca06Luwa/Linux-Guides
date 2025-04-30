@@ -23,3 +23,10 @@ Gentoo Install Guide:
 Credits for the gentoo install guide.
 
     I didn't bother with the gentoo guide as the official wiki is the best as it gets.
+
+
+DWM Instal Guide:
+Credits for the DWM install guide.
+
+    https://git.suckless.org/dwm/file/README.html
+    https://wiki.archlinux.org/title/Dwm
