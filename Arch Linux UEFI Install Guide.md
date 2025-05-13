@@ -390,7 +390,7 @@ This list has been seperated into multiple sections based on what the package re
 | Windows 11 Fonts | `paru -S ttf-ms-win11-auto` |
 | Timeshift | `sudo pacman -S timeshift` |
 | Downgrade | `paru -S downgrade` |
-| Brave Browser | `paru -S brave-bin` |
+| Brave Browser | `paru -Sy brave-bin` |
 | Bluetooth | 1. `sudo pacman -S bluez bluez-utils`<br>2. `sudo systemctl enable bluetooth.service` |
 
 | Game Launchers | Commands |
@@ -499,6 +499,7 @@ This list has been seperated into multiple sections based on what the package re
 | Discord | `flatpak install discord` |
 | Extension Manager | This package is ONLY for Gnome.<br>`flatpak install ExtensionManager` |
 | Bottles | `flatpak install bottles`<br>Note: Bottles requires you to have already installed the base version of Wine |
+| Floorp Browser | flatpak install floorp |
 
 | System Diagnostic Tools | Commands |
 | ----------------------- | -------- |
