@@ -219,8 +219,8 @@ Note: There are two NVIDIA drivers, the proprietary driver is for gtx700 series 
 | ------------ | ------------ |
 | AMD | For AMDGPU drivers, run `pacman -S xf86-video-amdgpu mesa opencl-rusticl-mesa vulkan-radeon lib32-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
 | INTEL | For INTEL ARC drivers, run `pacman -S xf86-video-intel mesa intel-compute-runtime intel-media-driver vulkan-intel lib32-mesa lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
-| NVIDIA (PROPRIETARY) | For MAXWELL to ADA LOVELACE cards, run `pacman -S nvidia-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
-| NVIDIA (Open GPU Kernel Modules) | For all newer cards from TURING onwards, run `pacman -S nvidia-open-dkms nvidia-utils libglvnd opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
+| NVIDIA (PROPRIETARY) | For MAXWELL to ADA LOVELACE cards, run `pacman -S nvidia-dkms nvidia-utils egl-wayland libglvnd libva-nvidia-driver opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
+| NVIDIA (Open GPU Kernel Modules) | For all newer cards from TURING onwards, run `pacman -S nvidia-open-dkms nvidia-utils egl-wayland libglvnd libva-nvidia-driver opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
 
 
 ## Configure Drivers for KMS/Wayland Support.
