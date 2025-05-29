@@ -40,7 +40,7 @@ If you plan on dual booting Windows 10/11, STOP this guide is not for you. If yo
 Note: If you have a blank drive that you know is empty, then you can skip step c.
 
 a. Run `lsblk` to see what hard drives are installed in your PC.<br>
-b. If you cannot identify what drive(s) you have installed, run `hdparm -i /dev/the_disk_to_be_partitioned` to double check that you've selected the right drive.<br>
+b. If you cannot identify what drive(s) you have installed (you have too many installed and can't identify each one), run `hdparm -i /dev/the_disk_to_be_partitioned` to double check that you've selected the right drive.<br>
 c. If you only have one drive with another OS install on it and want to perform a clean install, run `gdisk /dev/the_disk_to_be_partitioned`.
 - Press `x` to enable expert mode.
 - Press `z` to delete the entire contents of the drive.
@@ -85,7 +85,7 @@ This step is where you get to actually install your system.
 
 The following packages that will be installed are the necessary core packages and the drivers for the install as well as some drivers for wifi cards, sound cards, and your CPU manufacturer's microcode.
 
-To install the core components, run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence man-db man-pages nano sof-firmware` and before you confirm the command either add the `intel-ucode` or `amd-ucode` to the command and install the packages.
+To install the core components, run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence man-db man-pages tex-info nano sof-firmware` and before you confirm the command, add either the `intel-ucode` or `amd-ucode` packages to install your CPU Microcode.
 
 
 ## 7. Generating the fstab file and chrooting into the install.
@@ -127,7 +127,7 @@ c. To link the software clock to the hardware clock of your computer, run `hwclo
 This step is where you will configure pacman to be able to download multiple packages at the same time and also enable the ability to download 32-bit packages through the Multilib repository.
 
 a. Run `nano /etc/pacman.conf` to enter the pacman config file.<br>
-b. Uncomment the line that you see below.<br>
+b. Uncomment the line that you see below to enable the 32 bit package repository.<br>
 
 ```
 [multilib]
@@ -138,10 +138,10 @@ c. In the Misc Options area, add/uncomment the following items. `ParallelDownloa
 d. Once saved, run `pacman -Sy` to apply the modified changes to the config file and download the new repository.
 
 
-## 11. Installing more packages and enabling system services.
+## 11. Installing additional packages and enable system services.
 This step is where you are going to install some more packages and some miscellaneous drivers for connecting the internet as well as enabling some necessary system functions.
 
-Note: Skip the fstrim function if you don't have an SSD.
+Note: Skip the fstrim service if you did not install onto an SSD.
 
 a. Run `pacman -S git networkmanager reflector pacman-contrib bash-completion` to install the listed packages.<br>
 b. Once all packages have been installed, enable the following services to start the necessary drivers and system functions.
@@ -211,16 +211,16 @@ d. Once added everything into the file, run `echo "options root=PARTUUID=$(blkid
 
 
 ## 14. Graphics Drivers
-This step is what I like to call "NIGHTMARE MODE" as you will be installing your GPU drivers. The drivers have been sorted based on what manufacturer your card is from. So select the one that matches your card.
+This step is what I like to call "NIGHTMARE MODE" as in this step, you will be installing your GPU drivers. The drivers have been sorted based on what manufacturer your card is from. So select the one that matches your card.
 
-Note: There are two NVIDIA drivers, the proprietary driver is for gtx700 series to rtx3000 series and the open modules are for rtx2000 series and newer. So PLEASE be careful when installing your GPU driver for NVIDIA. 
+Note: There are two NVIDIA drivers, the proprietary driver is for gtx700 series to rtx30 series, and the open modules are for rtx20 series and newer. So PLEASE be careful when installing your GPU drivers for NVIDIA. 
 
 | Manufacturer | Instructions |
 | ------------ | ------------ |
 | AMD | For AMDGPU drivers, run `pacman -S xf86-video-amdgpu mesa opencl-rusticl-mesa vulkan-radeon lib32-mesa lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
 | INTEL | For INTEL ARC drivers, run `pacman -S xf86-video-intel mesa intel-compute-runtime intel-media-driver vulkan-intel lib32-mesa lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
-| NVIDIA (PROPRIETARY) | For MAXWELL to ADA LOVELACE cards, run `pacman -S nvidia-dkms nvidia-utils egl-wayland libglvnd libva-nvidia-driver opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
-| NVIDIA (Open GPU Kernel Modules) | For all newer cards from TURING onwards, run `pacman -S nvidia-open-dkms nvidia-utils egl-wayland libglvnd libva-nvidia-driver opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
+| NVIDIA (PROPRIETARY) | For MAXWELL (gtx700) to ADA LOVELACE (rtx30) cards, run `pacman -S nvidia-dkms nvidia-utils egl-wayland libglvnd libva-nvidia-driver opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
+| NVIDIA (Open GPU Kernel Modules) | For all newer cards from TURING (rtx20) onwards, run `pacman -S nvidia-open-dkms nvidia-utils egl-wayland libglvnd libva-nvidia-driver opencl-nvidia lib32-nvidia-utils lib32-libglvnd lib32-opencl-nvidia nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader` to install the drivers. |
 
 
 ## Configure Drivers for KMS/Wayland Support.
@@ -234,17 +234,23 @@ WARNING: If for whatever reason you mess up on these steps your system is dead!
 
 ### 15a. NVIDIA
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
-`MODULES(... nvidia nvidia_modeset nvidia_uvm nvidia_drm ...)`<br>
+```
+MODULES(... nvidia nvidia_modeset nvidia_uvm nvidia_drm ...)
+```
 b. Once those modules have been added, save the file and run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
 
 ### 15b. AMDGPU
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
-`MODULES(... amdgpu ...)`<br>
+```
+MODULES(... amdgpu ...)
+```
 b. Once this module has been added, save the file and run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
 
 ### 15c. INTEL
 a. Run `nano /etc/mkinitcpio.conf` and edit the `MODULES()` line to look like this.<br>
-`MODULES(... i915 ...)`<br>
+```
+MODULES(... i915 ...)
+```
 b. Once this module has been added, save the file and run `mkinitcpio -P` to regenerate the kernel initramfs.<br>
 
 
