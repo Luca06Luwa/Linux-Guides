@@ -8,7 +8,6 @@ This guide covers both install and cofiguration.
 ## Installation:
 1. Run `sudo pacman -S hyprland dunst polkit-kde-agent waybar swww hyprpicker cliphist pcmanfm-qt grim slurp alacritty qt5-wayland qt6-wayland xdg-desktop-portal-hyprland` to install most of the packages necessary for a working Hyprland desktop.
 2. With Paru, run `paru -S tofi waybar-hyprland waypaper` to install the rest of the packages.
-3. Once installed, run `systemctl --user enable hyprpolkitagent.service` to enable the auth angent.
 
 
 ## Nvidia fix:
