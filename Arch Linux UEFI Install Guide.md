@@ -328,7 +328,7 @@ Note: Most desktops are now based on Wayland and have Xorg as fallback.
 | Wayland Desktop Environments | Instructions |
 | ---------------------------- | ------------ |
 | Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal-gnome` to install the packages for a working install of Gnome. |
-| Hyprland | Because Hyprland has many first party dependencies, visit the [Hyprland wiki](https://wiki.hyprland.org/) to have a properly working install. |
+| Hyprland | Because Hyprland has many first party dependencies, visit the [Hyprland wiki](https://wiki.hyprland.org/) to have a properly working install. (seperate guide soon) |
 | KDE Plasma | Run `sudo pacman -S plasma kde-applications qt5-wayland xdg-desktop-portal-kde` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
 | Sway | Note: If you have an existing i3 installation, this will be a drop in replacement as sway uses the same i3 config files.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp foot xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
 
@@ -505,7 +505,8 @@ This list has been seperated into multiple sections based on what the package re
 | Discord | `flatpak install discord` |
 | Extension Manager | This package is ONLY for Gnome.<br>`flatpak install ExtensionManager` |
 | Bottles | `flatpak install bottles`<br>Note: Bottles requires you to have already installed the base version of Wine |
-| Floorp Browser | flatpak install floorp |
+| Floorp Browser | `flatpak install floorp` |
+| Delta Patcher | `flatpak install deltapatcher` |
 
 | System Diagnostic Tools | Commands |
 | ----------------------- | -------- |
