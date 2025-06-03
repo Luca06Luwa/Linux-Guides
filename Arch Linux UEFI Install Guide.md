@@ -461,7 +461,6 @@ This list has been seperated into multiple sections based on what the package re
 | ------------- | -------- |
 | qBittorrent | `sudo pacman -S qbittorrent` |
 | OpenRGB | 1. `sudo pacman -S openrgb`<br>2. `sudo pacman -S i2c-tools` |
-| Inochi2D Session | [Download on Github](https://inochi2d.com/) |
 | Rofi | `sudo pacman -S rofi` |
 | Zsh plugins | 1. `sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions`<br> 2. `echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> .zshrc` and `echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> .zshrc` |
 | Syncthing | `sudo pacman -S syncthing` |
@@ -484,7 +483,6 @@ This list has been seperated into multiple sections based on what the package re
 | Blender | `sudo pacman -S blender` |
 | Blender 2.79b | [Download on website](https://download.blender.org/release/Blender2.79/) |
 | Unreal Engine | Figure it out yourself |
-| Inochi2D Creator | [Download on Github](https://inochi2d.com/) |
 | OBS Studio Tytan652 | 1. `paru -s obs-studio-tytan652`<br>2. `sudo pacman -S v4l2loopback-dkms` |
 | Kame-Editor | `paru -S kame-editor-git` |
 
