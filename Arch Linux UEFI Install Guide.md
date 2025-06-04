@@ -418,9 +418,6 @@ This list has been seperated into multiple sections based on what the package re
 | Katawa Shoujo | `paru -S katawa-shoujo` |
 | Clone Hero v1.0.0.4080-final | `paru -S clonehero` |
 | Clone Hero v1.1.0.4261-PTB | `paru -S clonehero-ptb` |
-| Tentacle Locker 2 | [Download on itch](https://hotpink.itch.io/tl2) |
-| Tentacle Locker | [Download on itch](https://hotpink.itch.io/tentacle-locker)<br>Note: Needs to be run through Wine |
-| Protecc Your Loli | [Download on itch](https://kamuo.itch.io/proteccloli)<br>Note: Needs to be run through Wine |
 | Doki Doki Literature Club | [Download on itch](https://teamsalvato.itch.io/ddlc) |
 | Monika After Story Mod | [Download on Github](https://www.monikaafterstory.com/) |
 | MonikA.I | [Download on Github](https://github.com/Rubiksman78/MonikA.I) |
@@ -446,7 +443,7 @@ This list has been seperated into multiple sections based on what the package re
 | VLC | `sudo pacman -S vlc` |
 | VLC-luajit | `paru -S vlc-luajit`<br>Note: This one is useful if you plan to use oobs-tytan652 |
 | GoXLR-Utility | `paru -S goxlr-utility` |
-| Physical Media | `sudo pacman -S libcdio libdvdread libdvdcss libdvdnav libbluray libaacs`<br>Note: If your using KDE applications to read cd's, run `sudo pacman -S audiocd-kio` to install the package. |
+| Physical Media | 1. `sudo pacman -S libcdio libdvdread libdvdcss libdvdnav libbluray libaacs`<br>2. For bluray to work correctly, follow the [Arch Wiki](https://wiki.archlinux.org/title/Blu-ray#Playback)<br>Note: If your using KDE applications to read cd's, run `sudo pacman -S audiocd-kio` to install the package. |
 
 | Compatibility Tools/Wine | Commands |
 | ------------------------ | -------- |
