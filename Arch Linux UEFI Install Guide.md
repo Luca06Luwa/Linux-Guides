@@ -403,38 +403,34 @@ This list has been seperated into multiple sections based on what the package re
 | -------------- | -------- |
 | Steam | `sudo pacman -S steam` |
 | Lutris | `sudo pacman -S lutris`<br>Note: Lutris requires you to have already installed the base version of Wine |
-| YARG | 2. `sudo pacman -S hidapi systemd-libs`<br>2. [Download on Github](https://github.com/YARC-Official/YARC-Launcher)|
-| Heroic Games Launcher | `paru -S heroic-games-launcher-bin` |
-
-| Minecraft Launchers | Commands |
-| ------------------- | -------- |
-| Minecraft (Official) | `paru -S minecraft-launcher`<br>Note: Minecraft requires java 21 lts for builds from 1.21 onwards and java 8 lts can be used for any builds from classic to 1.12. |
-| Prism Launcher | `sudo pacman -S prismlauncher` |
-| Modrinth Launcher | [Download from website](https://modrinth.com/app) |
+| YARG | 1. `sudo pacman -S hidapi systemd-libs`<br>2. [Download on Github](https://github.com/YARC-Official/YARG?tab=readme-ov-file#-downloading-and-playing)|
+| Heroic Games Launcher | `flatpak install heroicgameslauncher` |
+| Prism Launcher | `flatpak install prismlauncher` |
 
 | Games | Commands |
 | ----- | -------- |
-| osu! | `paru -S osu-laser-bin` |
-| Katawa Shoujo | `paru -S katawa-shoujo` |
+| osu! | [Download on Github](https://github.com/YARC-Official/YARG?tab=readme-ov-file#-downloading-and-playing) |
+| Katawa Shoujo[.](https://4leafstudios.itch.io/katawa-shoujo) | `flatpak install katawa-shoujo-reengineered-bin` |
 | Clone Hero v1.0.0.4080-final | `paru -S clonehero` |
 | Clone Hero v1.1.0.4261-PTB | `paru -S clonehero-ptb` |
 | Doki Doki Literature Club | [Download on itch](https://teamsalvato.itch.io/ddlc) |
 | Monika After Story Mod | [Download on Github](https://www.monikaafterstory.com/) |
 | MonikA.I | [Download on Github](https://github.com/Rubiksman78/MonikA.I) |
 
-| Emulators | Commands |
+| Emulators (origin) | Commands |
 | --------- | -------- |
-| Dolphin Emulator (Arch Package) | `sudo pacman -S dolphin-emu` |
-| pcsx2 (Upstream) | `flatpak install pcsx2` |
-| rpcs3 (Upstream) | `paru -S rpcs3-git` |
-| DuckStation (Upstream) | `flatpak install duckstation` |
+| Dolphin Emulator (Wii/GC) (Arch Package) | `sudo pacman -S dolphin-emu` |
+| pcsx2 (PS2) (Upstream) | `flatpak install pcsx2` |
+| Meson (NES) (Upstream) | [Download on Github](https://github.com/SourMesen/Mesen2/releases) |
+| rpcs3 (PS3) (Upstream) | `paru -S rpcs3-git` |
+| DuckStation (PS1) (Upstream) | `flatpak install duckstation` |
 | melonDS (Upstream) | `flatpak install melonds` |
-| CEMU (Upstream) | `flatpak install cemu` |
-| mGBA (Arch Package) | `sudo pacman -S mgba-qt` |
-| Snes9x (Arch Package) | `sudo pacman -S snes9x-gtk` |
+| CEMU (Wii U) (Upstream) | `flatpak install cemu` |
+| mGBA (GBA/GB) (Arch Package) | `sudo pacman -S mgba-qt` |
+| ares (SNES/N64) (Arch Package) | `paru -S ares-emu` |
 | Lime3DS (Upstream) | `flatpak install lime3ds` |
 | ñ (PabloMK7 Fork) | Lost media |
-| Azahar (Upstream) | `flatpak install azahar` |
+| Azahar (3DS) (Upstream) | `flatpak install azahar` |
 
 | Media | Commands |
 | ----- | -------- |
