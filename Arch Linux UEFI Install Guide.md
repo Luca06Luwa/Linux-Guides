@@ -85,7 +85,7 @@ This step is where you get to actually install your system.
 
 The following packages that will be installed are the necessary core packages and the drivers for the install as well as some drivers for wifi cards, sound cards, and your CPU manufacturer's microcode.
 
-To install the core components, run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell linux-firmware-whence man-db man-pages tex-info nano sof-firmware` and before you confirm the command, add either the `intel-ucode` or `amd-ucode` packages to install your CPU Microcode.
+To install the core components, run `pacstrap -K /mnt base base-devel linux linux-headers linux-firmware linux-firmware-marvell man-db man-pages tex-info nano sof-firmware` and before you confirm the command, add either the `intel-ucode` or `amd-ucode` packages to install your CPU Microcode.
 
 
 ## 7. Generating the fstab file and chrooting into the install.
@@ -317,6 +317,8 @@ To install Xorg and all it's necessary packages, run `sudo pacman -S xorg xorg-x
 
 ### Part 2. Selecting your Desktop Environment and or Window Manager.
 Note: Most desktops are now based on Wayland and have Xorg as fallback.
+
+Important: You can no longer use KDE on Xorg as upstream has removed the functionality.
 
 | Xorg Desktop Environment | Instructions |
 | ------------------------ | ------------ |
