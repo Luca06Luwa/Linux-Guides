@@ -429,7 +429,7 @@ This list has been seperated into multiple sections based on what the package re
 | pcsx2 (PS2) (Upstream) | `flatpak install pcsx2` |
 | Meson (NES) (Upstream) | [Download on Github](https://github.com/SourMesen/Mesen2/releases) |
 | rpcs3 (PS3) (Upstream) | `paru -S rpcs3-git` |
-| DuckStation (PS1) (Upstream) | `flatpak install duckstation` |
+| DuckStation (PS1) | No longer maintaining linux builds. |
 | melonDS (Upstream) | `flatpak install melonds` |
 | CEMU (Wii U) (Upstream) | `flatpak install cemu` |
 | mGBA (GBA/GB) (Arch Package) | `sudo pacman -S mgba-qt` |
@@ -442,7 +442,7 @@ This list has been seperated into multiple sections based on what the package re
 | ----- | -------- |
 | Ani-Cli | `paru -S ani-cli` |
 | MPV | `sudo pacman -S mpv` |
-| VLC | `sudo pacman -S vlc` |
+| VLC | Note: If you chose to install VLC for KDE, skip the first step and just install the plugins.<br>1. `sudo pacman -S vlc`<br>2. `sudo pacman -S vlc-plugins-all` |
 | VLC-luajit | `paru -S vlc-luajit`<br>Note: This one is useful if you plan to use oobs-tytan652 |
 | GoXLR-Utility | `paru -S goxlr-utility` |
 | Physical Media | 1. `sudo pacman -S libcdio libdvdread libdvdcss libdvdnav libbluray libaacs`<br>2. For bluray to work correctly, follow the [Arch Wiki](https://wiki.archlinux.org/title/Blu-ray#Playback)<br>Note: If your using KDE applications to read cd's, run `sudo pacman -S audiocd-kio` to install the package. |
