@@ -12,6 +12,17 @@ This guide covers both install and cofiguration.
 ## Configuration:
 Basic configuration so that hyprland works without any issues that would require a seperate desktop to fix.
 
+### Setting the correct apps:
+Packages like the file manager and terminal aren't going to be set correctly. This changes it to match the packages that were installed in the previous step.
+
+1. To edit the configuration file, run `nano /.config/hypr/hyprland.conf` and scroll to the my programs section.
+2. Change the options to match below.
+```
+# Set programs that you use
+$terminal = alacritty
+$fileManager = pcmanfm-qt
+```
+
 ### Nvidia patch: (UNOFFICIAL)
 Whilst Nvidia GPU support is not official for hyprland, there is a stable workaround that the devs recommend using if you only have Nvidia.
 
@@ -24,8 +35,5 @@ env = LIBVA_DRIVER_NAME,nvidia
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 env = NVD_BACKEND,direct
 ```
-
-### Setting app startups/shortcuts:
-
 
 Link back to the main guide: [Arch Install Guide](https://github.com/Luca06Luwa/Linux-Guides/blob/WIP-md-version/Arch%20Linux%20UEFI%20Install%20Guide.md#part-3-installing-and-enabling-a-display-manager)
