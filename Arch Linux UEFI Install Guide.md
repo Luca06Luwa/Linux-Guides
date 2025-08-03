@@ -402,7 +402,8 @@ This list has been seperated into multiple sections based on what the package re
 | Timeshift | `sudo pacman -S timeshift` |
 | Downgrade | `paru -S downgrade` |
 | Brave Browser | `paru -Sy brave-bin` |
-| Floorp | `paru -s floorp` |
+| Librewolf | `paru -s librewolf-bin` |
+| Floorp | `paru -s floorp-bin` |
 | Bluetooth | 1. `sudo pacman -S bluez bluez-utils`<br>2. `sudo systemctl enable bluetooth.service` |
 
 | Game Launchers | Commands |
