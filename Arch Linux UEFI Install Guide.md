@@ -2,7 +2,7 @@
 
 This guide assumes that your default language is english and that you have a us qwerty style keyboard. This guide also assumes that you are on desktop with an AMDGPU or INTEL ARC graphics card, NVIDIA support is listed here but isn't recommended.
 
-All setps listed with a `*` are required for a working install.
+All steps listed with a `*` are required for a working install.
 
 "Nvidia, fuck you" - Linus Torvalds
 
