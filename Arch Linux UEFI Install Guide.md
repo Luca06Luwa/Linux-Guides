@@ -9,7 +9,7 @@ All steps listed with a `*` are required for a working install.
 ## 0. Getting the Installation ISO*
 a. Go to [archlinux.org](https://archlinux.org) and click on download.<br>
 b. Scroll down to the HTTP Direct Downloads section and download the ISO from the repository hosted in your local country. If the download mirrors are to confusing, there is a worldwide mirror available to you.<br>
-Note: Normally, it is recommended to run a sha256 checksum on the ISO to confirm that it is legit, but this guide is not going to cover that.<br>
+Note: Normally, it is recommended to run either a sha256 checksum or a PGP verification on the ISO to confirm that it is legit, but this guide is not going to cover that.<br>
 c. Get some kind of ISO burner for a usb and just write the ISO to the USB. Use either [Rufus](https://rufus.ie/en/) if your on windows or another tool if on another platform.<br>
 Note: If you want to download the torrent and use that instead, you will need some form of [torrent client](https://www.qbittorrent.org/).
 
