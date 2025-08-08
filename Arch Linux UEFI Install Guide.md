@@ -347,7 +347,7 @@ Most display managers are designed to work with the desktop that they are typica
 | LightDM (X11 Only) | Run `sudo pacman -S lightdm` to install the base version of lightDM and run `sudo systemctl enable lightdm.service`  to enable the Display Manager upon reboot.<br>Since LightDM does not include a environment to run on you wil have to install one of the greeters listed below. |
 | StartX (X11 Only) | Since StartX is kind of difficult to setup, I will simply link you to the [Arch Wiki](https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login) for instructions. |
 | wlroots on TTY (Wayland Only) | Since most wayland compositors are based on wlroots, they do not allow launching with a Display Manager. So, I will simply link to the [Arch Wiki](https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login) for instructions on how to setup TTY login. |
-| uwsm (Wayland Only) | 1. Run `sudo pacman -S uwsm` to install uwsm<br>2. Follow the [Arch Wiki](https://wiki.archlinux.org/title/Universal_Wayland_Session_Manager) |
+| uwsm (Hyprland Only) | 1. Run `sudo pacman -S uwsm` to install uwsm<br>2. Follow the steps in the Hyprland Guide. |
 
 ### (Only for LightDM) Part 4. Choose the greeter you want to use for LightDM.
 If you have installed any other display manager other than LightDM, then you can skip this step.
@@ -404,6 +404,7 @@ This list has been seperated into multiple sections based on what the package re
 | Brave Browser | `paru -Sy brave-bin` |
 | Librewolf | `paru -s librewolf-bin` |
 | Floorp | `paru -s floorp-bin` |
+| KeepassXC | `sudo pacman -S keepass-xc` |
 | Bluetooth | 1. `sudo pacman -S bluez bluez-utils`<br>2. `sudo systemctl enable bluetooth.service` |
 
 | Game Launchers | Commands |
