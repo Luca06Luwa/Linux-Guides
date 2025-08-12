@@ -213,7 +213,7 @@ initrd /initramfs-linux.img
 d. Once added everything into the file, run `echo "options root=PARTUUID=$(blkid -s PARTUUID -o value /dev/root_partition) rw" >> /boot/loader/entries/arch.conf` to add the partition UUID for the root partition. This is important as it tells Arch Linux to only boot to that drive. (Credit to Glorious Eggroll for this command.)
 
 
-## 14. Graphics Drivers.
+## 14. Graphics Drivers.*
 This step is what I like to call "NIGHTMARE MODE" as in this step, you will be installing your GPU drivers. The drivers have been sorted based on what manufacturer your card is from. So select the one that matches your card.
 
 Note: There are two NVIDIA drivers, the proprietary driver is for gtx700 series to rtx30 series, and the open modules are for rtx20 series and newer. So PLEASE be careful when installing your GPU drivers for NVIDIA. 
