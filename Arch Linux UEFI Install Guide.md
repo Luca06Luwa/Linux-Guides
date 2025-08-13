@@ -15,9 +15,9 @@ a. Go to [archlinux.org](https://archlinux.org) and click on download.<br>
 b. Scroll down to the HTTP Direct Downloads section and download the ISO from the repository hosted in your local country.<br>
 Note: If the download mirrors are to confusing, there is a worldwide mirror available to you.<br>
 c. Once the ISO is downloaded, go back to the main arch download page and download the pgp signature from the arch website directly. (DO NOT DOWNLOAD THE SIGNATURE FROM A DOWNLOAD MIRROR)<br>
-d. Download [GnuPG](https://www.gnupg.org/) and once installed, run `gpg --auto-key-locate clear,wkd -v --locate-external-key pierre@archlinux.org` to download the signing key for the ISO.
-e. Once the signing key has been downloaded, run `gpg --verify archlinux-[the iso date]-x86_64.iso.sig archlinux-[the iso date]-x86_64.iso` to verify that the ISO is legit.
-f. Once you've verified the ISO, get some kind of ISO burner for a usb and just write the ISO to the USB. Use either [Rufus](https://rufus.ie/en/) if your on windows or another tool if on another platform.<br>
+d. Download [GnuPG](https://www.gnupg.org/) and once installed, run `gpg --auto-key-locate clear,wkd -v --locate-external-key pierre@archlinux.org` to download the signing key for the ISO.<br>
+e. Once the signing key has been downloaded, run `gpg --verify archlinux-[the iso date]-x86_64.iso.sig archlinux-[the iso date]-x86_64.iso` to verify that the ISO is legit.<br>
+f. Once you've verified the ISO, get some kind of ISO burner for a usb and just write the ISO to the USB. Use either [Rufus](https://rufus.ie/en/) if your on windows or another tool if on another platform.
 
 
 ## 1. Basic initial Setup.*
