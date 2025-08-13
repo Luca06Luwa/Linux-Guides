@@ -1,17 +1,23 @@
 # Arch Linux UEFI Install Guide
 
-This guide assumes that your default language is english and that you have a us qwerty style keyboard. This guide also assumes that you are on desktop with an AMDGPU or INTEL ARC graphics card, NVIDIA support is listed here but isn't recommended.
+This guide assumes that your default language is english and that you have a US qwerty style keyboard. This guide also assumes that you are on desktop with an AMDGPU or INTEL ARC graphics card, NVIDIA support is listed here but isn't recommended as driver support is not great.
 
 All steps listed with a `*` are required for a working install.
 
 "Nvidia, fuck you" - Linus Torvalds
 
-## 0. Getting the Installation ISO*
+## 0. Getting the Installation ISO and verifying it's legit.*
+If you want to skip verifying, I'm not gonna stop you. But if you do want to verify the legitimacy of the ISO, then you can follow steps c to e.
+
+Note: If you want to download the official torrent and use that instead of checking the mirror ISOs, you will need some form of [torrent client](https://www.qbittorrent.org/) to download the ISO through.
+
 a. Go to [archlinux.org](https://archlinux.org) and click on download.<br>
-b. Scroll down to the HTTP Direct Downloads section and download the ISO from the repository hosted in your local country. If the download mirrors are to confusing, there is a worldwide mirror available to you.<br>
-Note: Normally, it is recommended to run either a sha256 checksum or a PGP verification on the ISO to confirm that it is legit, but this guide is not going to cover that.<br>
-c. Get some kind of ISO burner for a usb and just write the ISO to the USB. Use either [Rufus](https://rufus.ie/en/) if your on windows or another tool if on another platform.<br>
-Note: If you want to download the torrent and use that instead, you will need some form of [torrent client](https://www.qbittorrent.org/).
+b. Scroll down to the HTTP Direct Downloads section and download the ISO from the repository hosted in your local country.<br>
+Note: If the download mirrors are to confusing, there is a worldwide mirror available to you.<br>
+c. Once the ISO is downloaded, go back to the main arch download page and download the pgp signature from the arch website directly. (DO NOT DOWNLOAD THE SIGNATURE FROM A DOWNLOAD MIRROR)<br>
+d. Download [GnuPG](https://www.gnupg.org/) and once installed, run `gpg --auto-key-locate clear,wkd -v --locate-external-key pierre@archlinux.org` to download the signing key for the ISO.
+e. Once the signing key has been downloaded, run `gpg --verify archlinux-[the iso date]-x86_64.iso.sig archlinux-[the iso date]-x86_64.iso` to verify that the ISO is legit.
+f. Once you've verified the ISO, get some kind of ISO burner for a usb and just write the ISO to the USB. Use either [Rufus](https://rufus.ie/en/) if your on windows or another tool if on another platform.<br>
 
 
 ## 1. Basic initial Setup.*
@@ -326,7 +332,7 @@ Important: You can no longer use KDE on Xorg as upstream has removed the functio
 | Xorg Desktop Environment | Instructions |
 | ------------------------ | ------------ |
 | AwesomeWM | Run `sudo pacman -S awesome alacritty pcmanfm-qt` to install the packages for a working install of AwesomeWM. |
-| DWM | DWM is the most barebones Window manager, as a result of this the instuctions have benn moved. Go to [DWM Install Guide](https://github.com/Luca06Luwa/Linux-Guides/blob/WIP-md-version/DWM%20Install%20Guide.md) if you want to install DWM. |
+| DWM | DWM is the most barebones Window manager, as a result of this the instuctions have been moved. Go to [DWM Install Guide](https://github.com/Luca06Luwa/Linux-Guides/blob/WIP-md-version/DWM%20Install%20Guide.md) if you want to install DWM. |
 | i3 | Run `sudo pacman -S i3 alacritty pcmanfm-qt dmenu` to install the packages for a working install of i3. |
 | Xfce | Run `sudo pacman -S xfce xfce-goodies network-manager-applet` to install the packages for a working install of Xfce. |
 
