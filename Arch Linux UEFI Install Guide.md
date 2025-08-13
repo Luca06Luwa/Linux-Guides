@@ -341,7 +341,7 @@ Important: You can no longer use KDE on Xorg as upstream has removed the functio
 | Gnome | Run `sudo pacman -S gnome gnome-tweaks xdg-desktop-portal-gnome` to install the packages for a working install of Gnome. |
 | Hyprland | Because Hyprland has many first party dependencies, visit the [Hyprland wiki](https://wiki.hyprland.org/) to have a properly working install. (seperate guide soon) |
 | KDE Plasma | Run `sudo pacman -S plasma kde-applications qt5-wayland xdg-desktop-portal-kde` to install the packages for a working install of KDE Plasma. When prompted, select the VLC backend for audio. |
-| Sway | Note: If you have an existing i3 installation, this will be a drop in replacement as sway uses the same i3 config files.<br>Run `sudo pacman -S sway swaylock swayidle swaybg waybar mako polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp alacritty xdg-desktop-portal-wlr` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi` to install the application launcher. |
+| Sway | Note: If you have an existing i3 installation, this will be a drop in replacement as sway uses the same i3 configuration files.<br>Run `sudo pacman -S sway swaylock swayidle waybar swww dunst polkit-kde-agent qt5-wayland qt6-wayland cliplist light grim slurp alacritty xdg-desktop-portal-wlr pcmanfm-qt` to install most of the packages reqired for a working install of Sway.<br>With Paru, run `paru -S tofi waypaper` to install the application launcher. |
 
 ### Part 3. Installing and enabling a display manager.
 Most display managers are designed to work with the desktop that they are typically packaged with. The only display managers that work universally are StartX, LightDM, wlroots on TTY, and uwsm. 
@@ -353,7 +353,7 @@ Most display managers are designed to work with the desktop that they are typica
 | LightDM (X11 Only) | Run `sudo pacman -S lightdm` to install the base version of lightDM and run `sudo systemctl enable lightdm.service`  to enable the Display Manager upon reboot.<br>Since LightDM does not include a environment to run on you wil have to install one of the greeters listed below. |
 | StartX (X11 Only) | Since StartX is kind of difficult to setup, I will simply link you to the [Arch Wiki](https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login) for instructions. |
 | wlroots on TTY (Wayland Only) | Since most wayland compositors are based on wlroots, they do not allow launching with a Display Manager. So, I will simply link to the [Arch Wiki](https://wiki.archlinux.org/title/Sway#Automatically_on_TTY_login) for instructions on how to setup TTY login. |
-| uwsm (Hyprland Only) | 1. Run `sudo pacman -S uwsm` to install uwsm<br>2. Follow the steps in the Hyprland Guide. |
+| uwsm (Hyprland and Sway Only) | 1. Run `sudo pacman -S uwsm` to install uwsm<br>2. Follow the steps in the Hyprland Guide. |
 
 ### (Only for LightDM) Part 4. Choose the greeter you want to use for LightDM.
 If you have installed any other display manager other than LightDM, then you can skip this step.
