@@ -436,7 +436,7 @@ This list has been seperated into multiple sections based on what the package re
 | Dolphin Emulator (Wii/GC) (Arch Package) | `sudo pacman -S dolphin-emu` |
 | pcsx2 (PS2) (Upstream) | `flatpak install pcsx2` |
 | Meson (NES) (Upstream) | [Download on Github](https://github.com/SourMesen/Mesen2/releases) |
-| rpcs3 (PS3) (Upstream) | `paru -S rpcs3-git` |
+| rpcs3 (PS3) (Upstream) | `git clone https://aur.archlinux.org/rpcs3-git.git && cd rpcs3-git && makepkg -sri` |
 | DuckStation (PS1) | No longer maintaining linux builds. |
 | melonDS (Upstream) | `flatpak install melonds` |
 | CEMU (Wii U) (Upstream) | `flatpak install cemu` |
