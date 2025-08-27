@@ -7,7 +7,7 @@ All steps listed with a `*` are required for a working install.
 "Nvidia, fuck you" - Linus Torvalds
 
 ## 0. Getting the Installation ISO and verifying it's legit.*
-If you want to skip verifying, I'm not gonna stop you. But if you do want to verify the legitimacy of the ISO, then you can follow steps c to e.
+If you want to skip verifying, then you can follow steps c to e, I'm not gonna stop you. But I would highly recommend you do verify the legitimacy of the ISO as it will save you from accidentally installing malware.
 
 Note: If you want to download the official torrent and use that instead of checking the mirror ISOs, you will need some form of [torrent client](https://www.qbittorrent.org/) to download the ISO through.
 
