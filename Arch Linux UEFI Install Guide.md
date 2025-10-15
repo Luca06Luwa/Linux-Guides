@@ -408,8 +408,8 @@ This list has been seperated into multiple sections based on what the package re
 | Timeshift | `sudo pacman -S timeshift` |
 | Downgrade | `paru -S downgrade` |
 | Brave Browser | `paru -Sy brave-bin` |
-| Librewolf | `paru -s librewolf-bin` |
-| Floorp | `paru -s floorp-bin` |
+| Librewolf | `paru -S librewolf-bin` |
+| Floorp | refer to flatpak |
 | KeepassXC | `sudo pacman -S keepass-xc` |
 | Bluetooth | 1. `sudo pacman -S bluez bluez-utils`<br>2. `sudo systemctl enable bluetooth.service` |
 
@@ -418,8 +418,8 @@ This list has been seperated into multiple sections based on what the package re
 | Steam | `sudo pacman -S steam` |
 | Lutris | `sudo pacman -S lutris`<br>Note: Lutris requires you to have already installed the base version of Wine |
 | YARG | 1. `sudo pacman -S hidapi systemd-libs`<br>2. [Download on Github](https://github.com/YARC-Official/YARG?tab=readme-ov-file#-downloading-and-playing)|
-| Heroic Games Launcher | `flatpak install heroicgameslauncher` |
-| Prism Launcher | `flatpak install prismlauncher` |
+| Heroic Games Launcher (epic/gog) | `flatpak install heroicgameslauncher` |
+| Prism Launcher (minecraft) | `flatpak install prismlauncher` |
 
 | Games | Commands |
 | ----- | -------- |
@@ -437,7 +437,6 @@ This list has been seperated into multiple sections based on what the package re
 | pcsx2 (PS2) (Upstream) | `flatpak install pcsx2` |
 | Meson (NES) (Upstream) | [Download on Github](https://github.com/SourMesen/Mesen2/releases) |
 | rpcs3 (PS3) (Upstream) | `git clone https://aur.archlinux.org/rpcs3-git.git && cd rpcs3-git && makepkg -sri` |
-| DuckStation (PS1) | No longer maintaining linux builds. |
 | melonDS (Upstream) | `flatpak install melonds` |
 | CEMU (Wii U) (Upstream) | `flatpak install cemu` |
 | mGBA (GBA/GB) (Arch Package) | `sudo pacman -S mgba-qt` |
