@@ -480,6 +480,7 @@ This list has been seperated into multiple sections based on what the package re
 | Zulu Java8 | `paru -S zulu-8-bin` |
 | Zulu Java17 | `paru -S zulu-17-bin` |
 | Zulu Java21 | `paru -S zulu-21-bin` |
+| XAMPP | Not sure why you would install and use this piece of shit, but if you must, heres the instructions.<br>`paru -S xampp` |
 | VS Code | 1. `paru -S visual-studios-code-bin`<br>2. `sudo pacman -S dotnet-runtime dotnet-sdk aspnet-runtime mono-msbuild mono-msbuild-sdkresolver mono` |
 
 | Production | Commands |
