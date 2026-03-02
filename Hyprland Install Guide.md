@@ -3,10 +3,10 @@ If you are wanting to install Hyprland onto your system with every package requi
 
 Please note that this guide is meant to be for experienced users. Always read the official Hyprland Wiki and Arch Wiki before using this guide.
 
-This guide covers both install and cofiguration.
+This guide covers both install and configuration.
 
 ## Installation:
-1. Run `sudo pacman -S hyprland hyprcursor hyprlock hypridle hyprpicker dunst hyprpolkitagent waybar swww cliphist pcmanfm-qt grim slurp alacritty qt5-wayland qt6-wayland xdg-desktop-portal-hyprland network-manager-applet` to install most of the packages necessary for a working Hyprland desktop.
+1. Run `sudo pacman -S hyprland hyprcursor hyprlock hypridle hyprpicker hyprsunset hyprpwcenter hyprsysteminfo hyprshutdown dunst polkit-kde-agent waybar swww cliphist pcmanfm-qt grim slurp alacritty qt5-wayland qt6-wayland xdg-desktop-portal-hyprland network-manager-applet` to install most of the packages necessary for a working Hyprland desktop.
 2. With Paru, run `paru -S tofi waypaper` to install the rest of the packages not available in the main arch repository.
 3. Go back to the [Arch Install Guide](https://github.com/Luca06Luwa/Linux-Guides/blob/WIP-md-version/Arch%20Linux%20UEFI%20Install%20Guide.md#part-3-installing-and-enabling-a-display-manager) and install uwsm as the display manager/statup.
 
@@ -47,6 +47,14 @@ env = LIBVA_DRIVER_NAME,nvidia
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 env = NVD_BACKEND,direct
 ```
+
+
+### Hyprlock configuration:
+Hyprlock does not create a configuration file, so you will have to download an [example configuration](https://github.com/hyprwm/hyprlock/blob/main/assets/example.conf).
+
+The config file goes into the `/.config/hypr` directory.
+
+More info can be found in the [Arch Wiki](https://wiki.archlinux.org/title/Hyprlock), and the official [Hyprland Wiki](https://wiki.hypr.land/Hypr-Ecosystem/hyprlock/)
 
 ### Final configuration options:
 1. Run `systemctl --user enable waybar.service` so that waybar starts up with Hyprland.
