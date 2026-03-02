@@ -6,7 +6,7 @@ Please note that this guide is meant to be for experienced users. Always read th
 This guide covers both install and cofiguration.
 
 ## Installation:
-1. Run `sudo pacman -S hyprland hyprcursor hyprlock hypridle hyprpicker dunst polkit-kde-agent waybar swww cliphist pcmanfm-qt grim slurp alacritty qt5-wayland qt6-wayland xdg-desktop-portal-hyprland network-manager-applet` to install most of the packages necessary for a working Hyprland desktop.
+1. Run `sudo pacman -S hyprland hyprcursor hyprlock hypridle hyprpicker dunst hyprpolkitagent waybar swww cliphist pcmanfm-qt grim slurp alacritty qt5-wayland qt6-wayland xdg-desktop-portal-hyprland network-manager-applet` to install most of the packages necessary for a working Hyprland desktop.
 2. With Paru, run `paru -S tofi waypaper` to install the rest of the packages not available in the main arch repository.
 3. Go back to the [Arch Install Guide](https://github.com/Luca06Luwa/Linux-Guides/blob/WIP-md-version/Arch%20Linux%20UEFI%20Install%20Guide.md#part-3-installing-and-enabling-a-display-manager) and install uwsm as the display manager/statup.
 
