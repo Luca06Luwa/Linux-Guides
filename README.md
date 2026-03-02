@@ -7,7 +7,7 @@
 ---
 This repo is where I keep my Linux Guides for Arch Linux, Gentoo, etc.
 
-These are basic txt documents that you can download for use when installing or setting up.
+These are basic txt documents and improved versions using markdown format that you can download for use when installing or setting up.
 
 I don't need to explain how to download the repo. git clone it, view it on github, etc.
 
