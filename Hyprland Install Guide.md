@@ -1,7 +1,7 @@
 # Hyprland Install Guide
 If you are wanting to install Hyprland onto your system with every package required to have a working install, then follow the this guide and then return back to the main guide once it's installed.
 
-Please note that this guide is meant to be for experienced users. Always read the official Hyprland Wiki and Arch Wiki before using this guide.
+Please note that this guide is meant to be for experienced users and should not be recommended if you don't know how advanced systemd services work. Always read the official Hyprland Wiki and Arch Wiki before using this guide.
 
 This guide covers both install and configuration.
 
